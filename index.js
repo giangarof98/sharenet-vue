@@ -14,8 +14,14 @@ const db = require('./connect/mongo')
 
 const app = express()
 
+app.engine('ejs', ejsMate)
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
+
+app.use(express.urlencoded({extended: true}));
+
+
 
 //homepage
 app.get('/', (req, res) => {
@@ -25,8 +31,23 @@ app.get('/', (req, res) => {
 //show all
 app.get('/contents', async(req,res) => {
     const content = await Content.find({});
-    res.send(content);
+    res.render('contents', {content});
 });
+
+//render create form
+app.get('/content/new', async (req,res) => {
+    res.render('new')
+})
+
+//create new content
+app.post('/content', async (req,res) => {
+    const content = new Content(req.body.content);
+    await content.save();
+    res.redirect(`/content/${content._id}`);
+
+    
+})
+
 
 //get one 
 app.get('/content/:id', async (req, res) => {
