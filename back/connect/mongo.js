@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const databaseUrl = 'mongodb://localhost:27017/sharenet-vue';
+const databaseUrl = 'mongodb://localhost:27017/vuenet';
 
 mongoose.connect(databaseUrl, {
     useNewUrlParser: true,
