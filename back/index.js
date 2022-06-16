@@ -113,4 +113,11 @@ app.put('/content/:id', async(req,res) => {
     console.log(content);
 })
 
+app.delete('/content/:id', async (req,res) => {
+    const {id} = req.params;
+    const content = await Content.findByIdAndDelete(id);
+    res.send('deleted');
+    console.log(content);
+})
+
 app.listen(port, () => { console.log('connected!')});
