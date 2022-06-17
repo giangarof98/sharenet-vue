@@ -100,7 +100,7 @@ app.get('/register', (req,res) => {
 
 //Create user
 app.post('/register', async(req,res) => {
-    const {email, username, fullName, password} = req.body;
+    const {email, username, firstName, password} = req.body;
     const user = new User({email, username, firstName, password});
     const registered = await User.register(user, password);
     console.log(registered);
@@ -112,6 +112,14 @@ app.post('/register', async(req,res) => {
 app.get('/users', async(req,res) => {
     const users = await User.find({});
     res.send(users)
+})
+
+//delete user
+app.delete('/users/:id', async(req,res) => {
+    const {id} = req.params;
+    const users = await User.findByIdAndDelete(id);
+    res.send('deleted');
+    console.log(users)
 })
 
 
