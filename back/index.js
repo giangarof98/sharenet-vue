@@ -56,12 +56,8 @@ passport.deserializeUser(User.deserializeUser());
 //Endpoint
 app.use('/', routesContent);
 
-//User
-// app.get('/test', async (req,res) => {
-//     const user = new User({email:'test@test.com', username:'testtt'})
-//     const newU = await User.register(user, 'test');
-//     res.send(newU)
-// });
+
+//Registration
 
 //Register form
 app.get('/register', (req,res) => {
@@ -120,6 +116,40 @@ app.delete('/users/:id', async(req,res) => {
     const users = await User.findByIdAndDelete(id);
     res.send('deleted');
     console.log(users)
+})
+
+//login
+
+//form
+app.get('/login', (req,res) => {
+    res.send(` 
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <h2>LogIn</h2>
+            <form action="/login" method="POST">
+
+                <label for="username">Username<label>
+                <input id="username" name="username"/>
+
+                <label for="password">password<label>
+                <input id="password" type="password" name="password"/>
+
+                <button>LogIn</button>
+            </form>
+        <html/>
+
+    `)
+});
+
+app.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), (req,res) => {
+    res.redirect('/contents');
 })
 
 
