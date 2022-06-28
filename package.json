@@ -1,0 +1,23 @@
+{
+  "name": "sharenet-vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix back",
+    "client": "npm run serve --prefix front",
+    "watch": "npm run server & npm run client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giangarof98/sharenet-vue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giangarof98/sharenet-vue/issues"
+  },
+  "homepage": "https://github.com/giangarof98/sharenet-vue#readme"
+}
