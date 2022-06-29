@@ -1,19 +1,20 @@
 <template>
-  <div>
-    <Navbar />
-    home
-  </div>
-  <router-view/>
+
+    <Navbar/>
+    <AllContent/>
+
 </template>
 
 <script>
 
   import Navbar from '@/components/Navbar.vue'
+  import AllContent from '@/components/AllContent.vue';
 
   export default {
     name: 'Home',
     components: {
-      Navbar
+      Navbar,
+      AllContent
     }
   }
 </script>

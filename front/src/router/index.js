@@ -4,6 +4,7 @@ import SignIn from '../views/SignIn.vue'
 import SignUp from '../views/SignUp.vue'
 import Profile from '../views/Profile.vue'
 import Create from '../views/Create.vue'
+import Content from '../views/Content.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/create',
     name: 'Create',
     component: Create
+  },
+  {
+    path: '/content/:id',
+    name: 'Content',
+    component: Content
   }
 ]
 
