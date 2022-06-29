@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
 const local = require('passport-local');
+const cors = require('cors');
 
 //Port
 const port = process.env.PORT || 3000;
@@ -20,6 +21,10 @@ const routesContent = require('./routes/content')
 const db = require('./connect/mongo');
 
 const app = express()
+
+// app.use(cors({
+//     origin: 'http://localhost:3000'
+// }));
 
 //CORS
 app.use((req, res, next) => {
@@ -152,5 +157,5 @@ app.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), 
     res.redirect('/contents');
 })
 
+app.listen(port, () => { console.log(`connected to port: ${port}`) });
 
-app.listen(port, () => { console.log('connected!')});

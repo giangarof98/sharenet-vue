@@ -7,10 +7,12 @@
         </div>
         <div class="flex items-center gap-x-5 mx-5">
             <div class="hidden md:flex flex-row justify-end gap-x-5 text-lg text-white tracking-wide">
-                <a href="">Home Page</a>
-                <a href="">Profile</a>
-                <a href="">SignUp</a>
-                <a href="">SignIn</a>
+                <router-link to="/">Home Page</router-link>
+                <router-link to="/signin">SignIn</router-link>
+                <router-link to="/signup">SignUp</router-link>
+                <router-link to="/profile">Profile</router-link>
+                <router-link to="/create">Create</router-link>
+                <a href="">LogOut</a>
             </div>
 
             <!-- Device Dropdown -->
@@ -27,6 +29,7 @@
                         <a href="">Profile</a>
                         <a href="">SignUp</a>
                         <a href="">SignIn</a>
+                        <a href="">LogOut</a>
                     </div>
                 </div>
 

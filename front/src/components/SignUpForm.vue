@@ -1,6 +1,7 @@
 <template>
     <div class="flex justify-center mt-10">
         <form action="" class="flex flex-col justify-center w-72 p-4">
+            <p class="text-center text-xl font-semibold py-3">Sign Up</p>
             <label for="firstName" class="font-semibold text-lg">First Name</label>
             <input type="text" id="firstName" name="firstName" class="border rounded py-0.9 px-1 focus:outline-none">
 
@@ -18,13 +19,8 @@
 
 <script>
 
-//import Navbar from '@/components/Navbar'
-
 export default {
     name:'SignUpForm',
-    components: {
-        //Navbar
-    }
 }
 
 </script>
