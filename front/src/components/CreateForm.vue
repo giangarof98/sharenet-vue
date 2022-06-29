@@ -19,7 +19,8 @@
 <script>
 
 export default {
-    name:'CreateForm'
+    name:'CreateForm',
+    
 }
 
 </script>

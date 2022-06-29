@@ -13,6 +13,7 @@ module.exports = {
         navbar: 'rgb(51 65 85)',
         button: 'rgb(5 150 105)',
         bgInput: 'rgb(229 231 235)',
+        buttonSeeMore: 'rgb(59 130 246)',
         
       }
     },

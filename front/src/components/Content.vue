@@ -6,7 +6,7 @@
                 <p>{{post.description}}</p>
             </div>
             <div>
-                <button>See more</button>
+                <button class="font-semibold text-lg rounded p-1 text-white mt-2 bg-buttonSeeMore">See more</button>
             </div>
         </div>
     </div>
