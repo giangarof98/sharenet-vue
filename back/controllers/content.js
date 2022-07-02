@@ -4,6 +4,13 @@ const router = express.Router();
 //Model
 const Content = require('../model/content');
 
+// module.exports = class API {
+
+//     static async fetchAll(req,res){
+//         res.send('hello')
+//     }
+// }
+
 //homepage
 exports.homepage = (req, res) => {
     res.send('Vuenet, welcome!');
@@ -11,7 +18,8 @@ exports.homepage = (req, res) => {
 
 exports.getAll = async(req,res) => {
     const contents = await Content.find({});
-    res.send(contents);
+    res.status(200).json(contents);
+    //res.send(contents);
 };
 
 exports.createForm = (req,res) => {
@@ -41,14 +49,16 @@ exports.createForm = (req,res) => {
 
 exports.create = async (req,res) => {
     const content = new Content(req.body.content);
-    await content.save()
-    res.send('created')
-    console.log(req.body.content)
+    await content.save();
+    res.status(201).json({message: 'created'})
+    //res.send(req.body.content)
+    //console.log(req.body.content)
 };
 
 exports.showOne = async (req,res) => {
     const single = await Content.findById(req.params.id);
-    res.send(single)
+    res.status(200).json(single)
+    //res.send(single)
 };
 
 exports.updateForm = async (req,res) => {
@@ -80,13 +90,15 @@ exports.updateForm = async (req,res) => {
 exports.update = async(req,res) => {
     const {id} = req.params;
     const content = await Content.findByIdAndUpdate(id, { ...req.body.content});
-    res.send(content)
-    console.log(content);
+    res.status(200).json({message: 'updated'})
+    //res.send(content)
+    //console.log(content);
 }
 
 exports.delete = async (req,res) => {
     const {id} = req.params;
     const content = await Content.findByIdAndDelete(id);
-    res.send('deleted');
-    console.log(content);
+    res.status(200).json({message: 'deleted'})
+    //res.send('deleted');
+    //console.log(content);
 }

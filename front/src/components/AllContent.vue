@@ -19,18 +19,23 @@
 
 <script>
 
+import {getAll} from './requests.js'
+
 export default {
     name: 'AllContent',
     data() {
         return { posts: [] }
     },
-    mounted() {
-        const api_url = 'http://localhost:3000/contents'
-
-        fetch(api_url)
-            .then(res => {return res.json()})
-            .then(data => console.log(this.posts = data))
-            .catch(err => console.log(err.message))
+    methods: {
+        
     }
+    // mounted() {
+    //     const api_url = 'http://localhost:3000/contents'
+
+    //     fetch(api_url)
+    //         .then(res => {return res.json()})
+    //         .then(data => console.log(this.posts = data))
+    //         .catch(err => console.log(err.message))
+    // }
 }
 </script>
