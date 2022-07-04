@@ -20,6 +20,9 @@
 
 export default {
     name:'CreateForm',
+    data(){
+        
+    }
 }
 
 </script>

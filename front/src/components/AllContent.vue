@@ -7,7 +7,7 @@
                 <p>{{post._id}}</p>
             </div>
             <div>
-                <router-link :to="`/content/${post._id}`">
+                <router-link :to="{name: 'Content', params: {id: post._id}}">
                     <button class="font-semibold text-lg rounded p-1 text-white mt-2 bg-buttonSeeMore">
                         See more
                     </button>

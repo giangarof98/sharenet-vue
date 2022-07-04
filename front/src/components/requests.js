@@ -1,6 +1,7 @@
 //const api_url = 'http://localhost:3000';
 import axios from 'axios';
 const api_url = '/contents';
+const api = '/content';
 
 export default class API {
 
@@ -9,17 +10,13 @@ export default class API {
         return res.data;
     }
 
-    static async getOne(){
-        const res = await fetch(`${api_url}/${id}`, {
-            method: 'get'
-        });
+    static async getOne(id){
+        const res = await axios.get(`${api}/${id}`)
         return res.data;
     }
 
     static async create(post){
-        const res = await fetch(api_url, post, {
-            method: 'get'
-        });
+        const res = await axios.post(`/create`)
         return res.data;
     }
 
