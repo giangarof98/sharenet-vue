@@ -1,5 +1,5 @@
 <template>
-    <div v-for="post in posts" :key="post"
+    <div v-for="post in posts" :key="post._id"
         class="flex flex-row justify-center py-6">
         <div>
             <div>
@@ -18,16 +18,18 @@
 </template>
 
 <script>
-
-import {getAll} from './requests.js'
+import API from './requests';
+//import {getAll} from './requests.js'
 
 export default {
     name: 'AllContent',
     data() {
-        return { posts: [] }
+        return {
+            posts: [],
+        }
     },
-    methods: {
-        
+    async created(){
+        this.posts = await API.getAll();
     }
     // mounted() {
     //     const api_url = 'http://localhost:3000/contents'
