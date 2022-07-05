@@ -59,7 +59,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //Endpoint
-app.use('/', routesContent);
+app.use('/content', routesContent);
 
 
 //Registration
@@ -154,7 +154,7 @@ app.get('/login', (req,res) => {
 });
 
 app.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), (req,res) => {
-    res.redirect('/contents');
+    res.redirect('/content');
 })
 
 app.listen(port, () => { console.log(`connected to port: ${port}`) });

@@ -28,7 +28,7 @@ const routes = [
     component: Profile
   },
   {
-    path: '/new',
+    path: '/create',
     name: 'Create',
     component: Create
   },

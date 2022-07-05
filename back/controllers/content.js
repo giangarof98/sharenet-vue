@@ -1,20 +1,13 @@
 const express = require('express');
-const router = express.Router();
+//const router = express.Router();
 
 //Model
 const Content = require('../model/content.js');
 
-// module.exports = class API {
-
-//     static async fetchAll(req,res){
-//         res.send('hello')
-//     }
-// }
-
-//homepage
-exports.homepage = (req, res) => {
-    res.send('Vuenet, welcome!');
-};
+// homepage
+// exports.homepage = (req, res) => {
+//     res.send('Vuenet, welcome!');
+// };
 
 exports.getAll = async(req,res) => {
     const contents = await Content.find({});
@@ -33,7 +26,7 @@ exports.getAll = async(req,res) => {
 //             <title>Document</title>
 //         </head>
 //         <body>
-//             <form action="/create" method="POST">
+//             <form action="/content/create" method="POST">
 
 //                 <label for="description">Description<label>
 //                 <input placeholder="type here" id="description" name="content[description]"/>
@@ -48,8 +41,12 @@ exports.getAll = async(req,res) => {
 // };
 
 exports.create = async (req,res) => {
-    const content = new Content(req.body.content);
-    await content.save();
+    const post = req.body;
+    await Content.create(post)
+    
+    // const content = new Content(req.body.content);
+    // await content.save();
+    // console.log(content)
     res.status(201).json({message: 'created'})
     
     //res.send(req.body.content)

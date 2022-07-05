@@ -1,42 +1,43 @@
 <template>
     <div class="flex justify-center mt-10">
         
-        <form @submit.prevent="createPost" class="flex flex-col justify-center w-72 p-4" enctype="multipart/form-data">
+        <form @submit.prevent="upload" class="flex flex-col justify-center w-72 p-4" enctype="multipart/form-data">
                 <p class="py-3 text-xl font-semibold text-center">Create Content</p>
 
-                <label for="description" class="text-lg font-semibold">What are you thinking?</label>
-                <input name="description" placeholder="What are yoy thinking?" id="description" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.description" required/>
+                    <h3 class="text-lg font-semibold">What are you thinking?</h3>
+                    <textarea type="text" placeholder="What are yoy thinking?" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.description" required></textarea>
 
-                <label for="image" class="text-lg font-semibold">Upload image</label>
-                <input name="image" placeholger="type here" id="image" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.image" required/>
+                    <h3 class="text-lg font-semibold">Upload image</h3>
+                    <input name="image" type="text" placeholger="type here" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.image" required/>
 
-                <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2">Create</button>
+                    <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2">Create</button>
         </form>
 
     </div>
 </template>
 
 <script>
-import API from './requests.js';
+import API from './requests';
 
 export default {
-    name:'CreateForm',
+    //name:'CreateForm',
     data(){
         return {
-            post: {
-                description:'',
-                image: '',
+            post:{
+                description:"",
+                image: "",
 
-            },
+            }
         }
     },
     methods: {
-        async createPost(){
-            const form = new FormData();
+        async upload(){
+            let form = new FormData();
             form.append('description', this.post.description);
             form.append('image', this.post.image);
-            const response = await API.create(form);
-            this.$router.push({name: 'Home', params: {message: response}})
+            const res = await API.createPost(this.post);
+            console.log(res.data)
+            this.$router.push('/')
             
 
         }

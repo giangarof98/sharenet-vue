@@ -1,13 +1,10 @@
-//const api_url = 'http://localhost:3000';
 import axios from 'axios';
-const api_url = '/contents';
 const api = '/content';
-const createPost = '/new'
 
 export default class API {
 
     static async getAll(){
-        const res = await axios.get(api_url);
+        const res = await axios.get(api);
         return res.data;
     }
 
@@ -16,8 +13,9 @@ export default class API {
         return res.data;
     }
 
-    static async create(post){
-        const res = await axios.post(createPost, post)
+    static async createPost(post){
+        const res = await axios.post(`${api}/create`, post);
+        console.log(res.data)
         return res.data;
     }
 
