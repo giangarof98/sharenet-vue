@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 //Model
-const Content = require('../model/content');
+const Content = require('../model/content.js');
 
 // module.exports = class API {
 
@@ -22,35 +22,36 @@ exports.getAll = async(req,res) => {
     //res.send(contents);
 };
 
-exports.createForm = (req,res) => {
-    res.send(`
-    <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            <form action="/create" method="POST">
+// exports.createForm = (req,res) => {
+//     res.send(`
+//     <!DOCTYPE html>
+//         <html lang="en">
+//         <head>
+//             <meta charset="UTF-8">
+//             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//             <title>Document</title>
+//         </head>
+//         <body>
+//             <form action="/create" method="POST">
 
-                <label for="description">Description<label>
-                <input placeholder="type here" id="description" name="content[description]"/>
+//                 <label for="description">Description<label>
+//                 <input placeholder="type here" id="description" name="content[description]"/>
 
-                <label for="image">image<label>
-                <input placeholger="type here" id="image" name="content[image]"/>
+//                 <label for="image">image<label>
+//                 <input placeholger="type here" id="image" name="content[image]"/>
 
-                <button>Create</button>
-            </form>
-        <html/>
-    `)
-};
+//                 <button>Create</button>
+//             </form>
+//         <html/>
+//     `)
+// };
 
 exports.create = async (req,res) => {
     const content = new Content(req.body.content);
     await content.save();
     res.status(201).json({message: 'created'})
+    
     //res.send(req.body.content)
     //console.log(req.body.content)
 };

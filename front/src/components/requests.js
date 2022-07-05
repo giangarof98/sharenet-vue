@@ -2,6 +2,7 @@
 import axios from 'axios';
 const api_url = '/contents';
 const api = '/content';
+const createPost = '/new'
 
 export default class API {
 
@@ -16,21 +17,19 @@ export default class API {
     }
 
     static async create(post){
-        const res = await axios.post(`/create`)
+        const res = await axios.post(createPost, post)
         return res.data;
     }
 
-    static async update(id, post){
-        const res = await fetch(`${api_url}/${id}`, {
-            method: 'put'
-        });
-        return res.data;
-    }
+    // static async update(id, post){
+    //     const res = await fetch(`${api_url}/${id}`, {
+    //         method: 'put'
+    //     });
+    //     return res.data;
+    // }
 
     static async delete(id){
-        const res = await fetch(`${api_url}/${id}`, {
-            method: 'delete'
-        });
+        const res = await axios.delete(`${api}/${id}`)
         return res.data;
     }
 

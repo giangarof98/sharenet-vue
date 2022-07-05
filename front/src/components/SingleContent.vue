@@ -9,6 +9,9 @@
         {{post.description}} <br>
         {{post.image}}
     </div>
+    <div>
+        <button @click="remove(post._id)">Delete</button>
+    </div>
 </template>
 
 <script>
@@ -23,6 +26,12 @@ export default {
     async created(){
         const res = await API.getOne(this.$route.params.id);
         this.post = res;
+    },
+    methods: {
+        async remove(id){
+            const res = await API.delete(id);
+            this.$router.push({name: 'Home', params: {message: res}})
+        }
     }
 }
 </script>

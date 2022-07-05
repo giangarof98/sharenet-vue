@@ -11,7 +11,7 @@
                 <router-link to="/signin">SignIn</router-link>
                 <router-link to="/signup">SignUp</router-link>
                 <router-link to="/profile">Profile</router-link>
-                <router-link to="/create">Create</router-link>
+                <router-link to="/new">Create</router-link>
                 <a href="">LogOut</a>
             </div>
 

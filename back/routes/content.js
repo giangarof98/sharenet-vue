@@ -12,13 +12,13 @@ const contentController = require('../controllers/content');
 
 router.get('/homepage', contentController.homepage);
 router.get('/contents', contentController.getAll);
-router.get('/create', contentController.createForm);
+//router.get('/create', contentController.createForm);
 router.get('/content/:id', contentController.showOne);
 router.get('/content/:id/edit', contentController.updateForm);
 
-router.put('/content/:id', contentController.update);
+router.post('/new', contentController.create);
 
-router.post('/create', contentController.create);
+router.put('/content/:id', contentController.update);
 
 router.delete('/content/:id', contentController.delete);
 
