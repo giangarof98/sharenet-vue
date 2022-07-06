@@ -19,12 +19,10 @@ export default class API {
         return res.data;
     }
 
-    // static async update(id, post){
-    //     const res = await fetch(`${api_url}/${id}`, {
-    //         method: 'put'
-    //     });
-    //     return res.data;
-    // }
+    static async update(id, post){
+        const res = await axios.put()
+        return res.data;
+    }
 
     static async delete(id){
         const res = await axios.delete(`${api}/${id}`)

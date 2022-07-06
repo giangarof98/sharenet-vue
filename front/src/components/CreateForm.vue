@@ -20,7 +20,7 @@
 import API from './requests';
 
 export default {
-    //name:'CreateForm',
+    name:'CreateForm',
     data(){
         return {
             post:{

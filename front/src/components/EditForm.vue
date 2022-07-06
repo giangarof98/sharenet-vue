@@ -16,22 +16,30 @@
 </template>
 
 <script>
+import API from './requests'
+
 export default {
     name:'EditForm',
     data(){
         return{
             post:{
-                description: '',
-                image: ''
-            }
+                description: "",
+                image: ""
+            },
         }
     },
     async created(){
-        
+        const res = await API.getOne(this.$route.params.id)
+        this.post = res
     },
     methods:{
         async update(){
-
+            let form = new FormData();
+            form.append('description', this.post.description);
+            form.append('image', this.post.image);
+            const res = await API.createPost(this.post);
+            console.log(res.data)
+            this.$router.push('/')
         }
     }
 

@@ -7,8 +7,10 @@
             </div>
             <div class="flex flex-row justify-between gap-x-5">
                     <button @click="remove(post._id)" class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-danger">Delete</button>
-                    <router-link to="/edit/{{post._id}}">
-                        <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-edit">Edit</button>
+                    <router-link :to="{name: 'Edit', param: {id: post._id}}">
+                        <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-edit">
+                            Edit
+                        </button>
                     </router-link>
             </div>
 
