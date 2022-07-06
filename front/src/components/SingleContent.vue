@@ -1,16 +1,19 @@
 <template>
-    <div>
-        <button>
-            <router-link to="/">HomePage</router-link>
-        </button> <br>
-        <button :to="{name: 'Update', params:{id: post._id }}">Edit</button>
-    </div>
-    <div>
-        {{post.description}} <br>
-        {{post.image}}
-    </div>
-    <div>
-        <button @click="remove(post._id)">Delete</button>
+    <div class="flex flex-row justify-center mt-8">
+       <div class="p-5">
+            <div>
+                <p class="font-semibold text-lg">{{post.description}}</p>
+                <p class="font-semibold text-lg">{{post.image}}</p>
+            </div>
+            <div class="flex flex-row justify-between gap-x-5">
+                    <button @click="remove(post._id)" class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-danger">Delete</button>
+                    <router-link to="/edit/{{post._id}}">
+                        <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-edit">Edit</button>
+                    </router-link>
+            </div>
+
+       </div>
+        
     </div>
 </template>
 

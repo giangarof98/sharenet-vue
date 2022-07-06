@@ -19,7 +19,6 @@
 
 <script>
 import API from './requests';
-//import {getAll} from './requests.js'
 
 export default {
     name: 'AllContent',
@@ -31,13 +30,5 @@ export default {
     async created(){
         this.posts = await API.getAll();
     }
-    // mounted() {
-    //     const api_url = 'http://localhost:3000/contents'
-
-    //     fetch(api_url)
-    //         .then(res => {return res.json()})
-    //         .then(data => console.log(this.posts = data))
-    //         .catch(err => console.log(err.message))
-    // }
 }
 </script>
