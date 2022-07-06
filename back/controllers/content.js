@@ -59,35 +59,37 @@ exports.showOne = async (req,res) => {
     //res.send(single)
 };
 
-exports.updateForm = async (req,res) => {
-    const content = await Content.findById(req.params.id);
-    res.send(`
-    <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            <form action="/content/${content._id}?_method=PUT" method="POST">
+// exports.updateForm = async (req,res) => {
+//     const content = await Content.findById(req.params.id);
+//     res.send(`
+//     <!DOCTYPE html>
+//         <html lang="en">
+//         <head>
+//             <meta charset="UTF-8">
+//             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//             <title>Document</title>
+//         </head>
+//         <body>
+//             <form action="/content/${content._id}?_method=PUT" method="POST">
 
-                <label for="description">Description<label>
-                <input value="${content.description}" id="description" name="content[description]/>
+//                 <label for="description">Description<label>
+//                 <input value="${content.description}" id="description" name="content[description]/>
 
-                <label for="image">image<label>
-                <input value="${content.image}" id="image" name="content[image]"/>
+//                 <label for="image">image<label>
+//                 <input value="${content.image}" id="image" name="content[image]"/>
 
-                <button>Update</button>
-            </form>
-        <html/>
-    `)
-}
+//                 <button>Update</button>
+//             </form>
+//         <html/>
+//     `)
+// }
 
 exports.update = async(req,res) => {
-    const {id} = req.params;
-    const content = await Content.findByIdAndUpdate(id, { ...req.body.content});
+    const id = req.params.id;
+    const post = req.body;
+    await Content.findByIdAndUpdate(id,post)
+    //const content = await Content.findByIdAndUpdate(id, { ...req.body.content});
     res.status(200).json({message: 'updated'})
     //res.send(content)
     //console.log(content);

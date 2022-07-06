@@ -20,7 +20,7 @@ export default class API {
     }
 
     static async update(id, post){
-        const res = await axios.put()
+        const res = await axios.put(`${api}/edit/${id}`, post)
         return res.data;
     }
 
