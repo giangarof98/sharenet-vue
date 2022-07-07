@@ -37,6 +37,7 @@ export default {
             let form = new FormData();
             form.append('description', this.post.description);
             form.append('image', this.post.image);
+            
             const res = await API.update(this.$route.params.id, this.post);
             console.log(res.data)
             this.$router.push('/')
