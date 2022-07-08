@@ -16,7 +16,7 @@ router.delete('/users/:id', userController.delete);
 
 //login SignIn
 
-router.get('/signin', userController.signinForm);
+//router.get('/signin', userController.signinForm);
 router.post('/signin', passport.authenticate('local', {failureRedirect: '/user/'}), userController.signin);
 
 

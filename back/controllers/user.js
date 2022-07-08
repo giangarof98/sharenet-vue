@@ -66,32 +66,32 @@ exports.delete = async(req,res) => {
 
 //form
 
-exports.signinForm = (req, res) => {
-    res.send(` 
-    <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            <h2>LogIn</h2>
-            <form action="/user/signin" method="POST">
+// exports.signinForm = (req, res) => {
+//     res.send(` 
+//     <!DOCTYPE html>
+//         <html lang="en">
+//         <head>
+//             <meta charset="UTF-8">
+//             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//             <title>Document</title>
+//         </head>
+//         <body>
+//             <h2>LogIn</h2>
+//             <form action="/user/signin" method="POST">
 
-                <label for="username">Username<label>
-                <input id="username" name="username"/>
+//                 <label for="username">Username<label>
+//                 <input id="username" name="username"/>
 
-                <label for="password">password<label>
-                <input id="password" type="password" name="password"/>
+//                 <label for="password">password<label>
+//                 <input id="password" type="password" name="password"/>
 
-                <button>LogIn</button>
-            </form>
-        <html/>
+//                 <button>LogIn</button>
+//             </form>
+//         <html/>
 
-    `)
-}
+//     `)
+// }
 
 exports.signin = (req,res) => {
     res.redirect('/content');

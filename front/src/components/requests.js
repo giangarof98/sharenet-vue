@@ -39,4 +39,9 @@ export default class API {
         return res.data;
     }
 
+    static async signin(user){
+        const res = await axios.post(`${apiuser}/signin`, user);
+        return res.data;
+    }
+
 }
