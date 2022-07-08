@@ -1,5 +1,6 @@
 import axios from 'axios';
 const api = '/content';
+const apiuser = '/user'
 
 export default class API {
 
@@ -20,8 +21,9 @@ export default class API {
         return res.data;
     }
 
+
     static async update(id, post){
-        const res = await axios.put(`${api}/edit/${id}`, post)
+        const res = await axios.put(`${api}/edit/${id}`, post);
         return res.data;
     }
 
@@ -31,5 +33,10 @@ export default class API {
     }
 
     //Users
+
+    static async signup(user){
+        const res = await axios.post(`${apiuser}/signup`, user);
+        return res.data;
+    }
 
 }
