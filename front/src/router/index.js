@@ -42,7 +42,10 @@ const routes = [
     path: '/edit/:id',
     name: 'Edit',
     component: Edit
-  }
+  },
+  //Todo
+  //signin
+  //signup
 ]
 
 const router = createRouter({

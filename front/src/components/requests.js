@@ -3,6 +3,7 @@ const api = '/content';
 
 export default class API {
 
+    //Posts
     static async getAll(){
         const res = await axios.get(api);
         return res.data;
@@ -28,5 +29,7 @@ export default class API {
         const res = await axios.delete(`${api}/${id}`)
         return res.data;
     }
+
+    //Users
 
 }
