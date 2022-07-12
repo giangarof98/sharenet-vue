@@ -5,11 +5,6 @@ const router = express.Router();
 //Controllers
 const contentController = require('../controllers/content');
 
-//class 
-//const API = require('../controllers/content');
-
-//router.get('/t', API.fetchAll);
-
 //router.get('/homepage', contentController.homepage);
 router.get('/', contentController.getAll);
 //router.get('/create', contentController.createForm);

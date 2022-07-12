@@ -44,13 +44,13 @@ exports.signup = async(req,res) => {
     const user = new User({email, username, firstName, password});
     const registered = await User.register(user, password);
     console.log(registered);
-    res.send(registered)
+    res.status(201).json({message:'registered'})
 }
 
 //All users
 exports.getAll = async(req, res) => {
     const users = await User.find({});
-    res.send(users)
+    res.status(200).json(users)
 }
 
 //delete user
@@ -58,7 +58,7 @@ exports.getAll = async(req, res) => {
 exports.delete = async(req,res) => {
     const {id} = req.params;
     const users = await User.findByIdAndDelete(id);
-    res.send('deleted');
+    res.status(200).json({message:'deleted'});
     console.log(users)
 }
 
