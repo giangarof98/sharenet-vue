@@ -21,6 +21,7 @@
 
 <script>
 import API from './requests'
+
 export default {
     name:'SingleContent',
     data(){

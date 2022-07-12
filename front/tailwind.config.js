@@ -16,6 +16,7 @@ module.exports = {
         buttonSeeMore: 'rgb(59 130 246)',
         danger: 'rgb(153 27 27)',
         edit: 'rgb(29 78 216)',
+        grey: 'rgb(212 212 216)',
         
       }
     },
