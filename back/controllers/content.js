@@ -43,11 +43,11 @@ exports.getAll = async(req,res) => {
 exports.create = async (req,res) => {
     const post = req.body;
     await Content.create(post)
+    res.status(201).json({message: 'created'})
     
     // const content = new Content(req.body.content);
     // await content.save();
     // console.log(content)
-    res.status(201).json({message: 'created'})
     
     //res.send(req.body.content)
     //console.log(req.body.content)

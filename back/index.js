@@ -29,7 +29,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.set('view engine', 'html')
+//app.set('view engine', 'html')
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride('_method'));

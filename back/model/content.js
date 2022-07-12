@@ -5,9 +5,11 @@ const contentSchema = new Schema({
     //author: String,
     description: String,
     image: String,
-    //like: 
-    //dislike: 
-    //comment: 
+    like: Number,
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
+    }] 
 })
 
 module.exports = mongoose.model('Content',  contentSchema);

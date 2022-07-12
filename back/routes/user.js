@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
+const User = require('../model/user.js');
+
 //Controllers
 const userController = require('../controllers/user');
 
@@ -14,12 +16,11 @@ router.get('/', userController.getAll);
 
 router.delete('/users/:id', userController.delete);
 
+
 //login SignIn
 
 //router.get('/signin', userController.signinForm);
-router.post('/signin', passport.authenticate('local', {failureRedirect: '/user/'}), userController.signin);
-
-
+router.post('/signin', passport.authenticate("local", {failureRedirect: '/user/signin/'}), userController.signin);
 
 
 module.exports = router;
