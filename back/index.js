@@ -15,6 +15,7 @@ const User = require('./model/user')
 //Routes
 const routesContent = require('./routes/content');
 const routesUser = require('./routes/user');
+const routesReview = require('./routes/review');
 
 //Mongo Connection
 const db = require('./connect/mongo');
@@ -29,7 +30,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//app.set('view engine', 'html')
+app.set('view engine', 'html')
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
@@ -55,7 +56,19 @@ passport.deserializeUser(User.deserializeUser());
 
 //Endpoint
 app.use('/content', routesContent);
+app.use('/content/:id/review', routesReview);
 app.use('/user', routesUser);
+
+// app.all('*', (req,res,next) => {
+//     next(new ExpressError('Page Not Found', 404))
+// });
+
+// app.use((err, req, res, next) => {
+//     const {statusCode = 500} = err
+//     if(!err.msg) { err.msg = 'Something went wrong'}
+    
+//     res.status(statusCode).render('error', { err })
+// });
 
 
 app.listen(port, () => { console.log(`connected to port: ${port}`) });

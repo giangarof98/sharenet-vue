@@ -44,4 +44,11 @@ export default class API {
         return res.data;
     }
 
+    //Content / Review
+
+    static async createReview(id, review){
+        const res = await axios.post(`/content/${id}/review`, review)
+        return res.data
+    }
+
 }
