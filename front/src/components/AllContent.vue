@@ -4,7 +4,7 @@
         <div>
             <div>
                 <p>{{post.description}}</p>
-                <p>{{post._id}}</p>
+                <p>{{post.image}}</p>
             </div>
             <div>
                 <router-link :to="{name: 'Content', params: {id: post._id}}">

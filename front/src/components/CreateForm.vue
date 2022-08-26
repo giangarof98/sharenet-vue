@@ -25,8 +25,7 @@ export default {
         return {
             post:{
                 description:"",
-                image: "",
-
+                file: "",
             }
         }
     },
@@ -34,11 +33,10 @@ export default {
         async upload(){
             let form = new FormData();
             form.append('description', this.post.description);
-            form.append('image', this.post.image);
+            form.append('image', this.post.file);
             const res = await API.createPost(this.post);
             console.log(res.data)
             this.$router.push('/')
-            
 
         }
     }
