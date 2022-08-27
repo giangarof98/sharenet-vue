@@ -7,7 +7,7 @@
                     <textarea type="text" placeholder="What are yoy thinking?" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.description" required></textarea>
 
                     <h3 class="text-lg font-semibold">Replace image</h3>
-                    <input name="image" type="text" placeholger="type here" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.image" required/>
+                    <input name="image" ref="file" type="file" placeholger="type here" class="border rounded py-0.9 px-1 focus:outline-none" @change="uploadFile" required/>
 
                     <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2">Update</button>
             </form>
@@ -33,6 +33,10 @@ export default {
         this.post = res
     },
     methods:{
+        uploadFile(){
+            this.file = this.$refs.file.files[0]
+            console.log(this.$refs.file.files[0])
+        },
         async updatePost(){
             let form = new FormData();
             form.append('description', this.post.description);

@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 //const router = express.Router();
 
 //Model
@@ -11,7 +12,16 @@ exports.getAll = async(req,res) => {
 };
 
 exports.create = async (req,res) => {
-    const post = req.body;
+    //req.body.content = JSON.parse(req.body.content);
+    // const url = req.protocol + '://' + req.get('host');
+    // const post = new Content({
+    //     description: req.body.description,
+    //     image: url + '/images/' + req.file.filename,
+    // })
+    // console.log(req.file.filename)
+    const post = req.body
+    const imgName = req.file.filename;
+    post.image = imgName;
     await Content.create(post)
     res.status(201).json({message: 'created'})
     
@@ -25,7 +35,9 @@ exports.showOne = async (req,res) => {
 
 exports.update = async(req,res) => {
     const id = req.params.id;
+    
     const post = req.body;
+    
     await Content.findByIdAndUpdate(id,post)
     res.status(200).json({message: 'updated'})
 }
