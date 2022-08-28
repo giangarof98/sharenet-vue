@@ -12,19 +12,11 @@ exports.getAll = async(req,res) => {
 };
 
 exports.create = async (req,res) => {
-    //req.body.content = JSON.parse(req.body.content);
-    // const url = req.protocol + '://' + req.get('host');
-    // const post = new Content({
-    //     description: req.body.description,
-    //     image: url + '/images/' + req.file.filename,
-    // })
-    // console.log(req.file.filename)
-    const post = req.body
-    const imgName = req.file.filename;
-    post.image = imgName;
+    const post = req.body;
+    const image = req.file.filename;
+    post.image = image;
     await Content.create(post)
-    res.status(201).json({message: 'created'})
-    
+    res.send(req.body)    
 };
 
 exports.showOne = async (req,res) => {

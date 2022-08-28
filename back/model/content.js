@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 const review = require('./review')
 
+const imgSchema = new Schema({
+    url: String, 
+    filename: String
+});
+
 const contentSchema = new Schema({
     //author: String,
     description: String,

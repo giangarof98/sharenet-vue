@@ -15,9 +15,8 @@ export default class API {
         return res.data;
     }
 
-    static async createPost(post){
-        const res = await axios.post(`${api}/create`, {post});
-        console.log(res.data)
+    static async createPost(form){
+        const res = await axios.post(`${api}/create`, form);
         return res.data;
     }
 

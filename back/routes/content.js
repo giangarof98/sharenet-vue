@@ -1,7 +1,6 @@
 //Dependecies
 const express = require('express');
 const router = express.Router();
-//const multer = require('multer');
 
 //Controllers
 const contentController = require('../controllers/content');

@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-center mt-10">
         
-        <form @submit.prevent="upload" class="flex flex-col justify-center w-72 p-4" enctype="multipart/form-data">
+        <form @submit.prevent="upload" ref="form" class="flex flex-col justify-center w-72 p-4" enctype="multipart/form-data">
                 <p class="py-3 text-xl font-semibold text-center">Create Content</p>
 
                     <h3 class="text-lg font-semibold">What are you thinking?</h3>
@@ -26,24 +26,24 @@ export default {
             post:{
                 description:"",
                 image: "",
-            }
-        }
+            },
+            image:"",
+        };
     },
     methods: {
-        uploadFile(){
-            this.image = this.$refs.file[0];
-            //this.file = file
-            console.log(this.file = this.$refs.file[0])
+        uploadFile(file){
+            this.image = file[0]
             
         },
         async upload(){
-            let form = new FormData();
-            form.append('description', this.post.description);
-            form.append('image', this.post.image);
-            const res = await API.createPost(this.post);
-            console.log(res.data)
-            this.$router.push('/')
-
+            const post = new FormData();
+            post.append('image', this.image);
+            post.append('description', this.post.description);
+                
+            if(this.$refs.form){
+                await API.createPost(post);
+                this.$router.push('/')
+            }
         },
     }
 }

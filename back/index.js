@@ -1,5 +1,6 @@
 //Dependencies
 const express = require('express');
+const path = require('path')
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const session = require('express-session');
@@ -34,6 +35,7 @@ app.set('view engine', 'html')
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(express.static('image'))
 
 const sessionConfig = {
     secret: 'secret',
