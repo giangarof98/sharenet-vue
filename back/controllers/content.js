@@ -3,7 +3,7 @@ const fs = require('fs');
 //const router = express.Router();
 
 //Model
-const Content = require('../model/content.js');
+const Content = require('../model/content');
 
 exports.getAll = async(req,res) => {
     const contents = await Content.find({});

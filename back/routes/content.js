@@ -12,7 +12,7 @@ const multer = require('../middleware/multerConfig')
 //router.get('/homepage', contentController.homepage);
 router.get('/', CatchAsync(contentController.getAll));
 //router.get('/create', contentController.createForm);
-router.post('/create', multer, CatchAsync(contentController.create));
+router.post('/', multer, CatchAsync(contentController.create));
 router.get('/:id', CatchAsync(contentController.showOne));
 //router.get('/:id/edit', contentController.updateForm);
 router.put('/edit/:id', CatchAsync(contentController.update));

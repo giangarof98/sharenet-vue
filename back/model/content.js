@@ -12,11 +12,11 @@ const contentSchema = new Schema({
     //author: String,
     description: String,
     image: String,
-    like: Number,
-    reviews: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Review',
-    }]
+    //like: Number,
+    // reviews: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Review',
+    // }]
 });
 
 module.exports = mongoose.model('Content',  contentSchema);
