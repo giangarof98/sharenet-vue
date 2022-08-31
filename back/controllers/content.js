@@ -20,18 +20,41 @@ exports.create = async (req,res) => {
 };
 
 exports.showOne = async (req,res) => {
-    const single = await Content.findById(req.params.id)
-    res.status(200).json(single)
+    const post = await Content.findById(req.params.id)
+    res.status(200).json(post)
 };
 
 
 exports.update = async(req,res) => {
+    // const id = req.params.id;
+    
+    // const post = req.body;
+    
+    // await Content.findByIdAndUpdate(id,post)
+    // res.status(200).json({message: 'updated'})
+
     const id = req.params.id;
-    
-    const post = req.body;
-    
-    await Content.findByIdAndUpdate(id,post)
-    res.status(200).json({message: 'updated'})
+    let new_image = '';
+    if(req.file){
+        new_image = req.file.filename
+        try{
+            fs.unlinkSync('./image/'+req.body.image)
+        } catch(err){
+            console.log(err)
+            } 
+        }else {
+            new_image = req.body,old_image;
+        }
+        const newpost = req.body;
+        newpost.image = new_image
+        try{
+            await Content.findByIdAndUpdate(id,newpost)
+            res.status(200).json({message: 'updated'})
+
+        } catch(err){
+            console.log(err)
+        }
+        
 }
 
 exports.delete = async (req,res) => {

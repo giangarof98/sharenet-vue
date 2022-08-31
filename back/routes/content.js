@@ -15,7 +15,7 @@ router.get('/', CatchAsync(contentController.getAll));
 router.post('/', multer, CatchAsync(contentController.create));
 router.get('/:id', CatchAsync(contentController.showOne));
 //router.get('/:id/edit', contentController.updateForm);
-router.put('/edit/:id', CatchAsync(contentController.update));
+router.put('/edit/:id', multer, CatchAsync(contentController.update));
 router.delete('/:id', CatchAsync(contentController.delete));
 
 module.exports = router;
