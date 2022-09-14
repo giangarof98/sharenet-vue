@@ -11,7 +11,8 @@ const imgSchema = new Schema({
 const contentSchema = new Schema({
     //author: String,
     description: String,
-    image: String,
+    image:[imgSchema]
+    //image: [{url:String,filename:String}]
     //like: Number,
     // reviews: [{
     //     type: Schema.Types.ObjectId,

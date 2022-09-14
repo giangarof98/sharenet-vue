@@ -3,8 +3,9 @@
         class="flex flex-row justify-center py-6">
         <div>
             <div>
-                <p>{{post.description}}</p>
-                <img :src="`${post.image}`" alt="">
+                <p>{{post.description}}</p>                
+                <img :src="`${post.image[0].url}`" alt="">
+
             </div>
             <div>
                 <router-link :to="{name: 'Content', params: {id: post._id}}">
@@ -28,7 +29,15 @@ export default {
         }
     },
     async created(){
-        this.posts = await API.getAll();
+        this.posts = await API.getAll()
+        //let content = this.posts
+        // let arr = JSON.parse(JSON.stringify(content))
+        // console.log(arr)
+        // for(let i = 0; i < arr.length; i++){
+        //     const img = arr[i].image[0].url
+        //     console.log(img)
+        // }
+        
     }
 }
 </script>

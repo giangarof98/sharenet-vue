@@ -1,3 +1,8 @@
+//If project is not in development, require 'dotenv' config()
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+};
+
 //Dependencies
 const express = require('express');
 const path = require('path')

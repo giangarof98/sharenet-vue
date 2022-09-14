@@ -41,7 +41,7 @@ export default {
             //const filename = this.file.name
             //console.log(this.image.name)
             //console.log(file)
-            console.log(this.$refs.photo.files[0])
+            //console.log(this.$refs.photo.files[0])
             
         },
         async upload(){
@@ -54,7 +54,7 @@ export default {
             //     console.log(err)
             // }
             const res = await API.create(formData);
-            console.log(res)
+            //console.log(res)
             this.$router.push('/')
             
             // if(this.$refs.form){

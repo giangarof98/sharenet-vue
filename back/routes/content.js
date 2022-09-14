@@ -6,8 +6,8 @@ const router = express.Router();
 const contentController = require('../controllers/content');
 
 //Middleware
-const CatchAsync = require('../middleware/catchAsync')
-const multer = require('../middleware/multerConfig')
+const CatchAsync = require('../middleware/catchAsync');
+const multer = require('../middleware/multerConfig');
 
 //router.get('/homepage', contentController.homepage);
 router.get('/', CatchAsync(contentController.getAll));

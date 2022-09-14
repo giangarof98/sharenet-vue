@@ -3,7 +3,7 @@
        <div class="p-5">
             <div>
                 <p class="font-semibold text-lg">{{post.description}}</p>
-                <img :src="`/${post.image}`" alt="">
+                <img :src="`${post.image}`" alt="">
             </div>
             <div class="flex flex-row justify-between gap-x-5">
                     <button @click="remove(post._id)" class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-danger">Delete</button>

@@ -12,11 +12,22 @@ exports.getAll = async(req,res) => {
 };
 
 exports.create = async (req,res) => {
-    const post = req.body;
-    const image = req.file.filename;
-    post.image = image;
-    await Content.create(post)
-    res.send(req.body)    
+    const post = new Content(req.body);
+    post.image = req.files.map(f => ({url: f.path, filename: f.filename}))
+    await post.save()
+    console.log(post)
+    res.send(req.body)
+
+    //req.file.map(f => ({url: f.path, filename: f.filename}))
+    // -> const post = req.body;
+    //const image = req.files.filename;
+    //post.image = image;
+    //const image = req.file.map(f => ({url: f.path, filename: f.filename}))
+    // -> post.image = req.files.map(f => ({url: f.path, filename: f.filename}))
+    // -> await Content.create(post)
+    //console.log(req.file)
+    // -> console.log(post, req.file)
+    // -> res.send(req.body)    
 };
 
 exports.showOne = async (req,res) => {
