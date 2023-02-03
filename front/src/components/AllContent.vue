@@ -1,25 +1,25 @@
 <template>
-    <div v-for="post in posts" :key="post._id"
-        class="flex flex-row justify-center py-6">
-        <div>
+    <div>
+        <div v-for="post in posts" :key="post._id" class="flex flex-row justify-center py-6">
             <div>
-                <p>{{post.description}}</p>                
-                <img :src="`${post.image[0].url}`" alt="">
-
-            </div>
-            <div>
-                <router-link :to="{name: 'Content', params: {id: post._id}}">
+                <div>
+                    <p>{{post.description}}</p>
+                    <img :src="`${post.image[0].url}`" alt="content">
+                </div>
+                <div>
                     <button class="font-semibold text-lg rounded p-1 text-white mt-2 bg-buttonSeeMore">
-                        See more
+                        <router-link :to="`/content/${post._id}`">
+                            See more
+                        </router-link>
                     </button>
-                </router-link>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import API from './requests';
+import axios from 'axios'
 
 export default {
     name: 'AllContent',
@@ -28,16 +28,15 @@ export default {
             posts: [],
         }
     },
-    async created(){
-        this.posts = await API.getAll()
-        //let content = this.posts
-        // let arr = JSON.parse(JSON.stringify(content))
-        // console.log(arr)
-        // for(let i = 0; i < arr.length; i++){
-        //     const img = arr[i].image[0].url
-        //     console.log(img)
-        // }
-        
+    async mounted(){
+        this.fetchData()
+    },
+    methods:{
+        async fetchData(){
+            const res = await axios.get('/content')
+            this.posts = res.data
+            console.log(res.data)
+        }
     }
 }
 </script>

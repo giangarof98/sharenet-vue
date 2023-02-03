@@ -19,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/giangarof98/sharenet-vue/issues"
   },
-  "homepage": "https://github.com/giangarof98/sharenet-vue#readme"
+  "homepage": "https://github.com/giangarof98/sharenet-vue#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/vue-fontawesome": "^3.0.3"
+  }
 }

@@ -9,7 +9,7 @@ import Edit from '../views/Edit.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/content',
     name: 'Home',
     component: Home
   },
@@ -39,10 +39,10 @@ const routes = [
     component: Content
   },
   {
-    path: '/edit/:id',
+    path: '/content/edit/:id',
     name: 'Edit',
     component: Edit
-  }
+  },
 ]
 
 const router = createRouter({

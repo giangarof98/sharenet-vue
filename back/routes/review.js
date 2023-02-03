@@ -7,6 +7,7 @@ const reviewController = require('../controllers/review')
 //Middleware
 const CatchAsync = require('../middleware/catchAsync')
 
-router.post('/', CatchAsync(reviewController.createReview))
+router.get('/:id/reviews', CatchAsync(reviewController.getReviewByPost))
+router.post('/:id/reviews', CatchAsync(reviewController.createReview))
 
 module.exports = router;

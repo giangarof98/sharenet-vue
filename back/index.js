@@ -36,7 +36,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.set('view engine', 'html')
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
@@ -63,20 +62,8 @@ passport.deserializeUser(User.deserializeUser());
 
 //Endpoint
 app.use('/content', routesContent);
-app.use('/content/:id/review', routesReview);
+app.use('/content', routesReview);
 app.use('/user', routesUser);
-
-// app.all('*', (req,res,next) => {
-//     next(new ExpressError('Page Not Found', 404))
-// });
-
-// app.use((err, req, res, next) => {
-//     const {statusCode = 500} = err
-//     if(!err.msg) { err.msg = 'Something went wrong'}
-    
-//     res.status(statusCode).render('error', { err })
-// });
-
 
 app.listen(port, () => { console.log(`connected to port: ${port}`) });
 

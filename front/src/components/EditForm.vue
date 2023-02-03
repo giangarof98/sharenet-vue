@@ -4,47 +4,58 @@
                     <p class="py-3 text-xl font-semibold text-center">Modify Content</p>
 
                     <h3 class="text-lg font-semibold">Edit your description</h3>
-                    <textarea type="text" placeholder="What are yoy thinking?" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.description" required></textarea>
+                    <textarea type="text" placeholder="jjj" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.description"></textarea>
+
+                    <p>current image</p>
+                    <img :src="imageUrl" alt="">
 
                     <h3 class="text-lg font-semibold">Replace image</h3>
-                    <input name="image" ref="file" type="file" placeholger="type here" class="border rounded py-0.9 px-1 focus:outline-none" @change="uploadFile" required/>
-
+                    <input name="image" ref="imageUrl" type="file" class="border rounded py-0.9 px-1 focus:outline-none" @change="uploadFile"/>
                     <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2">Update</button>
+                    <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-edit">
+                        <router-link :to="`/content/${post._id}`">
+                            Go back
+                        </router-link>
+                    </button>
             </form>
 
     </div>
 </template>
 
 <script>
-import API from './requests'
+
+import axios from 'axios'
 
 export default {
     name:'EditForm',
     data(){
         return{
-            post:{
-                description: "",
-                image: ""
-            },
+            post:[],
+            imageUrl: ''
         }
     },
     async created(){
-        const res = await API.getOne(this.$route.params.id)
-        this.post = res
+        this.fetchData(this.$route.params.id)
     },
     methods:{
+        async fetchData(id){
+            const res = await axios.get(`/content/${id}`)
+            this.post = res.data;
+            this.imageUrl = this.post.image[0].url;
+            console.log(res.data)
+        },
         uploadFile(){
-            this.file = this.$refs.file.files[0]
-            console.log(this.$refs.file.files[0])
+            // this.file = this.$refs.file.files[0]
+            // console.log(this.$refs.file.files[0])
         },
         async updatePost(){
             let form = new FormData();
             form.append('description', this.post.description);
             form.append('image', this.post.image);
             
-            const res = await API.update(this.$route.params.id, this.post);
+            const res = await axios.put(this.$route.params.id, this.post);
             console.log(res.data)
-            this.$router.push('/')
+            this.$router.push('/content')
         }
     }
 

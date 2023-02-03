@@ -7,7 +7,7 @@
         </div>
         <div class="flex items-center gap-x-5 mx-5">
             <div class="hidden md:flex flex-row justify-end gap-x-5 text-lg text-white tracking-wide">
-                <router-link to="/">Home Page</router-link>
+                <router-link to="/content">Home Page</router-link>
                 <router-link to="/profile">Profile</router-link>
                 <router-link to="/create">Create</router-link>
                 <a href="">LogOut</a>
@@ -25,7 +25,7 @@
 
                 <div class="md:hidden">
                     <div id="menu" class="flex-col hidden text-white space-y-2 px-2">
-                        <router-link to="/">Home Page</router-link>
+                        <router-link to="/content">Home Page</router-link>
                         <router-link to="/profile">Profile</router-link>
                         <router-link to="/create">Create</router-link>
                         <a href="">LogOut</a>
