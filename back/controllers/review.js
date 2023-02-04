@@ -2,6 +2,7 @@ const express = require('express');
 
 //Models
 const Content = require('../model/content');
+const { findById, findByIdAndDelete } = require('../model/review');
 const Review = require('../model/review')
 
 exports.createReview = async (req,res) => {
@@ -29,5 +30,14 @@ exports.getReviewByPost= async(req,res) => {
         console.log(err)
     }
 
+
+}
+
+exports.deleteReview = async(req,res) => {
+    const {id, reviewId} = req.params;
+    const post = Content.findByIdAndUpdate(id, {$pull:{comments: reviewId}})
+    const review = await Review.findByIdAndDelete(reviewId);
+    res.status(200).send(review)
+    // res.send('deleted')
 
 }
