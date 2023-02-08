@@ -12,13 +12,16 @@ exports.userLoggin = async(req,res) => {
 }
 
 //Register 
-exports.signup = async(req,res) => {
+exports.signup = async(req,res, next) => {
     try{
         const {email, username, firstName, lastname, password} = req.body;
         const user = new User({email, username, firstName, lastname, password});
         const registered = await User.register(user, password);
-        console.log(registered);
-        res.status(201).json({message:'registered'})
+        req.login(registered, err => {
+            if(err) return next(err)
+            console.log(registered);
+            res.status(201).json({message:'registered'})
+        })
 
     } catch(err){
         console.log(err)
