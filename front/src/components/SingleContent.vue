@@ -38,8 +38,8 @@ export default {
                 const res = await axios.get(`/content/${id}`);
                 this.post = res.data
                 this.imageUrl = this.post.image[0].url;
-                console.log(res.data)
-                console.log(this.post)
+                // console.log(res.data)
+                // console.log(this.post)
             } catch (error) {
                 console.log(error);
             }

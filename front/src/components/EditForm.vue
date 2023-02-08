@@ -42,7 +42,7 @@ export default {
             const res = await axios.get(`/content/${id}`)
             this.post = res.data;
             this.imageUrl = this.post.image[0].url;
-            console.log(res.data)
+            // console.log(res.data)
         },
         uploadFile(){
             // this.file = this.$refs.file.files[0]
@@ -54,7 +54,7 @@ export default {
             form.append('image', this.post.image);
             
             const res = await axios.put(this.$route.params.id, this.post);
-            console.log(res.data)
+            // console.log(res.data)
             this.$router.push('/content')
         }
     }

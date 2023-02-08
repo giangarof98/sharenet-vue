@@ -60,7 +60,7 @@ export default {
                 const res = await axios.post(`/content/${id}/reviews`, {
                 body: this.review.body
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 this.$router.go(0)
 
             } catch(err){

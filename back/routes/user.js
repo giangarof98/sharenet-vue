@@ -7,20 +7,19 @@ const User = require('../model/user.js');
 //Controllers
 const userController = require('../controllers/user');
 
-//registration SignUp
+//Middleware
+const CatchAsync = require('../middleware/catchAsync');
 
-//router.get('/signup', userController.signupForm);
-router.post('/signup', userController.signup);
-
+//registration SignUp78
+router.post('/signup', CatchAsync(userController.signup));
 router.get('/', userController.getAll);
-
 router.delete('/users/:id', userController.delete);
 
-
 //login SignIn
+router.post('/signin', passport.authenticate("local", {failureFlash:true, failureRedirect: '/user/signin/'}), userController.signin);
+router.get('/signin', CatchAsync(userController.userLoggin))
 
-//router.get('/signin', userController.signinForm);
-router.post('/signin', passport.authenticate("local", {failureRedirect: '/user/signin/'}), userController.signin);
-
+//logout
+router.get('/logout', userController.logout)
 
 module.exports = router;

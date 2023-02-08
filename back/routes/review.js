@@ -3,6 +3,7 @@ const router = express.Router();
 
 //Controllers
 const reviewController = require('../controllers/review')
+const {isLoggedIn} = require('../middleware/isLoggedin')
 
 //Middleware
 const CatchAsync = require('../middleware/catchAsync')

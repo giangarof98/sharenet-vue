@@ -7,12 +7,20 @@
         </div>
         <div class="flex items-center gap-x-5 mx-5">
             <div class="hidden md:flex flex-row justify-end gap-x-5 text-lg text-white tracking-wide">
-                <router-link to="/content">Home Page</router-link>
-                <router-link to="/profile">Profile</router-link>
-                <router-link to="/create">Create</router-link>
-                <a href="">LogOut</a>
-                <router-link to="/signin">SignIn</router-link>
-                <router-link to="/signup">SignUp</router-link>
+
+                <div v-if="user.username">
+                    <router-link to="/content">Home Page</router-link>
+                    <router-link to="/profile">Profile</router-link>
+                    <router-link to="/create">Create</router-link>
+                    <button>
+                        <a @click="logout">Logout</a>
+                    </button>
+                </div>
+
+                <div v-if="!user.username">
+                    <router-link to="/user/signin">SignIn</router-link>
+                    <router-link to="/user/signup">SignUp</router-link>
+                </div>
             </div>
 
             <!-- Device Dropdown -->
@@ -29,11 +37,10 @@
                         <router-link to="/profile">Profile</router-link>
                         <router-link to="/create">Create</router-link>
                         <a href="">LogOut</a>
-                        <router-link to="/signin">SignIn</router-link>
-                        <router-link to="/signup">SignUp</router-link>
+                        <router-link to="/user/signin">SignIn</router-link>
+                        <router-link to="/user/signup">SignUp</router-link>
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -41,6 +48,55 @@
 
     </nav>
 </template>
+
+<script>
+
+import axios from 'axios';
+
+export default {
+    name:'Navbar',
+    data(){
+        return{
+            user: {
+                isAuthenticated: false,
+                username: ''
+            }
+        }
+    },
+    async mounted(){
+        // if(this.user){
+            try{
+                const res = await axios.get(`/user/signin`);
+                this.user = {
+                    isAuthenticated: true,
+                    username: res.data.passport.user
+                }    
+            } catch(err){
+                console.log(err)
+            }
+
+        // }
+    },
+    methods: {
+        async logout(){
+            const res = await axios.get(`/user/logout`)
+            this.$router.go(0)
+        },
+        dropdown(){
+            const btn = document.getElementById('btn-menu');
+            const menu = document.getElementById('menu');
+
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('open');
+                menu.classList.toggle('flex');
+                menu.classList.toggle('hidden');
+            })
+
+        }
+    }
+}
+
+</script>
 
 <style scoped>
 .icon{
@@ -89,23 +145,3 @@
 }
 </style>
 
-<script>
-
-export default {
-    name:'Navbar',
-    methods: {
-        dropdown(){
-            const btn = document.getElementById('btn-menu');
-            const menu = document.getElementById('menu');
-
-            btn.addEventListener('click', () => {
-                btn.classList.toggle('open');
-                menu.classList.toggle('flex');
-                menu.classList.toggle('hidden');
-            })
-
-        }
-    }
-}
-
-</script>

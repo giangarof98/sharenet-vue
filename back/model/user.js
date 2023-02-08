@@ -4,12 +4,14 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     firstName: String,
+    lastName: String,
+    username: String,
     email: {
         type: String,
         required: true,
         min: 6,
         unique: true,
-    }
+    },
 });
 
 userSchema.plugin(passportLocalMongoose);

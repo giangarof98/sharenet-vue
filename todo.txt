@@ -2,4 +2,8 @@ authentication
 
 profile section
 
+update post - image
+
+all post - improve
+
 better design

@@ -35,7 +35,7 @@ export default {
         async fetchData(){
             const res = await axios.get('/content')
             this.posts = res.data
-            console.log(res.data)
+            // console.log(res.data)
         }
     }
 }

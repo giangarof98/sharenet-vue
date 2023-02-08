@@ -8,6 +8,9 @@
                 </button>
             </div>
         </div>
+        <div v-else>
+            No comments yet. Be the first one to comment!
+        </div>
 </template>
 
 <script>
@@ -43,13 +46,13 @@ export default {
             const id = this.$route.params.id
             const res = await axios.get(`/content/${id}/reviews`)
             this.review = res.data
-            console.log(res.data)
+            // console.log(res.data)
         },
         async deleteReview(id){
             try{
                 const idContent = this.$route.params.id
                 const del = await axios.delete(`/content/${idContent}/reviews/${id}`)
-                console.log(del)
+                // console.log(del)
                 this.$router.go(0)
 
             } catch(err){
