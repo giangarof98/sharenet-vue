@@ -2,19 +2,17 @@ const mongoose = require("mongoose");
 const Review = require("./review");
 const Schema = mongoose.Schema;
 
-const reviews = require('./review')
-
-// const imgSchema = new Schema({
-//     url: String, 
-//     filename: String
-// });
-
 const contentSchema = new Schema({
-    //author: String,
+    author: {
+        id: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        },
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
     description: String,
-    // image:[imgSchema]
     image: [{url:String,filename:String}],
-    //like: Number,
     comments: [
             {
             type: Schema.Types.ObjectId,

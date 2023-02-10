@@ -1,9 +1,11 @@
-authorization
-
 profile section
+    bio
+    all post by this user
+    btns to create post
+
+create comments, no image
 
 update post - image
 
-all post - improve
-
 better design
+    all post - improve

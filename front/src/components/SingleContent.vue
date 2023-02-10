@@ -2,8 +2,10 @@
     <div class="flex flex-row justify-center mt-8">
        <div class="p-5">
             <p class="font-semibold text-lg">{{post.description}}</p>
+            <p>{{username}}</p>
             <img :src="imageUrl" alt="content" > 
             <div class="flex flex-row justify-between gap-x-5">
+                <div v-if="currentUser === username">
                     <button @click="deleteContent(post._id)" 
                             class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-danger">
                         Delete
@@ -13,6 +15,8 @@
                             Edit
                         </router-link>
                     </button>
+
+                </div>
             </div>
        </div> 
     </div>
@@ -26,11 +30,15 @@ export default {
     data(){
         return {
             post: [],
-            imageUrl: ''
+            imageUrl: '',
+            username: '',
+            currentUser: '',
         }
     },
     async created(){
-        this.fetchData(this.$route.params.id)
+        this.fetchData(this.$route.params.id);
+        this.currentUser = (await axios.get(`/user/signin`)).data.passport.user;
+        // console.log(this.currentUser)
     },
     methods: {
         async fetchData(id){
@@ -38,7 +46,8 @@ export default {
                 const res = await axios.get(`/content/${id}`);
                 this.post = res.data
                 this.imageUrl = this.post.image[0].url;
-                // console.log(res.data)
+                this.username = res.data.author.username
+                console.log(res.data)
                 // console.log(this.post)
             } catch (error) {
                 console.log(error);

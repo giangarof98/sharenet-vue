@@ -9,12 +9,13 @@ const contentController = require('../controllers/content');
 const CatchAsync = require('../middleware/catchAsync');
 const multer = require('../middleware/multerConfig');
 const {isLoggedIn} = require('../middleware/isLoggedin')
+const {isOwner} = require('../middleware/isOwner')
 
-//router.get('/homepage', contentController.homepage);
+router.get('/profile', contentController.getPostByUser);
 router.get('/', CatchAsync(contentController.getAll));
 router.post('/', isLoggedIn, multer, CatchAsync(contentController.create));
 router.get('/:id', CatchAsync(contentController.showOne));
-router.put('/edit/:id', isLoggedIn, multer, CatchAsync(contentController.update));
-router.delete('/:id', isLoggedIn, CatchAsync(contentController.delete));
+router.put('/edit/:id', isLoggedIn, isOwner, multer, CatchAsync(contentController.update));
+router.delete('/:id', isLoggedIn, isOwner, CatchAsync(contentController.delete));
 
 module.exports = router;

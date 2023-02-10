@@ -2,13 +2,14 @@ const express = require('express');
 
 //Models
 const Content = require('../model/content');
-const { findById, findByIdAndDelete } = require('../model/review');
+// const { findById, findByIdAndDelete } = require('../model/review');
 const Review = require('../model/review')
 
 exports.createReview = async (req,res) => {
     try{
         const post = await Content.findById(req.params.id)
         const content = new Review({body: req.body.body});
+        content.author = req.user._id;
         post.comments.push(content)
         await content.save()
         await post.save()
@@ -22,7 +23,12 @@ exports.createReview = async (req,res) => {
 exports.getReviewByPost= async(req,res) => {
     try{
         const {id} = req.params;
-        const post = await Content.findById(id).populate('comments')
+        const post = await Content.findById(id).populate({
+            path: 'comments',
+            populate: {
+                path: 'author'
+            }
+        }).populate('author')
         res.status(200).send(post.comments)
         // res.json(post.comments)
 

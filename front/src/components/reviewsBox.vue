@@ -1,11 +1,13 @@
 <template>
         <div v-if="review.length >= 1">
-
             <div v-for="r in review" :key="r.id">
-                {{r.body}}
-                <button @click="deleteReview(r._id)">
-                    <font-awesome-icon icon="fa-solid fa-trash" class="icon-trash"/>
-                </button>
+                {{r.body}} {{r.author.username}}
+                <div v-if="currentUser === r.author.username">
+                    <button @click="deleteReview(r._id)">
+                        <font-awesome-icon icon="fa-solid fa-trash" class="icon-trash"/>
+                    </button>
+
+                </div>
             </div>
         </div>
         <div v-else>
@@ -35,17 +37,23 @@ export default {
     },
     data(){
         return{
-            review:[]
+            review:{
+                username: '',
+            },
+            currentUser: ''
         }
     },
-    created(){
-        this.fetchData()
+    async created(){
+        this.fetchData();
+        this.currentUser = (await axios.get(`/user/signin`)).data.passport.user;
+        console.log(this.currentUser)
     },
     methods:{
         async fetchData(){
             const id = this.$route.params.id
             const res = await axios.get(`/content/${id}/reviews`)
             this.review = res.data
+            this.username = res.data.author
             // console.log(res.data)
         },
         async deleteReview(id){

@@ -5,6 +5,21 @@ const fs = require('fs');
 //Model
 const Content = require('../model/content');
 
+exports.getPostByUser = async(req,res) => {
+    try{
+        const user = req.user._id
+        console.log(user)
+        const fetchPostByCurrentUser = await Content.find({author: user})
+        res.status(200).json({
+            posts:fetchPostByCurrentUser,
+            user: req.user
+        })
+        
+    }catch(err){
+        console.log(err)
+    }
+}
+
 exports.getAll = async(req,res) => {
     try{
         const contents = await Content.find({});
@@ -16,16 +31,22 @@ exports.getAll = async(req,res) => {
 
 exports.create = async (req,res) => {
     const post = new Content(req.body);
-    post.image = req.files.map(f => ({url: f.path, filename: f.filename}))
-    await post.save()
-    console.log(post)
-    res.send(req.body)  
+    post.image = req.files.map(f => ({url: f.path, filename: f.filename}));
+    post.author = req.user._id;
+    await post.save();
+    console.log(post);
+    res.send(req.body);
 };
 
 exports.showOne = async (req,res) => {
     try{
         const {id} = req.params;
-        const post = await Content.findById(id);
+        const post = await Content.findById(id).populate({
+            path: 'comments',
+            populate:{
+                path:'author'
+            }
+        }).populate('author');
         if(post){
             res.status(200).json(post)
         } else {
@@ -38,7 +59,6 @@ exports.showOne = async (req,res) => {
     }
 };
 
-
 exports.update = async(req,res) => {
     try{
         const {id} = req.params;
@@ -48,26 +68,6 @@ exports.update = async(req,res) => {
     } catch(err){
         console.log(err)
     }
-    // let new_image = '';
-    // if(req.file){
-    //     new_image = req.file.filename
-    //     try{
-    //         fs.unlinkSync('./image/'+req.body.image)
-    //     } catch(err){
-    //         console.log(err)
-    //         } 
-    //     }else {
-    //         new_image = req.body.old_image;
-    //     }
-    //     const newpost = req.body;
-    //     newpost.image = new_image
-    //     try{
-    //         await Content.findByIdAndUpdate(id,newpost)
-    //         res.status(200).json({message: 'updated'})
-
-    //     } catch(err){
-    //         console.log(err)
-    //     }
         
 }
 

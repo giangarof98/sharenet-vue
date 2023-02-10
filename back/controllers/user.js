@@ -7,15 +7,13 @@ const User = require('../model/user.js');
 exports.userLoggin = async(req,res) => {
     console.log(req.session)
     res.send(req.session)
-//     const user = await req.session
-//     console.log(user)
 }
 
 //Register 
 exports.signup = async(req,res, next) => {
     try{
-        const {email, username, firstName, lastname, password} = req.body;
-        const user = new User({email, username, firstName, lastname, password});
+        const {email, username, firstName, lastName, password} = req.body;
+        const user = new User({email, username, firstName, lastName, password});
         const registered = await User.register(user, password);
         req.login(registered, err => {
             if(err) return next(err)
@@ -43,7 +41,6 @@ exports.delete = async(req,res) => {
 }
 
 //login
-
 exports.signin = (req,res) => {
     res.redirect('/content');
 }
