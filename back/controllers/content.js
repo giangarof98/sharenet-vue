@@ -4,18 +4,34 @@ const fs = require('fs');
 
 //Model
 const Content = require('../model/content');
+const User = require('../model/user');
 
-exports.getPostByUser = async(req,res) => {
-    try{
-        const user = req.user._id
-        console.log(user)
-        const fetchPostByCurrentUser = await Content.find({author: user})
-        res.status(200).json({
-            posts:fetchPostByCurrentUser,
-            user: req.user
-        })
+// exports.getPostByUser = async(req,res) => {
+//     try{
+//         const user = req.user._id
+//         console.log(user)
+//         const fetchPostByCurrentUser = await Content.find({author: user})
+//         res.status(200).json({
+//             posts:fetchPostByCurrentUser,
+//             user: req.user
+//         })
         
-    }catch(err){
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+
+exports.getProfile =  async(req,res) => {
+    try{
+        const username = req.params.username;
+        const user = await User.findOne({username});
+        const posts =  await Content.find({author: user});
+            res.status(200).json({
+            posts,
+            user
+        })
+
+    } catch(err){
         console.log(err)
     }
 }

@@ -11,7 +11,7 @@ const multer = require('../middleware/multerConfig');
 const {isLoggedIn} = require('../middleware/isLoggedin')
 const {isOwner} = require('../middleware/isOwner')
 
-router.get('/profile', contentController.getPostByUser);
+router.get('/profile/:username', contentController.getProfile);
 router.get('/', CatchAsync(contentController.getAll));
 router.post('/', isLoggedIn, multer, CatchAsync(contentController.create));
 router.get('/:id', CatchAsync(contentController.showOne));

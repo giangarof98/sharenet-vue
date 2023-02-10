@@ -10,7 +10,7 @@
 
                 <div v-if="user.username">
                     <router-link to="/content">Home Page</router-link>
-                    <router-link to="/profile">Profile</router-link>
+                    <router-link :to="`/profile/${user.username}`">{{user.username}}</router-link>
                     <router-link to="/create">Create</router-link>
                     <button>
                         <a @click="logout">Logout</a>
@@ -33,12 +33,17 @@
 
                 <div class="md:hidden">
                     <div id="menu" class="flex-col hidden text-white space-y-2 px-2">
-                        <router-link to="/content">Home Page</router-link>
-                        <router-link to="/profile">Profile</router-link>
-                        <router-link to="/create">Create</router-link>
-                        <a href="">LogOut</a>
-                        <router-link to="/user/signin">SignIn</router-link>
-                        <router-link to="/user/signup">SignUp</router-link>
+                        <div v-if="user.username">
+                            <router-link to="/content">Home Page</router-link>
+                            <router-link :to="`/profile/${user.username}`">{{user.username}}</router-link>
+                            <router-link to="/create">Create</router-link>
+                            <a href="">LogOut</a>
+                        </div>
+                        <div v-if="!user.username">
+                            <router-link to="/user/signin">SignIn</router-link>
+                            <router-link to="/user/signup">SignUp</router-link>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,18 +69,16 @@ export default {
         }
     },
     async mounted(){
-        // if(this.user){
             try{
                 const res = await axios.get(`/user/signin`);
                 this.user = {
                     isAuthenticated: true,
                     username: res.data.passport.user
-                }    
+                }  
             } catch(err){
                 console.log(err)
             }
 
-        // }
     },
     methods: {
         async logout(){

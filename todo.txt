@@ -1,11 +1,10 @@
 profile section
     bio
-    all post by this user
-    btns to create post
-
-create comments, no image
+    create comments, no image
 
 update post - image
 
-better design
-    all post - improve
+searchbox to find users
+
+better design across all the website
+
