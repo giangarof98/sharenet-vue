@@ -1,5 +1,6 @@
 const Content = require('../model/content');
-const Review = require('../model/review')
+const Review = require('../model/review');
+const User = require('../model/user');
 
 module.exports.isOwner = async(req,res,next) => {
     const {id} = req.params;
@@ -7,6 +8,15 @@ module.exports.isOwner = async(req,res,next) => {
     if(!post.author.equals(req.user._id)){
         return res.status(401).json({error: `You're not authorized to update this post`})
     }
+    next()
+}
+
+module.exports.isOwnerAccount = async(req,res,next) => {
+    const {username} = req.params;
+    const user = await User.findOne({username});
+    if (user.username !== req.user.username) {
+        return res.status(401).json({ error: `You're not authorized to update this account` });
+      }
     next()
 }
 

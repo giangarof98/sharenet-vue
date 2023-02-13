@@ -4,6 +4,7 @@ const upload = multer({storage});
 
 module.exports = upload.array("images");
 
+module.exports = upload.array("profileImg")
 
 //Local
 

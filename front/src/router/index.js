@@ -6,6 +6,7 @@ import Profile from '../views/Profile.vue'
 import Create from '../views/Create.vue'
 import Content from '../views/Content.vue'
 import Edit from '../views/Edit.vue'
+import UserUpdateConfig from '../views/UserUpdateConfig.vue'
 
 const routes = [
   {
@@ -30,10 +31,17 @@ const routes = [
     prop: true
   },
   {
+    path: '/profile/:username/settings',
+    name: 'UserUpdateConfig',
+    component: UserUpdateConfig,
+    
+  },
+  {
     path: '/create',
     name: 'Create',
     component: Create
   },
+
   {
     path: '/content/:id',
     name: 'Content',

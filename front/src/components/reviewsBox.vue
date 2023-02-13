@@ -46,7 +46,6 @@ export default {
     async created(){
         this.fetchData();
         this.currentUser = (await axios.get(`/user/signin`)).data.passport.user;
-        console.log(this.currentUser)
     },
     methods:{
         async fetchData(){
@@ -54,13 +53,12 @@ export default {
             const res = await axios.get(`/content/${id}/reviews`)
             this.review = res.data
             this.username = res.data.author
-            // console.log(res.data)
         },
         async deleteReview(id){
             try{
                 const idContent = this.$route.params.id
-                const del = await axios.delete(`/content/${idContent}/reviews/${id}`)
-                // console.log(del)
+                const deleteReview = await axios.delete(`/content/${idContent}/reviews/${id}`)
+                
                 this.$router.go(0)
 
             } catch(err){

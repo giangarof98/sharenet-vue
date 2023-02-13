@@ -1,10 +1,10 @@
 profile section
-    bio
     create comments, no image
-
-update post - image
+    delete account
 
 searchbox to find users
+
+add likes
 
 better design across all the website
 

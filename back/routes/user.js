@@ -10,7 +10,7 @@ const userController = require('../controllers/user');
 //Middleware
 const CatchAsync = require('../middleware/catchAsync');
 
-//registration SignUp78
+//registration SignUp
 router.post('/signup', CatchAsync(userController.signup));
 router.get('/', userController.getAll);
 router.delete('/users/:id', userController.delete);

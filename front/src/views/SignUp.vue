@@ -9,7 +9,7 @@ import Navbar from '@/components/Navbar.vue'
 import SignUpForm from '@/components/SignUpForm.vue'
 
 export default {
-  name: 'SignIn',
+  name: 'SignUp',
   components: {
     Navbar,
     SignUpForm
