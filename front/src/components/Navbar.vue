@@ -1,23 +1,30 @@
 <template>
 
     <!-- large screen -->
-    <nav class="flex flex-row justify-between bg-navbar py-5">
+    <nav class="flex flex-row justify-between bg-navbar py-6">
         <div>
             <img :src="require('../../public/vue-logo.png')" class="justify-start mx-5" alt="">
         </div>
-        <div class="flex items-center gap-x-5 mx-5">
-            <div class="hidden md:flex flex-row justify-end gap-x-5 text-lg text-white tracking-wide">
-
-                <div v-if="user.username">
-                    <router-link to="/content">Home Page</router-link>
-                    <router-link :to="`/profile/${user.username}`">{{user.username}}</router-link>
-                    <router-link to="/create">Create</router-link>
+        <div class="flex items-center gap-7 mx-7">
+            <div class="hidden md:flex flex-row text-lg space-x-5">
+                <div v-if="user.username" class="flex-row justify-center space-x-4 text-white text-2xl">
+                    <router-link to="/content">
+                        <font-awesome-icon icon="fa-solid fa-globe" />
+                    </router-link>
+                    <router-link :to="`/profile/${user.username}`">
+                        <font-awesome-icon icon="fa-solid fa-user" />
+                    </router-link>
+                    <router-link to="/create">
+                        <font-awesome-icon icon="fa-solid fa-plus" />
+                    </router-link>
                     <button>
-                        <a @click="logout">Logout</a>
+                        <a @click="logout">
+                            <font-awesome-icon icon="fa-solid fa-right-from-bracket" />
+                        </a>
                     </button>
                 </div>
 
-                <div v-if="!user.username">
+                <div v-if="!user.username" class="text-white space-x-5">
                     <router-link to="/user/signin">SignIn</router-link>
                     <router-link to="/user/signup">SignUp</router-link>
                 </div>
@@ -33,11 +40,21 @@
 
                 <div class="md:hidden">
                     <div id="menu" class="flex-col hidden text-white space-y-2 px-2">
-                        <div v-if="user.username">
-                            <router-link to="/content">Home Page</router-link>
-                            <router-link :to="`/profile/${user.username}`">{{user.username}}</router-link>
-                            <router-link to="/create">Create</router-link>
-                            <a href="">LogOut</a>
+                        <div v-if="user.username" class="flex-row justify-center space-x-6 text-2xl">
+                            <router-link to="/content">
+                                <font-awesome-icon icon="fa-solid fa-globe" />
+                            </router-link>
+                            <router-link :to="`/profile/${user.username}`">
+                                <font-awesome-icon icon="fa-solid fa-user" />
+                            </router-link>
+                            <router-link to="/create">
+                                <font-awesome-icon icon="fa-solid fa-plus" />
+                            </router-link>
+                            <button>
+                                <a @click="logout">
+                                    <font-awesome-icon icon="fa-solid fa-right-from-bracket" />
+                                </a>
+                            </button>
                         </div>
                         <div v-if="!user.username">
                             <router-link to="/user/signin">SignIn</router-link>
@@ -58,8 +75,23 @@
 
 import axios from 'axios';
 
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faHome, faUser, faRightFromBracket, faPlus, faGlobe } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faHome, faUser, faRightFromBracket, faPlus, faGlobe)
+
 export default {
     name:'Navbar',
+    components:{
+        FontAwesomeIcon
+    },
     data(){
         return{
             user: {

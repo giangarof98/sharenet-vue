@@ -3,10 +3,29 @@ const express = require('express');
 
 //Model
 const User = require('../model/user.js');
+const Content = require('../model/content.js');
 
+
+//check usser session
 exports.userLoggin = async(req,res) => {
     console.log(req.session)
     res.send(req.session)
+}
+
+//get userprofile
+exports.getProfile =  async(req,res) => {
+    try{
+        const username = req.params.username;
+        const user = await User.findOne({username});
+        const posts =  await Content.find({author: user});
+            res.status(200).json({
+            posts,
+            user
+        })
+
+    } catch(err){
+        console.log(err)
+    }
 }
 
 //Register 
@@ -55,4 +74,23 @@ exports.logout = (req,res) => {
     } catch(err){
         console.log(err)
     }
+}
+
+//user profile
+exports.setBioUser = async(req,res) => {
+        try{
+            const {username} = req.params;
+            if (!username) {
+                throw new Error('Username is required');
+            }
+            const user = await User.findOneAndUpdate({username}, {...req.body}, {new:true});
+            
+            res.status(200).json(user);
+    
+        } catch(err){
+            if (err.code === 11000) {
+                throw new Error(`Username '${username}' already exists.`);
+              }
+              throw err;
+        }
 }

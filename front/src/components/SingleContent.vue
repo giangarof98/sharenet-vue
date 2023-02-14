@@ -1,12 +1,14 @@
 <template>
     <div class="flex flex-row justify-center mt-8">
        <div class="p-5">
-            <p class="font-semibold text-lg">{{post.description}}</p>
-            <a @click="navigateToUserProfile">{{username}}</a>
-            <!-- <p>{{username}}</p> -->
-            <img :src="imageUrl" alt="content" > 
-            <div class="flex flex-row justify-between gap-x-5">
-                <div v-if="currentUser === username">
+
+            <a @click="navigateToUserProfile" class=" font-semibold italic username">{{username}}</a>
+
+            <img :src="imageUrl" alt="content" class="rounded-lg" > 
+
+            <p class="font-semibold text-lg">~{{post.description}}</p>
+            <div class="">
+                <div v-if="currentUser === username" class="flex flex-row justify-between">
                     <button @click="deleteContent(post._id)" 
                             class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-danger">
                         Delete
@@ -16,9 +18,9 @@
                             Edit
                         </router-link>
                     </button>
-
                 </div>
             </div>
+
        </div> 
     </div>
 </template>
@@ -67,3 +69,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .username{
+        cursor: pointer;
+    }
+</style>

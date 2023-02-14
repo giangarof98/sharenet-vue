@@ -7,18 +7,18 @@ const contentController = require('../controllers/content');
 
 //Middleware
 const CatchAsync = require('../middleware/catchAsync');
-const multer = require('../middleware/multerConfig');
+const {multerPost} = require('../middleware/multerConfig');
 const {isLoggedIn} = require('../middleware/isLoggedin')
 const {isOwner, isOwnerAccount} = require('../middleware/isOwner')
 
-router.get('/profile/:username', contentController.getProfile);
+// router.get('/profile/:username', contentController.getProfile);
 
 router.get('/', CatchAsync(contentController.getAll));
-router.post('/', isLoggedIn, multer, CatchAsync(contentController.create));
+router.post('/', isLoggedIn, multerPost, CatchAsync(contentController.create));
 router.get('/:id', CatchAsync(contentController.showOne));
 
-router.put('/edit/:id', isLoggedIn, isOwner, multer, CatchAsync(contentController.update));
-router.put('/profile/:username', isLoggedIn, isOwnerAccount, multer, CatchAsync(contentController.setBioUser))
+router.put('/edit/:id', isLoggedIn, isOwner, multerPost, CatchAsync(contentController.update));
+// router.put('/profile/:username', isLoggedIn, isOwnerAccount, CatchAsync(contentController.setBioUser))
 
 router.delete('/:id', isLoggedIn, isOwner, CatchAsync(contentController.delete));
 

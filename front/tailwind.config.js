@@ -13,10 +13,12 @@ module.exports = {
         navbar: 'rgb(51 65 85)',
         button: 'rgb(5 150 105)',
         bgInput: 'rgb(229 231 235)',
-        buttonSeeMore: 'rgb(59 130 246)',
+        buttonSeeMore: '#075985',
         danger: 'rgb(153 27 27)',
         edit: 'rgb(29 78 216)',
         grey: 'rgb(212 212 216)',
+        bgPic: 'rgb(212 212 216);',
+        settings: 'rgb(252 211 77)'
         
       }
     },

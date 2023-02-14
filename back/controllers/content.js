@@ -6,20 +6,6 @@ const fs = require('fs');
 const Content = require('../model/content');
 const User = require('../model/user');
 
-exports.getProfile =  async(req,res) => {
-    try{
-        const username = req.params.username;
-        const user = await User.findOne({username});
-        const posts =  await Content.find({author: user});
-            res.status(200).json({
-            posts,
-            user
-        })
-
-    } catch(err){
-        console.log(err)
-    }
-}
 
 exports.getAll = async(req,res) => {
     try{
@@ -71,33 +57,6 @@ exports.update = async(req,res) => {
         console.log(err)
     }
         
-}
-
-exports.setBioUser = async(req,res) => {
-    try{
-        const {username} = req.params;
-        if (!username) {
-            throw new Error('Username is required');
-        }
-        const user = await User.findOneAndUpdate({username}, {...req.body}, {new:true});
-        
-        if (user.profilePic) {
-            await cloudinary.v2.uploader.destroy(user.profilePic.public_id);
-          }
-      
-          // Upload the new profile picture to Cloudinary
-          if (req.file) {
-            const result = await cloudinary.v2.uploader.upload(req.file.path);
-            user.profilePic = result;
-          }
-        res.status(200).json(user);
-
-    } catch(err){
-        if (err.code === 11000) {
-            throw new Error(`Username '${username}' already exists.`);
-          }
-          throw err;
-    }
 }
 
 exports.delete = async (req,res) => {

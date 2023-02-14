@@ -22,6 +22,7 @@ const User = require('./model/user')
 const routesContent = require('./routes/content');
 const routesUser = require('./routes/user');
 const routesReview = require('./routes/review');
+const routesSingle = require('./routes/single');
 
 //Mongo Connection
 const db = require('./connect/mongo');
@@ -63,6 +64,7 @@ passport.deserializeUser(User.deserializeUser());
 //Endpoint
 app.use('/content', routesContent);
 app.use('/content', routesReview);
+app.use('/singlecontent', routesSingle);
 app.use('/user', routesUser);
 
 app.listen(port, () => { console.log(`connected to port: ${port}`) });

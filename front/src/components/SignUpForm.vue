@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row justify-center mt-10">
         <div>
-            <form @submit.prevent="createUser" class="flex flex-col justify-center w-72 p-4">
+            <form @submit.prevent="createUser" class="flex flex-col justify-center w-72 p-4 italic">
                 
                 <p class="text-center text-xl font-semibold py-3">Sign Up</p>
 
@@ -27,7 +27,7 @@
                 <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2"> Sign Up </button>
             </form>
             <div class="text-center">
-                <h3>You have an account? <router-link to="/user/signin">Click Here</router-link></h3>
+                <a>You have an account? <router-link class="click-here" to="/user/signin">Click Here</router-link></a>
             </div>
 
         </div>
@@ -76,3 +76,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.click-here{
+    color: green;
+}
+</style>

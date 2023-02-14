@@ -1,15 +1,12 @@
 <template>
     <div class="flex flex-row justify-center mt-8">
-        <form @submit.prevent="updatePost" class="flex flex-col justify-center w-72 p-4" enctype="multipart/form-data">
-                    <p class="py-3 text-xl font-semibold text-center">Modify Content</p>
+        <form @submit.prevent="updatePost" class="flex flex-col justify-center w-72 p-4 bg-bgPic rounded-lg" enctype="multipart/form-data">
+                    <p class="py-3 text-xl font-semibold text-center">Modify Post</p>
 
-                    <!-- <h3 class="text-lg font-semibold">Edit your description</h3> -->
-                    <textarea type="text" placeholder="jjj" class="border rounded py-0.9 px-1 focus:outline-none" v-model="post.description"></textarea>
 
-                    <img :src="imageUrl" alt="">
+                    <img :src="imageUrl" alt="image">
+                    <textarea type="text" placeholder="jjj" class="border rounded py-0.9 px-1 focus:outline-none italic" v-model="post.description"></textarea>
 
-                    <!-- <h3 class="text-lg font-semibold">Replace image</h3>
-                    <input name="image" ref="imageUrl" type="file" class="border rounded py-0.9 px-1 focus:outline-none"/> -->
                     <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2">Update</button>
                     <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-edit">
                         <router-link :to="`/content/${post._id}`">

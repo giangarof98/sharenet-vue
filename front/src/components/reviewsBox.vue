@@ -1,15 +1,18 @@
 <template>
         <div v-if="review.length >= 1">
-            <div v-for="r in review" :key="r.id">
-                {{r.body}} {{r.author.username}}
-                <div v-if="currentUser === r.author.username">
+            <div v-for="r in review" :key="r.id" class="flex justify-between py-4">
+                <div class="italic">
+                    <p class="font-semibold">{{r.author.username}}</p>
+                    <p>{{r.body}}</p>
+                </div>
+                <div v-if="currentUser === r.author.username" class="text-xl">
                     <button @click="deleteReview(r._id)">
                         <font-awesome-icon icon="fa-solid fa-trash" class="icon-trash"/>
                     </button>
-
                 </div>
             </div>
         </div>
+
         <div v-else>
             No comments yet. Be the first one to comment!
         </div>
@@ -69,3 +72,9 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.icon-trash{
+    color: red;
+}
+</style>

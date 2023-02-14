@@ -2,7 +2,7 @@
     <div class="flex justify-center mt-10">
         <div>
             <form @submit.prevent="signin"
-                class="flex flex-col justify-center w-72 p-4">
+                class="flex flex-col justify-center w-72 p-4 italic">
                 <p class="text-center text-xl py-3 font-semibold">Sign In</p>
 
                 <label for="username" class="font-semibold text-lg">Username</label>
@@ -15,7 +15,7 @@
             </form >
 
             <div class="text-center">
-                <h3>Don't have an account? <router-link to="/user/signup">Click Here</router-link></h3>
+                <h3>Don't have an account? <router-link class="click-here" to="/user/signup">Click Here</router-link></h3>
             </div>
 
         </div>
@@ -55,3 +55,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+    .click-here{
+        color: green;
+    }
+</style>

@@ -9,6 +9,11 @@ const userController = require('../controllers/user');
 
 //Middleware
 const CatchAsync = require('../middleware/catchAsync');
+const {isLoggedIn} = require('../middleware/isLoggedin')
+const {isOwner, isOwnerAccount} = require('../middleware/isOwner')
+
+//user profile
+router.get('/profile/:username', userController.getProfile);
 
 //registration SignUp
 router.post('/signup', CatchAsync(userController.signup));
@@ -21,5 +26,9 @@ router.get('/signin', CatchAsync(userController.userLoggin))
 
 //logout
 router.get('/logout', userController.logout)
+
+//profile
+router.put('/profile/:username', isLoggedIn, isOwnerAccount, CatchAsync(userController.setBioUser))
+
 
 module.exports = router;

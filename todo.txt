@@ -1,10 +1,4 @@
-profile section
-    create comments, no image
-    delete account
-
 searchbox to find users
 
 add likes
-
-better design across all the website
 
