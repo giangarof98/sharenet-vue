@@ -15,4 +15,5 @@ router.post('/:id/reviews', isLoggedIn, CatchAsync(reviewController.createReview
 // the first id stands for the content id; the second one stands for the review id
 router.delete('/:id/reviews/:reviewId', isLoggedIn, isOwnerReview, CatchAsync(reviewController.deleteReview))
 
+router.post('/:id/like/:reviewId', isLoggedIn, CatchAsync(reviewController.likeReview))
 module.exports = router;

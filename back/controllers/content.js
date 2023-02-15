@@ -73,7 +73,6 @@ exports.delete = async (req,res) => {
 exports.likeContent = async(req,res) => {
     try{
         const content = await Content.findById(req.params.id);
-
         const liked = content.likes.some((like) => {
             return like.equals(req.user._id)
         })

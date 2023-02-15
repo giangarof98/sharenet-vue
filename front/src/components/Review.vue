@@ -9,8 +9,6 @@
                 placeholder="Leave your comment"
                 v-model="review.body" required>
             </textarea>
-        </form>
-        <form>
             <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2">Comment</button>
         </form>
     </div>
@@ -22,22 +20,22 @@ import axios from 'axios';
 import ReviewBox from './reviewsBox.vue'
 
 /* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
+//import { library } from '@fortawesome/fontawesome-svg-core'
 
 /* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+//import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+//import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faHeart)
+//library.add(faHeart)
 
 export default {
     name:'Review',
     components:{
         ReviewBox,
-        FontAwesomeIcon
+        //FontAwesomeIcon
     },
     data(){
         return{
@@ -54,9 +52,9 @@ export default {
             try{
                 const id = this.$route.params.id;
                 const res = await axios.post(`/content/${id}/reviews`, {
-                body: this.review.body
+                    body: this.review.body
                 });
-                // console.log(res.data);
+                console.log(res);
                 this.$router.go(0)
 
             } catch(err){

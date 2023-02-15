@@ -1,6 +1,5 @@
 searchbox to find users
 
-add likes
+add validation - regex
 
-add validation
-
+add portal to show only the comments with no img

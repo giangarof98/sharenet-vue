@@ -2,7 +2,6 @@ const express = require('express');
 
 //Models
 const Content = require('../model/content');
-// const { findById, findByIdAndDelete } = require('../model/review');
 const Review = require('../model/review')
 
 exports.createReview = async (req,res) => {
@@ -46,4 +45,27 @@ exports.deleteReview = async(req,res) => {
     res.status(200).send(review)
     // res.send('deleted')
 
+}
+
+exports.likeReview = async (req,res) => {
+    try{
+        const review = await Review.findById(req.params.reviewId);
+        console.log(review)
+        const liked = review.likes.some((like) => {
+            return like.equals(req.user._id)
+        })
+        
+        if (liked) {
+            review.likes.pull(req.user._id);
+        } else {
+            review.likes.push(req.user._id);
+        }
+
+        await review.save();
+        return res.status(200).json({ message: liked ? 'Like removed' : 'Like added' });
+
+
+    } catch(err){
+        console.log(err)
+    }
 }

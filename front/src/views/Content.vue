@@ -32,8 +32,13 @@ export default {
         }
     },
     async created(){
-        const user = await axios.get(`/user/signin`);
-        this.currentUser = user.data.session.passport.user
+        try{
+            const user = await axios.get(`/user/signin`);
+            this.currentUser = user.data.session.passport.user
+
+        }catch(err){
+            console.log('user is not signIn', err)
+        }
         // console.log(this.currentUser)
     }
 }

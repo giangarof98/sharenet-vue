@@ -8,12 +8,25 @@
 
             <p class="font-semibold text-lg">~{{post.description}}</p>
 
-            <button @click="likePost">
-                <font-awesome-icon icon="fa-solid fa-heart" id="icon-heart"/>
-                <!-- <font-awesome-icon :icon="liked ? 'fa-solid fa-heart like' : 'fa-solid fa-heart'" class="icon-heart" :style="{ color: liked ? 'red' : 'inherit' }"/> -->
+            <button @click="likePost" class="w-full">
+                <!-- like length -->
+                <div v-if='liked.length == 0'>
+                    <p>No likes yet; come back later...</p>
+                </div>
+                <div v-else>
+                    {{liked.length}}
+                </div>
+
+                <!-- heart condition -->
+                <div v-if="liked.includes(this.userId)">
+                    <font-awesome-icon icon="fa-solid fa-heart" class="like icon-hearth"/>
+                </div>
+                <div v-else>
+                    <font-awesome-icon icon="fa-solid fa-heart" class="icon-hearth"/>
+                </div>
             </button>
 
-            <div class="">
+            <div>
                 <div v-if="currentUser === username" class="flex flex-row justify-between">
                     <button @click="deleteContent(post._id)" 
                             class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-danger">
@@ -27,7 +40,6 @@
                     </button>
                 </div>
             </div>
-            {{liked.length}}
        </div> 
     </div>
 </template>
@@ -43,7 +55,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { onMounted } from '@vue/runtime-core';
 
 /* add icons to the library */
 library.add(faHeart)
@@ -88,11 +99,13 @@ export default {
             try{
                 const id = this.$route.params.id
                 const response = await axios.post(`/content/${id}/like`);
+                this.$router.go(0)
             } catch(err){
                 console.log(err)
             }
         },
         async fetchData(id){
+            const likeHearth = document.getElementById('icon-heart')
             try {
                 const user = await axios.get(`/user/signin`)
                 const res = await axios.get(`/content/${id}`);
@@ -104,10 +117,10 @@ export default {
                 //console.log(this.post.likes, this.userId)
                 
                 const like = Object.values(this.liked)
-                if(like.includes(this.userId)){
-                    console.log('l')
-                }
-                console.log(like, this.userId)    
+                // if(like.includes(this.userId)){
+                //     console.log('ok')
+                // }
+                //console.log(like, this.userId)    
             } catch (error) {
                 console.log(error);
             }
@@ -133,7 +146,7 @@ export default {
     .username{
         cursor: pointer;
     }
-    /* .icon-hearth{
+    .icon-hearth{
         height: 2.5rem;
     }
     .icon-hearth:hover{
@@ -141,5 +154,5 @@ export default {
     }
     .like{
         color:red
-    } */
+    }
 </style>

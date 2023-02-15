@@ -103,13 +103,10 @@ export default {
     async mounted(){
             try{
                 const res = await axios.get(`/user/signin`);
-                this.user = {
-                    isAuthenticated: true,
-                    username: res.data.session.passport.user
-                }
+                this.user = {isAuthenticated: true, username: res.data.session.passport.user}
                 //console.log(res)  
             } catch(err){
-                console.log(err)
+                console.log('user is not signIn', err)
             }
 
     },
