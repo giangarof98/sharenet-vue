@@ -74,7 +74,7 @@ export default {
     async created(){
         this.getProfile(this.$route.params.username);
 
-        this.currentUser = (await axios.get(`/user/signin`)).data.passport.user;
+        this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
         
     },
     methods:{

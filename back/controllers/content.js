@@ -69,3 +69,26 @@ exports.delete = async (req,res) => {
         console.log(err)
     }
 }
+
+exports.likeContent = async(req,res) => {
+    try{
+        const content = await Content.findById(req.params.id);
+
+        const liked = content.likes.some((like) => {
+            return like.equals(req.user._id)
+        })
+        
+        if (liked) {
+            content.likes.pull(req.user._id);
+        } else {
+            content.likes.push(req.user._id);
+        }
+
+        await content.save();
+        return res.status(200).json({ message: liked ? 'Like removed' : 'Like added' });
+
+
+    } catch(err){
+        console.log(err)
+    }
+}

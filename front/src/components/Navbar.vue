@@ -105,8 +105,9 @@ export default {
                 const res = await axios.get(`/user/signin`);
                 this.user = {
                     isAuthenticated: true,
-                    username: res.data.passport.user
-                }  
+                    username: res.data.session.passport.user
+                }
+                //console.log(res)  
             } catch(err){
                 console.log(err)
             }

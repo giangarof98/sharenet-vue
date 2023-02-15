@@ -8,8 +8,8 @@ const Content = require('../model/content.js');
 
 //check usser session
 exports.userLoggin = async(req,res) => {
-    console.log(req.session)
-    res.send(req.session)
+    //console.log(req.session, req.user)
+    res.send({session: req.session, user: req.user})
 }
 
 //get userprofile

@@ -18,7 +18,13 @@ const contentSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review',
         }
-    ]
+    ],
+    likes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
 });
 
 contentSchema.post('findOneAndDelete', async(doc) => {

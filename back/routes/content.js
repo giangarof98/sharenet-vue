@@ -22,4 +22,6 @@ router.put('/edit/:id', isLoggedIn, isOwner, multerPost, CatchAsync(contentContr
 
 router.delete('/:id', isLoggedIn, isOwner, CatchAsync(contentController.delete));
 
+router.post('/:id/like', isLoggedIn, CatchAsync(contentController.likeContent))
+
 module.exports = router;

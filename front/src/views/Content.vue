@@ -33,7 +33,7 @@ export default {
     },
     async created(){
         const user = await axios.get(`/user/signin`);
-        this.currentUser = user.data.passport.user
+        this.currentUser = user.data.session.passport.user
         // console.log(this.currentUser)
     }
 }
