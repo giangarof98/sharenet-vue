@@ -81,19 +81,10 @@ export default {
         const user = await axios.get(`/user/signin`)
         this.currentUser = user.data.session.passport.user;
         this.userId = user.data.user._id
-        //this.checkLike()
-
-        // const like = Object.values(this.liked)
-        //console.log(this.liked)
-        
-        //console.log(user)
         
     },
 
     methods: {
-        // async checkLike(){
-        //     this.liked = this.post.likes
-        // },
         async likePost(){
             
             try{
@@ -114,13 +105,8 @@ export default {
                 this.imageUrl = this.post.image[0].url;
                 this.username = res.data.author.username;
                 this.liked = res.data.likes
-                //console.log(this.post.likes, this.userId)
                 
                 const like = Object.values(this.liked)
-                // if(like.includes(this.userId)){
-                //     console.log('ok')
-                // }
-                //console.log(like, this.userId)    
             } catch (error) {
                 console.log(error);
             }

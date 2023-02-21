@@ -4,7 +4,7 @@ const express = require('express');
 //Model
 const User = require('../model/user.js');
 const Content = require('../model/content.js');
-
+const Single = require('../model/single')
 
 //check usser session
 exports.userLoggin = async(req,res) => {
@@ -18,9 +18,11 @@ exports.getProfile =  async(req,res) => {
         const username = req.params.username;
         const user = await User.findOne({username});
         const posts =  await Content.find({author: user});
+        const description = await Single.find({author:user})
             res.status(200).json({
             posts,
-            user
+            user,
+            description,
         })
 
     } catch(err){
