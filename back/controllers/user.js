@@ -17,7 +17,9 @@ exports.getProfile =  async(req,res) => {
     try{
         const username = req.params.username;
         const user = await User.findOne({username});
-        const posts =  await Content.find({author: user});
+        const posts =  await Content.find({author: user}).populate({
+            path:'author'
+        });
         const description = await Single.find({author:user})
             res.status(200).json({
             posts,

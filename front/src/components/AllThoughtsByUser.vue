@@ -10,7 +10,7 @@
         <div class="w-6/12 text-center mx-auto">
             <div v-for="dsc in description" :key="dsc._id" class="my-5">
                 <div class="bg-bgPic rounded flex justify-evenly my-auto">
-                    <font-awesome-icon icon="fa-solid fa-trash" class="my-auto icon" />
+                    <font-awesome-icon icon="fa-solid fa-trash" class="my-auto icon" @click="deleteContent(dsc._id)"/>
                     <div>
                         <p class="italic font-semibold text-xl">{{username}}</p>
                         <p class="italic text-lg">{{dsc.description}}</p>
@@ -48,13 +48,15 @@ export default {
     data(){
         return{
             description:[],
-            username:''
+            username:'',
+            currentUser:'',
 
         }
     },
     async created(){
         this.getProfile(this.$route.params.username);
         this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
+        // console.log(this.currentUser)
     },
     methods:{
         navigateToUserSettings(){
@@ -65,11 +67,20 @@ export default {
             this.username = res.data.user.username;
             this.description = res.data.description;
             this.username = res.data.user.username;
-            //console.log(res.data.user.username)
+            
         },
         navigateToUserProfile(){
             this.$router.push({name: 'Profile', params: {username: this.username}});
-        }
+        },
+        async deleteContent(id){
+            try{
+                const res = await axios.delete(`/singlecontent/delete/${id}`)
+                this.$router.push('/content')
+            } catch(err){
+                console.log(err)
+            }
+
+        },
     }
 }
 
@@ -85,7 +96,7 @@ export default {
     height: 2rem;
 }
 
-.icon-heart:hover{
+.icon-heart:hover, .icon:hover{
     color: red;
 }
 .like{

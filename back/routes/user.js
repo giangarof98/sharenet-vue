@@ -30,5 +30,4 @@ router.get('/logout', userController.logout)
 //profile
 router.put('/profile/:username', isLoggedIn, isOwnerAccount, CatchAsync(userController.setBioUser))
 
-
 module.exports = router;

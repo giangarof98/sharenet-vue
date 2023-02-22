@@ -1,3 +1,11 @@
 searchbox to find users
 
 add validation - regex
+
+page for singles post;
+    add like
+
+add likes length in all posts
+protect the routes
+
+in create post, add the btns to select what kind of post create

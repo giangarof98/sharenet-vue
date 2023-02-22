@@ -9,7 +9,9 @@ const User = require('../model/user');
 
 exports.getAll = async(req,res) => {
     try{
-        const contents = await Content.find({});
+        const contents = await Content.find({}).populate({
+            path:'author'
+        });
         res.status(200).json(contents);
     } catch(err){
         console.error(err)
