@@ -1,4 +1,5 @@
 <template>
+    
     <div class="flex flex-row justify-center">
         <div class="md:grid grid-cols-3 w-full p-4 gap-3">
             <div v-for="post in posts.slice().reverse()" :key="post._id" class="p-4 bg-bgPic rounded-lg my-auto">

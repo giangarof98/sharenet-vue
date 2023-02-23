@@ -1,5 +1,7 @@
 <template>
 
+    <SearchBoxUser/>
+
     <div class="text-center my-6">
         <a @click="navigateToAllPublications" class="cursor italic text-xl">All Publications </a>
     </div>
@@ -27,12 +29,16 @@
 
 <script>
 import axios from 'axios'
-
+import SearchBoxUser from './SerchBox.vue'
 export default {
     name: 'AllContent',
+    components: {
+        SearchBoxUser
+        },
     data() {
         return {
             posts: [],
+            
         }
     },
     async mounted(){
@@ -42,7 +48,6 @@ export default {
         async fetchData(){
             const res = await axios.get('/content')
             this.posts = res.data
-            console.log(res.data)
             
         },
         navigateToAllPublications(){

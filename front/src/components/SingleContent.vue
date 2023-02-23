@@ -107,6 +107,7 @@ export default {
                 this.liked = res.data.likes
                 
                 const like = Object.values(this.liked)
+                console.log(like)
             } catch (error) {
                 console.log(error);
             }

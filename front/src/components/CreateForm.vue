@@ -1,4 +1,6 @@
 <template>
+
+    <a class="flex justify-center mt-10 italic text-xl font-semibold cursor-pointer" @click="navigateToSinglePost">Create Post without image </a>
     <div class="flex justify-center mt-10">
         <form @submit.prevent="upload" 
                 class="flex flex-col justify-center w-72 p-4 bg-bgPic rounded-lg" 
@@ -57,6 +59,9 @@ export default {
                 console.log(err)
             }
         },
+        async navigateToSinglePost(){
+            this.$router.push({name: 'CreateSingle'});
+        }
     }
 }
 

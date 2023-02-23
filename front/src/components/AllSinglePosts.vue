@@ -1,5 +1,7 @@
 <template>
 
+    <SearchBoxUser/>
+
     <div class="text-center my-6">
         <a @click="navigateToAllPosts" class="cursor text-xl">All Posts</a>
     </div>
@@ -17,7 +19,12 @@
                             <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteContent(post._id)" />
                         </div>
                         <div v-if="currentUser" class="my-auto">
-                            <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart" @click="likeContent(post._id)" />
+                            <div v-if="post.likes.includes(this.userId)" >
+                                <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart like" @click="likeContent(post._id)" /> {{post.likes.length}}
+                            </div>
+                            <div v-else>
+                                <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart" @click="likeContent(post._id)" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -29,7 +36,7 @@
 
 <script>
 import axios from 'axios';
-
+import SearchBoxUser from './SerchBox.vue'
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -45,28 +52,41 @@ library.add(faTrash, faHeart)
     export default {
         name: 'HeaderHomePage',
         components: {
-            FontAwesomeIcon
+            FontAwesomeIcon,
+            SearchBoxUser
         },
         data() {
             return {
                 posts: [],
                 username:'',
                 currentUser:'',
+                userId:'',
+                
+                
         }
     },
     async created(){
         // this.getProfile(this.$route.params.username);
-        this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
-        console.log(this.currentUser)
+        // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
+        // console.log(this.currentUser)
+        const user = await axios.get(`/user/signin`)
+        this.currentUser = user.data.session.passport.user;
+        this.userId = user.data.user._id
+
+        // console.log(user.data.user)
     },
     async mounted(){
         this.fetchData()
     },
     methods:{
         async fetchData(){
-            const res = await axios.get('/singlecontent/publications')
-            this.posts = res.data
-            console.log(res.data)
+            try{
+                const res = await axios.get('/singlecontent/publications')
+                this.posts = res.data
+
+            } catch(err){
+                console.log(err)
+            }
         },
         navigateToAllPosts(){
             this.$router.push({name: 'Home'});
@@ -81,7 +101,9 @@ library.add(faTrash, faHeart)
 
         },
         async likeContent(postId){
-            console.log(postId)
+            const res = await axios.post(`/singlecontent/like/${postId}`)
+            this.$router.go(0)
+            console.log(res)
         }
     }
     }
@@ -96,6 +118,7 @@ library.add(faTrash, faHeart)
 
 .icon{
     height: 2rem;
+    cursor:pointer;
 }
 
 .icon-heart:hover, .icon:hover{
