@@ -47,12 +47,14 @@
 <script>
 import axios from 'axios'
 import AllPosts from './AllPostsByUser.vue'
+import {checkIfLogin} from '@/mixins/mix.js'
 
 export default {
     name: "HeaderProfileUser",
     components: {
         AllPosts
     },
+    mixins:[checkIfLogin],
     data(){
         return{
             // posts:[],
@@ -60,12 +62,13 @@ export default {
             firstName:'',
             lastName:'',
             bio:'',
-            currentUser:''
+            // currentUser:''
         }
     },
     async created(){
         this.getProfile(this.$route.params.username);
-        this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
+        this.userIsLogin()
+        // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
         
     },
     methods:{

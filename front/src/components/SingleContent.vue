@@ -46,6 +46,7 @@
 
 <script>
 import axios from 'axios';
+import {checkIfLogin} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -64,6 +65,7 @@ export default {
     components:{
         FontAwesomeIcon
     },
+    mixins: [checkIfLogin],
     data(){
         return {
             post: [],
@@ -78,9 +80,11 @@ export default {
 
     async created(){
         this.fetchData(this.$route.params.id);
-        const user = await axios.get(`/user/signin`)
-        this.currentUser = user.data.session.passport.user;
-        this.userId = user.data.user._id
+        this.userIsLogin()
+        // const user = await axios.get(`/user/signin`)
+        // this.currentUser = user.data.session.passport.user;
+        this.userId = this.$data.currentUser
+        // console.log(this.$data.currentUser)
         
     },
 

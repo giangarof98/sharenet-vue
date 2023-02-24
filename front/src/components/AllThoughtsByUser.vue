@@ -26,6 +26,7 @@
 <script>
 import axios from 'axios';
 import HeaderProfileUser from './HeaderProfile.vue';
+import {allSinglePostsByUser} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -45,42 +46,44 @@ export default {
         HeaderProfileUser,
         FontAwesomeIcon
     },
+    mixins:[allSinglePostsByUser],
     data(){
         return{
-            description:[],
-            username:'',
-            currentUser:'',
+            // description:[],
+            // username:'',
+            // currentUser:'',
 
         }
     },
     async created(){
         this.getProfile(this.$route.params.username);
-        this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
+        // this.userIsLogin()
+        // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
         // console.log(this.currentUser)
     },
     methods:{
         navigateToUserSettings(){
             this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
         },
-        async getProfile(username){
-            const res = await axios.get(`/user/profile/${username}`)
-            this.username = res.data.user.username;
-            this.description = res.data.description;
-            this.username = res.data.user.username;
+        // async getProfile(username){
+        //     const res = await axios.get(`/user/profile/${username}`)
+        //     this.username = res.data.user.username;
+        //     this.description = res.data.description;
+        //     this.username = res.data.user.username;
             
-        },
+        // },
         navigateToUserProfile(){
             this.$router.push({name: 'Profile', params: {username: this.username}});
         },
-        async deleteContent(id){
-            try{
-                const res = await axios.delete(`/singlecontent/delete/${id}`)
-                this.$router.push('/content')
-            } catch(err){
-                console.log(err)
-            }
+        // async deleteContent(id){
+        //     try{
+        //         const res = await axios.delete(`/singlecontent/delete/${id}`)
+        //         this.$router.push('/content')
+        //     } catch(err){
+        //         console.log(err)
+        //     }
 
-        },
+        // },
     }
 }
 

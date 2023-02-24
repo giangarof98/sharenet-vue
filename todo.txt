@@ -1,1 +1,8 @@
 validation
+
+fix bug:
+    likes on single posts
+    in profile/singlePost; fix the likes
+
+continue refactor
+    edit form

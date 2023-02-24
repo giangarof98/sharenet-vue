@@ -1,6 +1,8 @@
 <template>
 
-    <SearchBoxUser/>
+    <div v-if="currentUser">
+        <SearchBoxUser/>
+    </div>
 
     <div class="text-center my-6">
         <a @click="navigateToAllPublications" class="cursor italic text-xl">All Publications </a>
@@ -30,26 +32,35 @@
 <script>
 import axios from 'axios'
 import SearchBoxUser from './SerchBox.vue'
+import {checkIfLogin, fetchPosts} from '@/mixins/mix.js'
+
 export default {
     name: 'AllContent',
     components: {
         SearchBoxUser
         },
-    data() {
-        return {
-            posts: [],
+    mixins: [checkIfLogin, fetchPosts],
+    // data() {
+        // return {
+            // posts: [],
+            // currentUser:''
             
-        }
+        // }
+    // },
+    async created(){
+        // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
+        this.userIsLogin()
     },
-    async mounted(){
-        this.fetchData()
-    },
+    // async mounted(){
+        // this.fetchData()
+        // this.fetchPosts()
+    // },
     methods:{
-        async fetchData(){
-            const res = await axios.get('/content')
-            this.posts = res.data
+        // async fetchData(){
+        //     const res = await axios.get('/content')
+        //     this.posts = res.data
             
-        },
+        // },
         navigateToAllPublications(){
             this.$router.push({name: 'Home2'});
         }

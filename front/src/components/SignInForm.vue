@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-center mt-10">
         <div>
-            <form @submit.prevent="signin"
+            <form v-on:submit.prevent="signin"
                 class="flex flex-col justify-center w-72 p-4 italic">
                 <p class="text-center text-xl py-3 font-semibold">Sign In</p>
 
@@ -12,7 +12,7 @@
                 <input type="password" id="password" name="password" class="border rounded py-0.9 px-1 focus:outline-none" v-model="user.password"/>
 
                 <button class="font-semibold text-lg bg-button rounded p-1 text-white mt-2">Sign In</button>
-            </form >
+            </form>
 
             <div class="text-center">
                 <h3>Don't have an account? <router-link class="click-here" to="/user/signup">Click Here</router-link></h3>

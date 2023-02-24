@@ -1,7 +1,8 @@
 <template>
-
-    <SearchBoxUser/>
-
+    <div v-if="currentUser">
+        <SearchBoxUser/>
+    </div>
+    
     <div class="text-center my-6">
         <a @click="navigateToAllPosts" class="cursor text-xl">All Posts</a>
     </div>
@@ -37,6 +38,8 @@
 <script>
 import axios from 'axios';
 import SearchBoxUser from './SerchBox.vue'
+import {checkIfLogin, allSinglePosts} from '@/mixins/mix.js'
+
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -55,12 +58,13 @@ library.add(faTrash, faHeart)
             FontAwesomeIcon,
             SearchBoxUser
         },
+        mixins:[checkIfLogin, allSinglePosts],
         data() {
             return {
-                posts: [],
-                username:'',
-                currentUser:'',
-                userId:'',
+                // posts: [],
+                // username:'',
+                // currentUser:'',
+                // userId:'',
                 
                 
         }
@@ -69,42 +73,44 @@ library.add(faTrash, faHeart)
         // this.getProfile(this.$route.params.username);
         // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
         // console.log(this.currentUser)
-        const user = await axios.get(`/user/signin`)
-        this.currentUser = user.data.session.passport.user;
-        this.userId = user.data.user._id
 
+        
+        // const user = await axios.get(`/user/signin`)
+        // this.currentUser = user.data.session.passport.user;
+        this.userIsLogin()
+        // this.userId = user.data.user._id
         // console.log(user.data.user)
     },
-    async mounted(){
-        this.fetchData()
-    },
+    // async mounted(){
+    //     this.fetchData()
+    // },
     methods:{
-        async fetchData(){
-            try{
-                const res = await axios.get('/singlecontent/publications')
-                this.posts = res.data
+        // async fetchData(){
+        //     try{
+        //         const res = await axios.get('/singlecontent/publications')
+        //         this.posts = res.data
 
-            } catch(err){
-                console.log(err)
-            }
-        },
+        //     } catch(err){
+        //         console.log(err)
+        //     }
+        // },
         navigateToAllPosts(){
             this.$router.push({name: 'Home'});
         },
-        async deleteContent(id){
-            try{
-                const res = await axios.delete(`/singlecontent/delete/${id}`)
-                this.$router.push('/content')
-            } catch(err){
-                console.log(err)
-            }
+        // async deleteContent(id){
+        //     try{
+        //         const res = await axios.delete(`/singlecontent/delete/${id}`)
+        //         this.$router.push('/content')
+        //     } catch(err){
+        //         console.log(err)
+        //     }
 
-        },
-        async likeContent(postId){
-            const res = await axios.post(`/singlecontent/like/${postId}`)
-            this.$router.go(0)
-            console.log(res)
-        }
+        // },
+        // async likeContent(postId){
+        //     const res = await axios.post(`/singlecontent/like/${postId}`)
+        //     this.$router.go(0)
+        //     console.log(res)
+        // }
     }
     }
 

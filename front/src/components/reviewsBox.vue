@@ -5,6 +5,7 @@
                     <p class="font-semibold">{{r.author.username}}</p>
                     <p>{{r.body}}</p>
                 </div>
+
                 <div v-if="currentUser === r.author.username" class="text-xl">
                     <div v-if="r.likes.includes(r.author._id)">
                         <button @click="likeContent(r._id)">
@@ -31,6 +32,7 @@
 
 <script>
 import axios from 'axios';
+import {checkIfLogin} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -49,6 +51,7 @@ export default {
     components:{
         FontAwesomeIcon
     },
+    mixins:[checkIfLogin],
     data(){
         return{
             review:{
@@ -61,7 +64,8 @@ export default {
     },
     async created(){
         this.fetchData();
-        this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
+        this.userIsLogin()
+        // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
         
     },
     methods:{

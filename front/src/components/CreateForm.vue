@@ -28,37 +28,39 @@
 
 <script>
 import axios from 'axios';
+import {createPostWithImage} from '@/mixins/mix.js'
 
 export default {
     name:'CreateForm',
+    mixins:[createPostWithImage],
     data(){
         return {
-            post:{
-                description:'',
-                image: '',
-            },
+            // post:{
+            //     description:'',
+            //     image: '',
+            // },
 
         };
     },
     methods: {
-        selectFile(){
-            this.post.image = this.$refs.photo.files[0];
-            // console.log(this.$refs.photo.files[0])
+        // selectFile(){
+        //     this.post.image = this.$refs.photo.files[0];
+        //     // console.log(this.$refs.photo.files[0])
             
-        },
-        async upload(){
-            try{
-                const formData = new FormData();
-                formData.append('images', this.post.image);
-                formData.append('description', this.post.description);
-                const res = await axios.post('/content', formData);
-                this.$router.push('/content')
-                console.log(res)
+        // },
+        // async upload(){
+        //     try{
+        //         const formData = new FormData();
+        //         formData.append('images', this.post.image);
+        //         formData.append('description', this.post.description);
+        //         const res = await axios.post('/content', formData);
+        //         this.$router.push('/content')
+        //         console.log(res)
 
-            } catch(err){
-                console.log(err)
-            }
-        },
+        //     } catch(err){
+        //         console.log(err)
+        //     }
+        // },
         async navigateToSinglePost(){
             this.$router.push({name: 'CreateSingle'});
         }
