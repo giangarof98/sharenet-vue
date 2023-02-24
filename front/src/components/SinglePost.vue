@@ -22,30 +22,32 @@
 
 <script>
 import axios from 'axios';
+import {createPostWithoutImage} from '@/mixins/mix.js'
 
 export default {
     name:'CreateForm',
-    data(){
-        return {
-            singleDescription:'',
-            username:''
+    // data(){
+    //     return {
+    //         singleDescription:'',
+    //         username:''
 
-        };
-    },
+    //     };
+    // },
+    mixins:[createPostWithoutImage],
     methods: {
-        async upload(){
-            try{
-                const description = {
-                    description: this.singleDescription
-                }
-                const res = await axios.post('/singlecontent', description);
-                this.$router.push({name: 'Home'})
-                console.log(res)
+        // async upload(){
+        //     try{
+        //         const description = {
+        //             description: this.singleDescription
+        //         }
+        //         const res = await axios.post('/singlecontent', description);
+        //         this.$router.push({name: 'Home'})
+        //         console.log(res)
 
-            } catch(err){
-                console.log(err)
-            }
-        },
+        //     } catch(err){
+        //         console.log(err)
+        //     }
+        // },
         async navigateToPost(){
             this.$router.push({name: 'Create'});
         }

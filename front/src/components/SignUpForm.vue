@@ -32,43 +32,45 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import {signUp} from '@/mixins/mix.js'
 
 export default {
     name:'SignUpForm',
-    data(){
-        return {
-            user: {
-                firstName:'',
-                lastName: '',
-                username: '',
-                email: '',
-                password: '',
-            },
+    mixins:[signUp],
+    // data(){
+    //     return {
+    //         user: {
+    //             firstName:'',
+    //             lastName: '',
+    //             username: '',
+    //             email: '',
+    //             password: '',
+    //         },
 
-        }
-    },
-    methods: {
-        async createUser(){
-            try{
-                const res = await axios.post('/user/signup', {
-                    firstName: this.user.firstName,
-                    lastName:  this.user.lastName,
-                    username:  this.user.username,
-                    email:  this.user.email,
-                    password:  this.user.password,
-                });
-                console.log(res)
-                this.$router.push('/content')
+    //     }
+    // },
+    // methods: {
+    //     async createUser(){
+    //         try{
+    //             const res = await axios.post('/user/signup', {
+    //                 firstName: this.user.firstName,
+    //                 lastName:  this.user.lastName,
+    //                 username:  this.user.username,
+    //                 email:  this.user.email,
+    //                 password:  this.user.password,
+    //             });
+    //             console.log(res)
+    //             this.$router.push('/content')
 
-            } catch(err){
-                console.log(err)
-            }
+    //         } catch(err){
+    //             console.log(err)
+    //         }
 
-            // console.log(this.v$)
+    //         // console.log(this.v$)
 
-        },
-    },
+    //     },
+    // },
 }
 
 </script>

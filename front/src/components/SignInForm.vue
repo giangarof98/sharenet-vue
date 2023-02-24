@@ -24,34 +24,36 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import {signIn} from '@/mixins/mix.js'
 
 export default {
     name:'SignInForm',
+    mixins:[signIn],
     data(){
         return {
-            user: {
-                username:'',
-                password:''
-            },
+            // user: {
+            //     username:'',
+            //     password:''
+            // },
         }
     },
-    methods: {
-        async signin(){
-            try{
-                const res = await axios.post('/user/signin', {
-                    username:  this.user.username,
-                    password:  this.user.password,
-                });
-                // console.log(res)
-                this.$router.push('/content')
+    // methods: {
+    //     async signin(){
+    //         try{
+    //             const res = await axios.post('/user/signin', {
+    //                 username:  this.user.username,
+    //                 password:  this.user.password,
+    //             });
+    //             // console.log(res)
+    //             this.$router.push('/content')
 
-            } catch(err){
-                console.log(err)
-            }
+    //         } catch(err){
+    //             console.log(err)
+    //         }
 
-        }
-    }
+    //     }
+    // }
 }
 
 </script>

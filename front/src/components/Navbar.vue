@@ -74,6 +74,7 @@
 <script>
 
 import axios from 'axios';
+import {navbar, checkIfLogin} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -92,41 +93,42 @@ export default {
     components:{
         FontAwesomeIcon
     },
+    mixins:[navbar, checkIfLogin],
     data(){
         return{
-            user: {
-                isAuthenticated: false,
-                username: ''
-            }
+            // user: {
+            //     isAuthenticated: false,
+            //     username: ''
+            // }
         }
     },
-    async mounted(){
-            try{
-                const res = await axios.get(`/user/signin`);
-                this.user = {isAuthenticated: true, username: res.data.session.passport.user}
-                //console.log(res)  
-            } catch(err){
-                console.log('user is not signIn', err)
-            }
+    // async mounted(){
+    //         try{
+    //             const res = await axios.get(`/user/signin`);
+    //             this.user = {isAuthenticated: true, username: res.data.session.passport.user}
+    //             //console.log(res)  
+    //         } catch(err){
+    //             console.log('user is not signIn', err)
+    //         }
 
-    },
-    methods: {
-        async logout(){
-            const res = await axios.get(`/user/logout`)
-            this.$router.go(0)
-        },
-        dropdown(){
-            const btn = document.getElementById('btn-menu');
-            const menu = document.getElementById('menu');
+    // },
+    // methods: {
+    //     async logout(){
+    //         const res = await axios.get(`/user/logout`)
+    //         this.$router.go(0)
+    //     },
+    //     dropdown(){
+    //         const btn = document.getElementById('btn-menu');
+    //         const menu = document.getElementById('menu');
 
-            btn.addEventListener('click', () => {
-                btn.classList.toggle('open');
-                menu.classList.toggle('flex');
-                menu.classList.toggle('hidden');
-            })
+    //         btn.addEventListener('click', () => {
+    //             btn.classList.toggle('open');
+    //             menu.classList.toggle('flex');
+    //             menu.classList.toggle('hidden');
+    //         })
 
-        }
-    }
+    //     }
+    // }
 }
 
 </script>

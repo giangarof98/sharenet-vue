@@ -38,7 +38,7 @@
 <script>
 import axios from 'axios';
 import SearchBoxUser from './SerchBox.vue'
-import {checkIfLogin, allSinglePosts} from '@/mixins/mix.js'
+import {checkIfLogin, allSinglePosts, fetchSinglePost} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -64,9 +64,7 @@ library.add(faTrash, faHeart)
                 // posts: [],
                 // username:'',
                 // currentUser:'',
-                // userId:'',
-                
-                
+                // userId:'', 
         }
     },
     async created(){
@@ -78,22 +76,23 @@ library.add(faTrash, faHeart)
         // const user = await axios.get(`/user/signin`)
         // this.currentUser = user.data.session.passport.user;
         this.userIsLogin()
+        // this.fetchSinglePost()
         // this.userId = user.data.user._id
         // console.log(user.data.user)
     },
-    // async mounted(){
-    //     this.fetchData()
-    // },
+    async mounted(){
+        this.fetchData()
+    },
     methods:{
-        // async fetchData(){
-        //     try{
-        //         const res = await axios.get('/singlecontent/publications')
-        //         this.posts = res.data
-
-        //     } catch(err){
-        //         console.log(err)
-        //     }
-        // },
+        async fetchData(){
+            try{
+                const res = await axios.get('/singlecontent/publications')
+                this.posts = res.data
+                console.log(res)
+            } catch(err){
+                console.log(err)
+            }
+        },
         navigateToAllPosts(){
             this.$router.push({name: 'Home'});
         },
@@ -104,14 +103,13 @@ library.add(faTrash, faHeart)
         //     } catch(err){
         //         console.log(err)
         //     }
-
         // },
         // async likeContent(postId){
         //     const res = await axios.post(`/singlecontent/like/${postId}`)
         //     this.$router.go(0)
         //     console.log(res)
         // }
-    }
+        }
     }
 
 </script>

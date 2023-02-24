@@ -46,7 +46,7 @@
 
 <script>
 import axios from 'axios';
-import {checkIfLogin} from '@/mixins/mix.js'
+import {checkIfLogin, fetchSinglePost} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -65,18 +65,18 @@ export default {
     components:{
         FontAwesomeIcon
     },
-    mixins: [checkIfLogin],
-    data(){
-        return {
-            post: [],
-            imageUrl: '',
-            username: '',
-            currentUser: '',
-            userId:'',
-            liked: []
+    mixins: [checkIfLogin, fetchSinglePost],
+    // data(){
+    //     return {
+    //         post: [],
+    //         imageUrl: '',
+    //         username: '',
+    //         currentUser: '',
+    //         userId:'',
+    //         liked: []
             
-        }
-    },
+    //     }
+    // },
 
     async created(){
         this.fetchData(this.$route.params.id);
@@ -89,43 +89,42 @@ export default {
     },
 
     methods: {
-        async likePost(){
-            
-            try{
-                const id = this.$route.params.id
-                const response = await axios.post(`/content/${id}/like`);
-                this.$router.go(0)
-            } catch(err){
-                console.log(err)
-            }
-        },
-        async fetchData(id){
-            const likeHearth = document.getElementById('icon-heart')
-            try {
-                const user = await axios.get(`/user/signin`)
-                const res = await axios.get(`/content/${id}`);
-                this.post = res.data
-                this.userId = user.data.user._id
-                this.imageUrl = this.post.image[0].url;
-                this.username = res.data.author.username;
-                this.liked = res.data.likes
+        // async likePost(){    
+        //     try{
+        //         const id = this.$route.params.id
+        //         const response = await axios.post(`/content/${id}/like`);
+        //         this.$router.go(0)
+        //     } catch(err){
+        //         console.log(err)
+        //     }
+        // },
+        // async fetchData(id){
+        //     const likeHearth = document.getElementById('icon-heart')
+        //     try {
+        //         const user = await axios.get(`/user/signin`)
+        //         const res = await axios.get(`/content/${id}`);
+        //         this.post = res.data
+        //         this.userId = user.data.user._id
+        //         this.imageUrl = this.post.image[0].url;
+        //         this.username = res.data.author.username;
+        //         this.liked = res.data.likes
                 
-                const like = Object.values(this.liked)
-                console.log(like)
-            } catch (error) {
-                console.log(error);
-            }
+        //         const like = Object.values(this.liked)
+        //         console.log(like)
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
 
-        },
-        async deleteContent(id){
-            try{
-                const res = await axios.delete(`/content/${id}`)
-                this.$router.push('/content')
-            } catch(err){
-                console.log(err)
-            }
+        // },
+        // async deleteContent(id){
+        //     try{
+        //         const res = await axios.delete(`/content/${id}`)
+        //         this.$router.push('/content')
+        //     } catch(err){
+        //         console.log(err)
+        //     }
 
-        },
+        // },
         navigateToUserProfile(){
             this.$router.push({name: 'Profile', params: {username: this.username}});
         }

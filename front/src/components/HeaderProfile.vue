@@ -47,21 +47,21 @@
 <script>
 import axios from 'axios'
 import AllPosts from './AllPostsByUser.vue'
-import {checkIfLogin} from '@/mixins/mix.js'
+import {checkIfLogin, headerProfile} from '@/mixins/mix.js'
 
 export default {
     name: "HeaderProfileUser",
     components: {
         AllPosts
     },
-    mixins:[checkIfLogin],
+    mixins:[checkIfLogin, headerProfile],
     data(){
         return{
             // posts:[],
-            username:'',
-            firstName:'',
-            lastName:'',
-            bio:'',
+            // username:'',
+            // firstName:'',
+            // lastName:'',
+            // bio:'',
             // currentUser:''
         }
     },
@@ -75,14 +75,14 @@ export default {
         navigateToUserSettings(){
             this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
         },
-        async getProfile(username){
-            const res = await axios.get(`/user/profile/${username}`)
-            this.username = res.data.user.username;
-            this.firstName = res.data.user.firstName;
-            this.lastName = res.data.user.lastName;
-            this.bio = res.data.user.bio;
-            // this.posts = res.data.posts;
-        },
+        // async getProfile(username){
+        //     const res = await axios.get(`/user/profile/${username}`)
+        //     this.username = res.data.user.username;
+        //     this.firstName = res.data.user.firstName;
+        //     this.lastName = res.data.user.lastName;
+        //     this.bio = res.data.user.bio;
+        //     // this.posts = res.data.posts;
+        // },
         navigateToUserProfile(){
             this.$router.push({name: 'SinglePostsByUser', params: {username: this.username}});
         }

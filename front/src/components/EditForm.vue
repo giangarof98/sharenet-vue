@@ -21,6 +21,7 @@
 <script>
 
 import axios from 'axios'
+import {editPost} from '@/mixins/mix.js'
 
 export default {
     name:'EditForm',
@@ -30,28 +31,29 @@ export default {
             imageUrl: ''
         }
     },
-    async created(){
-        this.fetchData(this.$route.params.id)
-    },
+    mixins:[editPost],
+    // async created(){
+    //    this.fetchData(this.$route.params.id)
+    // }, 
     methods:{
-        async fetchData(id){
-            const res = await axios.get(`/content/${id}`)
-            this.post = res.data;
-            this.imageUrl = this.post.image[0].url;
-            // console.log(res.data)
-        },
+        // async fetchData(id){
+        //     const res = await axios.get(`/content/${id}`)
+        //     this.post = res.data;
+        //     this.imageUrl = this.post.image[0].url;
+        //     console.log(res.data)
+        // },
         // uploadFile(){
         //     // this.file = this.$refs.file.files[0]
         //     // console.log(this.$refs.file.files[0])
         // },
-        async updatePost(){
-            let form = new FormData();
-            form.append('description', this.post.description);
-            form.append('image', this.post.image);
+        // async updatePost(){
+        //     let form = new FormData();
+        //     form.append('description', this.post.description);
+        //     form.append('image', this.post.image);
             
-            const res = await axios.put(this.$route.params.id, this.post);
-            this.$router.push('/content')
-        }
+        //     const res = await axios.put(this.$route.params.id, this.post);
+        //     this.$router.push('/content')
+        // }
     }
 
     

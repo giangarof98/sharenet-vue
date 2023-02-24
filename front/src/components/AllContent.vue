@@ -56,11 +56,6 @@ export default {
         // this.fetchPosts()
     // },
     methods:{
-        // async fetchData(){
-        //     const res = await axios.get('/content')
-        //     this.posts = res.data
-            
-        // },
         navigateToAllPublications(){
             this.$router.push({name: 'Home2'});
         }

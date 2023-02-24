@@ -12,35 +12,37 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import {searchBox} from '@/mixins/mix.js'
 export default {
     name:"SearchBoxUser",
+    mixins:[searchBox],
     data(){
         return{
-            users:[],
-            searchTerm:'',
-            matchingUser:null,
-            username:''
+            // users:[],
+            // searchTerm:'',
+            // matchingUser:null,
+            // username:''
         }
     },
-    async created(){
-        const res = await axios.get(`/user/`)
-        this.users = res.data
-    },
-    computed:{
-        match(){
-            return this.users.find((user => user.username === this.searchTerm))
-        }
-    },
-    methods: {
-        searchUsers(){
-            this.matchingUser = this.match;
-        },
-        goToProfile(username){
-            console.log(username)
-            this.$router.push({name: 'Profile',  params: {username: this.matchingUser.username}})
-        }
-    }
+    // async created(){
+    //     const res = await axios.get(`/user/`)
+    //     this.users = res.data
+    // },
+    // computed:{
+    //     match(){
+    //         return this.users.find((user => user.username === this.searchTerm))
+    //     }
+    // },
+    // methods: {
+    //     searchUsers(){
+    //         this.matchingUser = this.match;
+    //     },
+    //     goToProfile(username){
+    //         console.log(username)
+    //         this.$router.push({name: 'Profile',  params: {username: this.matchingUser.username}})
+    //     }
+    // }
 
 }
 </script>
