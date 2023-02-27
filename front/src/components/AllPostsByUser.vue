@@ -13,41 +13,10 @@
 </template>
 
 <script>
-import axios from 'axios'
 import {getProfile} from '@/mixins/mix.js'
 
 export default {
     name: 'AllPosts',
     mixins:[getProfile],
-    // data(){
-        // return{
-            // posts:[],
-            // username:'',
-            // firstName:'',
-            // lastName:'',
-            // bio:'',
-            // currentUser:''
-        // }
-    // },
-    // async created(){
-    //     this.getProfile(this.$route.params.username);
-    //     // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
-    //     // this.userIsLogin()
-        
-    // },
-    methods:{
-        navigateToUserSettings(){
-            this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
-        },
-        // async getProfile(username){
-        //     const res = await axios.get(`/user/profile/${username}`)
-        //     this.username = res.data.user.username;
-        //     // this.firstName = res.data.user.firstName;
-        //     // this.lastName = res.data.user.lastName;
-        //     // this.bio = res.data.user.bio;
-        //     this.posts = res.data.posts;
-        //     // console.log(res)
-        // },
-    }
 }
 </script>

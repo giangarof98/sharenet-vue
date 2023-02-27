@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import {checkIfLogin, fetchSinglePost} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
@@ -66,65 +65,10 @@ export default {
         FontAwesomeIcon
     },
     mixins: [checkIfLogin, fetchSinglePost],
-    // data(){
-    //     return {
-    //         post: [],
-    //         imageUrl: '',
-    //         username: '',
-    //         currentUser: '',
-    //         userId:'',
-    //         liked: []
-            
-    //     }
-    // },
-
     async created(){
-        this.fetchData(this.$route.params.id);
-        this.userIsLogin()
-        // const user = await axios.get(`/user/signin`)
-        // this.currentUser = user.data.session.passport.user;
-        this.userId = this.$data.currentUser
-        // console.log(this.$data.currentUser)
-        
+        this.userIsLogin()        
     },
-
     methods: {
-        // async likePost(){    
-        //     try{
-        //         const id = this.$route.params.id
-        //         const response = await axios.post(`/content/${id}/like`);
-        //         this.$router.go(0)
-        //     } catch(err){
-        //         console.log(err)
-        //     }
-        // },
-        // async fetchData(id){
-        //     const likeHearth = document.getElementById('icon-heart')
-        //     try {
-        //         const user = await axios.get(`/user/signin`)
-        //         const res = await axios.get(`/content/${id}`);
-        //         this.post = res.data
-        //         this.userId = user.data.user._id
-        //         this.imageUrl = this.post.image[0].url;
-        //         this.username = res.data.author.username;
-        //         this.liked = res.data.likes
-                
-        //         const like = Object.values(this.liked)
-        //         console.log(like)
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-
-        // },
-        // async deleteContent(id){
-        //     try{
-        //         const res = await axios.delete(`/content/${id}`)
-        //         this.$router.push('/content')
-        //     } catch(err){
-        //         console.log(err)
-        //     }
-
-        // },
         navigateToUserProfile(){
             this.$router.push({name: 'Profile', params: {username: this.username}});
         }

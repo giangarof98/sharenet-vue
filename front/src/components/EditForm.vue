@@ -3,7 +3,6 @@
         <form @submit.prevent="updatePost" class="flex flex-col justify-center w-72 p-4 bg-bgPic rounded-lg" enctype="multipart/form-data">
                     <p class="py-3 text-xl font-semibold text-center">Modify Post</p>
 
-
                     <img :src="imageUrl" alt="image">
                     <textarea type="text" placeholder="jjj" class="border rounded py-0.9 px-1 focus:outline-none italic" v-model="post.description"></textarea>
 
@@ -19,8 +18,6 @@
 </template>
 
 <script>
-
-import axios from 'axios'
 import {editPost} from '@/mixins/mix.js'
 
 export default {
@@ -32,30 +29,6 @@ export default {
         }
     },
     mixins:[editPost],
-    // async created(){
-    //    this.fetchData(this.$route.params.id)
-    // }, 
-    methods:{
-        // async fetchData(id){
-        //     const res = await axios.get(`/content/${id}`)
-        //     this.post = res.data;
-        //     this.imageUrl = this.post.image[0].url;
-        //     console.log(res.data)
-        // },
-        // uploadFile(){
-        //     // this.file = this.$refs.file.files[0]
-        //     // console.log(this.$refs.file.files[0])
-        // },
-        // async updatePost(){
-        //     let form = new FormData();
-        //     form.append('description', this.post.description);
-        //     form.append('image', this.post.image);
-            
-        //     const res = await axios.put(this.$route.params.id, this.post);
-        //     this.$router.push('/content')
-        // }
-    }
-
     
 }
 </script>

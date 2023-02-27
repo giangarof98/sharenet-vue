@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import SearchBoxUser from './SerchBox.vue'
 import {checkIfLogin, fetchPosts} from '@/mixins/mix.js'
 
@@ -40,21 +39,9 @@ export default {
         SearchBoxUser
         },
     mixins: [checkIfLogin, fetchPosts],
-    // data() {
-        // return {
-            // posts: [],
-            // currentUser:''
-            
-        // }
-    // },
     async created(){
-        // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
         this.userIsLogin()
     },
-    // async mounted(){
-        // this.fetchData()
-        // this.fetchPosts()
-    // },
     methods:{
         navigateToAllPublications(){
             this.$router.push({name: 'Home2'});

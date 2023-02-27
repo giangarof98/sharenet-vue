@@ -17,7 +17,8 @@ exports.create = async (req,res) => {
 exports.getAll = async (req,res) => {
     try{
         const contents = await Single.find({}).populate({
-            path:'author'
+            path:'author',
+            
         });
         res.status(200).json(contents);
     } catch(err){

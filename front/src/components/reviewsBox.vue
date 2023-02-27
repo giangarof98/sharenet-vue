@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import {checkIfLogin, displayReviews} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
@@ -52,49 +51,10 @@ export default {
         FontAwesomeIcon
     },
     mixins:[checkIfLogin, displayReviews],
-    data(){
-        return{
-            // review:{
-            //     username: '',
-            //     reviewId:''
-            // },
-            // currentUser: '',
-            // liked: []
-        }
-    },
     async created(){
         this.fetchData();
         this.userIsLogin()
-        // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
-        
     },
-    // methods:{
-    //     async likeContent(reviewId){
-    //         const id = this.$route.params.id
-    //         const response = await axios.post(`/content/${id}/like/${reviewId}`);
-    //         this.$router.go(0)
-        
-    //     },
-    //     async fetchData(){
-    //         const id = this.$route.params.id
-    //         const res = await axios.get(`/content/${id}/reviews`)
-    //         this.review = res.data
-    //         this.liked = res.data.likes
-    //         //this.username = res.data.author
-    //         //console.log(res.data)
-    //     },
-    //     async deleteReview(id){
-    //         try{
-    //             const idContent = this.$route.params.id
-    //             const deleteReview = await axios.delete(`/content/${idContent}/reviews/${id}`)
-    //             this.$router.go(0)
-
-    //         } catch(err){
-    //             console.log(err)
-    //         }
-    //     }
-    // }
-
 }
 </script>
 

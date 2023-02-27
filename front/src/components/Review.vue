@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import ReviewBox from './reviewsBox.vue';
 import {createReview} from '@/mixins/mix.js';
 
@@ -24,35 +23,8 @@ export default {
     name:'Review',
     components:{
         ReviewBox,
-        //FontAwesomeIcon
     },
     mixins:[createReview],
-    data(){
-        return{
-            // review:{
-            //     body:''
-            // }
-        }
-    },
-    // methods: {
-    //     upload(){
-    //         this.createReview()
-    //     },
-    //     async createReview(){
-    //         try{
-    //             const id = this.$route.params.id;
-    //             const res = await axios.post(`/content/${id}/reviews`, {
-    //                 body: this.review.body
-    //             });
-    //             console.log(res);
-    //             this.$router.go(0)
-
-    //         } catch(err){
-    //             console.log(err)
-    //         }
-
-    //     }
-    // }
     
 }
 </script>

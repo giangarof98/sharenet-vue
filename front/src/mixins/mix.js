@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// LogIn/SignIn functionality
 export const signIn = {
   data(){
     return {
@@ -18,7 +19,6 @@ methods: {
             });
             // console.log(res)
             this.$router.push('/content')
-
         } catch(err){
             console.log(err)
         }
@@ -27,6 +27,7 @@ methods: {
   }
 }
 
+// SignUp functionality
 export const signUp = {
   data(){
     return {
@@ -62,6 +63,7 @@ export const signUp = {
   },
 }
 
+// Check if user is logged in
 export const checkIfLogin = {
     data() {
         return {
@@ -88,13 +90,11 @@ export const checkIfLogin = {
         const user = await axios.get(`/user/signin`)
         this.currentUser = user.data.session.passport.user;
         this.userId = user.data.user._id
-        // console.log(user)
-        // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
-        // console.log(this.currentUser)
       }
     }
 }
 
+// fetch all contents
 export const fetchPosts = {
   data() {
     return {
@@ -115,6 +115,7 @@ export const fetchPosts = {
   },
 }
 
+// Get user Profile, posts
 export const getProfile = {
   data() {
     return {
@@ -124,23 +125,20 @@ export const getProfile = {
   },
   async created(){
     this.getProfile(this.$route.params.username);
-    // this.currentUser = (await axios.get(`/user/signin`)).data.session.passport.user;
-    // this.userIsLogin()
-    
   },
   methods:{
     async getProfile(username){
       const res = await axios.get(`/user/profile/${username}`)
       this.username = res.data.user.username;
-      // this.firstName = res.data.user.firstName;
-      // this.lastName = res.data.user.lastName;
-      // this.bio = res.data.user.bio;
       this.posts = res.data.posts;
-      // console.log(res)
-  },
+    },
+    navigateToUserSettings(){
+      this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
+    },
   }
 }
 
+// user config page
 export const userConfigurationPage = {
   data(){
     return{
@@ -198,26 +196,22 @@ export const userConfigurationPage = {
   }
 }
 
+// Fetch all single posts
 export const allSinglePosts = {
   data() {
     return {
         posts: [],
-        // username:'',
-        currentUser:'',
-        userId:'',
-        
     }
   },
-  // async mounted(){
-  //   this.fetchData()
-  // },
+  async mounted() {
+    this.fetchSingleData()
+    
+  },
   methods:{
-    async fetchData(){
+    async fetchSingleData(){
       try{
           const res = await axios.get('/singlecontent/publications')
-          this.posts = res.data
-          // console.log(res)
-
+          this.posts = res.data;
       } catch(err){
           console.log(err)
       }
@@ -236,14 +230,17 @@ export const allSinglePosts = {
       this.$router.go(0)
       console.log(res)
     },
+    navigateToAllPosts(){
+      this.$router.push({name: 'Home'});
+   },
   }
 }
 
+// fetch single publication with images
 export const fetchSinglePost = {
   data(){
     return {
-        post: [],
-        posts:[],
+        post:[],
         imageUrl: '',
         username: '',
         currentUser: '',
@@ -251,6 +248,9 @@ export const fetchSinglePost = {
         liked: []
         
     }
+  },
+  async created(){
+    this.fetchData(this.$route.params.id);
   },
   methods:{
     async fetchData(id){
@@ -265,7 +265,6 @@ export const fetchSinglePost = {
           this.liked = res.data.likes
           
           const like = Object.values(this.liked)
-          console.log(like)
       } catch (error) {
           console.log(error);
       }
@@ -293,12 +292,12 @@ export const fetchSinglePost = {
   }
 }
 
+// All signle posts/thoughts by user
 export const allSinglePostsByUser = {
   data(){
     return{
         description:[],
         username:'',
-        // currentUser:'',
     }
   },
   methods: {
@@ -320,6 +319,7 @@ export const allSinglePostsByUser = {
   }
 }
 
+// Create Post with image
 export const createPostWithImage = {
   data(){
     return {
@@ -351,6 +351,7 @@ export const createPostWithImage = {
 
 }
 
+// Create Post with no image, form
 export const createPostWithoutImage = {
   data(){
     return {
@@ -376,6 +377,7 @@ export const createPostWithoutImage = {
   }
 }
 
+// Edit Post form
 export const editPost = {
   data(){
     return{
@@ -404,15 +406,13 @@ export const editPost = {
   }
 }
 
+// Header profile; display user info
 export const headerProfile = {
   data(){
     return{
-        // posts:[],
-        username:'',
         firstName:'',
         lastName:'',
         bio:'',
-        // currentUser:''
     }
   },
   methods: {
@@ -427,14 +427,14 @@ export const headerProfile = {
   }
 }
 
+// Navbar 
 export const navbar = {
   data(){
     return{
-      user: {
-        isAuthenticated: false,
-        username: ''
-      }
-
+      // user: {
+      //   isAuthenticated: false,
+      //   username: ''
+      // }
     }
   },
   methods: {
@@ -456,13 +456,11 @@ export const navbar = {
 }
 }
 
+// Profile Page
 export const profileUser = {
   data(){
     return{
       username:'',
-      // firstName:'',
-      // lastName:'',
-      // bio:'',
     }
   },
   async created(){
@@ -472,17 +470,14 @@ export const profileUser = {
     async getProfile(username){
       const res = await axios.get(`/user/profile/${username}`)
       this.username = res.data.user.username;
-      // this.firstName = res.data.user.firstName;
-      // this.lastName = res.data.user.lastName;
-      // this.bio = res.data.user.bio;
-      // this.posts = res.data.posts;
     },
     navigateToUserProfile(){
       this.$router.push({name: 'SinglePostsByUser', params: {username: this.username}});
-  }
+    }
   }
 }
 
+// create review functionality
 export const createReview = {
   data(){
     return {
@@ -512,6 +507,7 @@ export const createReview = {
 }
 }
 
+// Display Reviews
 export const displayReviews = {
   data(){
     return{
@@ -551,6 +547,7 @@ export const displayReviews = {
   }
 }
 
+// SearchBox functionality
 export const searchBox = {
   data(){
     return{
