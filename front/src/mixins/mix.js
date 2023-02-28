@@ -8,6 +8,7 @@ export const signIn = {
             username:'',
             password:''
         },
+        // successMessage:''
     }
   },
 methods: {
@@ -18,6 +19,7 @@ methods: {
                 password:  this.user.password,
             });
             // console.log(res)
+            // console.log(res.data.successMessage)
             this.$router.push('/content')
         } catch(err){
             console.log(err)
@@ -108,14 +110,14 @@ export const fetchPosts = {
   methods:{
     async fetchData(){
         const res = await axios.get('/content')
-        // console.log(res)
+        // console.log(res.data.successMessage)
         this.posts = res.data.contents;
         this.successMessage = res.data.successMessage;
-        console.log(res)
+        console.log(res.data.successMessage)
       },  
-    //   navigateToAllPublications(){
-    //     this.$router.push({name: 'Home2'});
-    // }
+      navigateToAllPublications(){
+        this.$router.push({name: 'Home2'});
+    }
   },
 }
 
@@ -205,6 +207,7 @@ export const allSinglePosts = {
   data() {
     return {
         posts: [],
+        successMessage:''
     }
   },
   async created() {
@@ -215,7 +218,9 @@ export const allSinglePosts = {
     async fetchSingleData(){
       try{
           const res = await axios.get('/singlecontent/publications')
-          this.posts = res.data;
+          this.posts = res.data.contents;
+          this.successMessage = res.data.successMessage;
+          console.log(res)
       } catch(err){
           console.log(err)
       }
@@ -223,7 +228,7 @@ export const allSinglePosts = {
     async deleteContent(id){
       try{
           const res = await axios.delete(`/singlecontent/delete/${id}`)
-          this.$router.push('/content')
+          this.$router.go(0)
       } catch(err){
           console.log(err)
       }
@@ -375,7 +380,7 @@ export const createPostWithoutImage = {
               description: this.singleDescription
           }
           const res = await axios.post('/singlecontent', description);
-          this.$router.push({name: 'Home'})
+          this.$router.push({name: 'Home2'});
           console.log(res)
 
       } catch(err){
@@ -452,7 +457,7 @@ export const navbar = {
   methods: {
     async logout(){
         const res = await axios.get(`/user/logout`)
-        this.$router.go(0)
+        this.$router.push({name: 'SignInForm'});
     },
     dropdown(){
         const btn = document.getElementById('btn-menu');
@@ -544,7 +549,7 @@ export const displayReviews = {
         this.review = res.data
         this.liked = res.data.likes
         this.username = res.data.author
-        //console.log(res.data)
+        // console.log(res.data)
     },
     async deleteReview(id){
         try{

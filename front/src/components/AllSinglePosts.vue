@@ -9,6 +9,7 @@
 
      <div class="flex flex-row my-6">
         <div class="w-6/12 text-center mx-auto">
+            {{successMessage[0]}}
             <div v-for="post in posts" :key="post._id" class="my-5">
                 <div class="bg-bgPic rounded flex justify-around my-auto">
                     <div>

@@ -43,7 +43,6 @@ exports.signup = async(req, res, next) => {
             console.log(registered);
             res.status(201).json({message:'registered'})
         })
-
     } catch(err){
         console.log(err)
     }
@@ -65,7 +64,12 @@ exports.delete = async(req,res) => {
 
 //login
 exports.signin = (req,res) => {
-    res.redirect('/content');
+    try{
+        res.redirect('/content');
+
+    } catch(err){
+        console.log(err)
+    }
 }
 
 //logout
@@ -74,6 +78,7 @@ exports.logout = (req,res) => {
         req.session.destroy(function (err) {
             res.redirect('/');
         });
+
 
     } catch(err){
         console.log(err)
@@ -88,7 +93,6 @@ exports.setBioUser = async(req,res) => {
                 throw new Error('Username is required');
             }
             const user = await User.findOneAndUpdate({username}, {...req.body}, {new:true});
-            
             res.status(200).json(user);
     
         } catch(err){

@@ -33,7 +33,7 @@
 
 <script>
 import SearchBoxUser from './SerchBox.vue'
-import {checkIfLogin, fetchPosts} from '@/mixins/mix.js'
+import {checkIfLogin, fetchPosts, signIn} from '@/mixins/mix.js'
 
 export default {
     name: 'AllContent',
@@ -41,14 +41,6 @@ export default {
         SearchBoxUser
         },
     mixins: [checkIfLogin, fetchPosts],
-    async created(){
-        this.userIsLogin()
-    },
-    methods:{
-        navigateToAllPublications(){
-            this.$router.push({name: 'Home2'});
-        }
-    }
 }
 </script>
 

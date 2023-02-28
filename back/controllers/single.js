@@ -10,6 +10,7 @@ exports.create = async (req,res) => {
     const post = new Single(req.body);
     post.author = req.user._id;
     await post.save();
+    req.flash('success', 'successfully created!')
     console.log(post);
     res.status(200).send(post)
 };
@@ -20,7 +21,8 @@ exports.getAll = async (req,res) => {
             path:'author',
             
         });
-        res.status(200).json(contents);
+        const successMessage = req.flash('success') ;
+        res.status(200).json({contents, successMessage});
     } catch(err){
         console.error(err)
     }
@@ -29,6 +31,7 @@ exports.getAll = async (req,res) => {
 exports.delete = async (req, res) => {
     const {id} = req.params;
     const content = await Single.findByIdAndDelete(id);
+    req.flash('success', 'successfully deleted!')
     res.status(200).json({message: 'deleted'})
 }
 

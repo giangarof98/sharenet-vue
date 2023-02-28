@@ -2,7 +2,6 @@ validation
 
 flash message
     reviews
-    contents
     signin 
     signup
     flash message when signin

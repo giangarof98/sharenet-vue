@@ -11,7 +11,7 @@ exports.getAll = async(req,res) => {
         const contents = await Content.find({}).populate({
             path:'author'
         });
-        const successMessage = req.flash('success');
+        const successMessage = req.flash('success') ;
         res.status(200).json({contents, successMessage});
     } catch(err){
         console.error(err)
