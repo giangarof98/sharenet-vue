@@ -8,6 +8,8 @@
         <a @click="navigateToAllPublications" class="cursor italic text-xl">All Publications </a>
     </div>
 
+    {{successMessage[0]}}
+
     <div class="grid grid-cols-3 gap-5 p-3">
         <div v-for="post in posts.slice().reverse()" :key="post._id">
             <div class="bg-bgPic rounded-lg">

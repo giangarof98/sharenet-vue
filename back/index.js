@@ -11,6 +11,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
 const local = require('passport-local');
+const flash = require('connect-flash')
 
 //Port
 const port = process.env.PORT || 3000;
@@ -40,7 +41,8 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
-app.use(express.static('image'))
+app.use(express.static('image'));
+app.use(flash());
 
 const sessionConfig = {
     secret: 'secret',

@@ -12,19 +12,26 @@
             <div v-for="post in posts" :key="post._id" class="my-5">
                 <div class="bg-bgPic rounded flex justify-around my-auto">
                     <div>
-                        <!-- <p class="italic font-semibold text-xl">{{post.author.username}}</p> -->
+                        <p class="italic font-semibold text-xl">{{post.author.username}}</p>
                         <p class="italic text-lg">{{post.description}}</p>
                     </div>
                     <div class="flex gap-5">
-                        <!-- <div v-if="currentUser === post.author.username" class="my-auto">
+                        <div v-if="currentUser === post.author.username" class="my-auto">
                             <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteContent(post._id)" />
-                        </div> -->
+                        </div>
                         <div v-if="currentUser" class="my-auto">
                             <div v-if="post.likes.includes(this.userId)" >
-                                <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart like" @click="likeContent(post._id)" /> {{post.likes.length}}
+                                <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart like" @click="likeContent(post._id)" />
                             </div>
+                            
                             <div v-else>
                                 <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart" @click="likeContent(post._id)" />
+                            </div>
+                            {{post.likes.length}}
+                        </div>
+                        <div v-else class="my-auto">
+                            <div>
+                                <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart" /> {{post.likes.length}}
                             </div>
                         </div>
                     </div>
@@ -59,9 +66,10 @@ export default {
     },
     mixins:[checkIfLogin, allSinglePosts],
     async created(){
+        // From the CheckIfLogin()
+        // calling the userIsLogin()
+        // to display the heart and trah btns
         this.userIsLogin()
-        // this.fetchSingleData()
-        // console.log()
     },
 }
 

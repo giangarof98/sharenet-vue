@@ -1,8 +1,11 @@
 validation
 
-fix bug:
-    likes on single posts
-    in profile/singlePost; fix the likes
+flash message
+    reviews
+    contents
+    signin 
+    signup
+    flash message when signin
+    profile update
 
-continue refactor
-    edit form
+    style!!!

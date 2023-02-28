@@ -98,7 +98,8 @@ export const checkIfLogin = {
 export const fetchPosts = {
   data() {
     return {
-        posts: [],        
+        posts: [],
+        successMessage:''        
       }
   },
   async mounted(){
@@ -107,7 +108,10 @@ export const fetchPosts = {
   methods:{
     async fetchData(){
         const res = await axios.get('/content')
-        this.posts = res.data
+        // console.log(res)
+        this.posts = res.data.contents;
+        this.successMessage = res.data.successMessage;
+        console.log(res)
       },  
     //   navigateToAllPublications(){
     //     this.$router.push({name: 'Home2'});
@@ -203,7 +207,7 @@ export const allSinglePosts = {
         posts: [],
     }
   },
-  async mounted() {
+  async created() {
     this.fetchSingleData()
     
   },
@@ -236,8 +240,8 @@ export const allSinglePosts = {
   }
 }
 
-// fetch single publication with images
-export const fetchSinglePost = {
+// fetch publication by ID with images
+export const fetchContentById = {
   data(){
     return {
         post:[],
@@ -245,7 +249,8 @@ export const fetchSinglePost = {
         username: '',
         currentUser: '',
         userId:'',
-        liked: []
+        liked: [],
+        successMessage:''
         
     }
   },
@@ -254,15 +259,18 @@ export const fetchSinglePost = {
   },
   methods:{
     async fetchData(id){
-      const likeHearth = document.getElementById('icon-heart')
+      const likeHearth = document.getElementById('icon-heart');
+      // const user = await axios.get(`/user/signin`);
+      // const res = await axios.get(`/content/${id}`);
+      // console.log(res, user)
       try {
-          const user = await axios.get(`/user/signin`)
           const res = await axios.get(`/content/${id}`);
-          this.post = res.data
-          this.userId = user.data.user._id
+          this.successMessage = res.data.successMessage;
+          this.post = res.data.post
           this.imageUrl = this.post.image[0].url;
-          this.username = res.data.author.username;
-          this.liked = res.data.likes
+          this.username = this.post.author.username;
+          this.liked = this.post.likes;
+          // console.log(res.data)
           
           const like = Object.values(this.liked)
       } catch (error) {
@@ -381,6 +389,7 @@ export const createPostWithoutImage = {
 export const editPost = {
   data(){
     return{
+      id: '',
       post:[],
       imageUrl: ''
     }
@@ -391,9 +400,11 @@ export const editPost = {
   methods:{
     async fetchData(id){
       const res = await axios.get(`/content/${id}`)
-      this.post = res.data;
+      this.post = res.data.post;
       this.imageUrl = this.post.image[0].url;
-      // console.log(res.data)
+      this.id = this.post._id;
+      // console.log(this.id)
+      console.log(res)
     },
     async updatePost(){
       let form = new FormData();
@@ -401,7 +412,8 @@ export const editPost = {
       form.append('image', this.post.image);
       
       const res = await axios.put(this.$route.params.id, this.post);
-      this.$router.push('/content')
+      // this.$router.push('/content')
+      this.$router.push({name: 'Content', params: {id: this.id}});
   }
   }
 }
@@ -497,7 +509,7 @@ export const createReview = {
                 body: this.review.body
             });
             console.log(res);
-            this.$router.go(0)
+            // this.$router.go(0)
 
         } catch(err){
             console.log(err)
@@ -531,7 +543,7 @@ export const displayReviews = {
         const res = await axios.get(`/content/${id}/reviews`)
         this.review = res.data
         this.liked = res.data.likes
-        //this.username = res.data.author
+        this.username = res.data.author
         //console.log(res.data)
     },
     async deleteReview(id){

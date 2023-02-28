@@ -6,13 +6,13 @@ const fs = require('fs');
 const Content = require('../model/content');
 const User = require('../model/user');
 
-
 exports.getAll = async(req,res) => {
     try{
         const contents = await Content.find({}).populate({
             path:'author'
         });
-        res.status(200).json(contents);
+        const successMessage = req.flash('success');
+        res.status(200).json({contents, successMessage});
     } catch(err){
         console.error(err)
     }
@@ -23,7 +23,7 @@ exports.create = async (req,res) => {
     post.image = req.files.map(f => ({url: f.path, filename: f.filename}));
     post.author = req.user._id;
     await post.save();
-    console.log(post);
+    req.flash('success', 'successfully created!')
     res.send(req.body);
 };
 
@@ -36,13 +36,16 @@ exports.showOne = async (req,res) => {
                 path:'author'
             }
         }).populate('author');
+
         if(post){
-            res.status(200).json(post)
+            const successMessage = req.flash('updated');
+            res.status(200).json({post,successMessage})
         } else {
             res.status(404)
             throw new Error('Post not found...')
         }
-
+        // const successMessage = req.flash('success');
+        console.log(res.data)
     } catch(err){
         console.log(err)
     }
@@ -53,8 +56,9 @@ exports.update = async(req,res) => {
         const {id} = req.params;
         const post = await Content.findByIdAndUpdate(id, {...req.body});
         console.log(post)
+        req.flash('updated', 'successfully updated!')
         res.status(200).json(post)
-
+        console.log(req.flash)
     } catch(err){
         console.log(err)
     }
@@ -65,6 +69,7 @@ exports.delete = async (req,res) => {
     try{
         const {id} = req.params;
         const content = await Content.findByIdAndDelete(id);
+        req.flash('success', 'successfully deleted!')
         res.status(200).json({message: 'deleted'})
 
     } catch(err){

@@ -8,8 +8,9 @@ exports.createReview = async (req,res) => {
     try{
         const post = await Content.findById(req.params.id)
         const content = new Review({body: req.body.body});
+        post.comments.push(content);
         content.author = req.user._id;
-        post.comments.push(content)
+        // req.flash('success', 'comment successfully created!')
         await content.save()
         await post.save()
         res.status(200).send(content)
@@ -27,8 +28,9 @@ exports.getReviewByPost= async(req,res) => {
             populate: {
                 path: 'author'
             }
-        }).populate('author')
-        res.status(200).send(post.comments)
+        }).populate('author');
+        // const successMessage = req.flash('success');
+        res.status(200).json({post: post.comments, successMessage})
         // res.json(post.comments)
 
     } catch(err){

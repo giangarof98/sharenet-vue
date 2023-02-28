@@ -1,7 +1,7 @@
 <template>
+    {{successMessage[0]}}
     <div class="flex flex-row justify-center mt-8">
        <div class="p-5">
-
             <a @click="navigateToUserProfile" class=" font-semibold italic username">{{username}}</a>
 
             <img :src="imageUrl" alt="content" class="rounded-lg" > 
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import {checkIfLogin, fetchSinglePost} from '@/mixins/mix.js'
+import {checkIfLogin, fetchContentById} from '@/mixins/mix.js'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -64,7 +64,7 @@ export default {
     components:{
         FontAwesomeIcon
     },
-    mixins: [checkIfLogin, fetchSinglePost],
+    mixins: [checkIfLogin, fetchContentById],
     async created(){
         this.userIsLogin()        
     },
