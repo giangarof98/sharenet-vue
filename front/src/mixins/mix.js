@@ -107,6 +107,12 @@ export const fetchPosts = {
   async mounted(){
     this.fetchData()
   },
+  // async created(){
+  //   // From the CheckIfLogin()
+  //   // calling the userIsLogin()
+  //   // to display the heart and trah btns
+  //   this.userIsLogin()
+  // },
   methods:{
     async fetchData(){
         const res = await axios.get('/content')
@@ -212,6 +218,7 @@ export const allSinglePosts = {
   },
   async created() {
     this.fetchSingleData()
+    this.userIsLogin()
     
   },
   methods:{
@@ -301,6 +308,9 @@ export const fetchContentById = {
       }
 
     },
+    async navigateToUserProfile(){
+      this.$router.push({name: 'Profile', params: {username: this.username}});
+    }
 
   }
 }
@@ -312,6 +322,9 @@ export const allSinglePostsByUser = {
         description:[],
         username:'',
     }
+  },
+  async created(){
+    this.getProfile(this.$route.params.username);
   },
   methods: {
     async getProfile(username){
@@ -329,6 +342,12 @@ export const allSinglePostsByUser = {
       }
 
   },
+  navigateToUserSettings(){
+    this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
+},
+  navigateToUserProfile(){
+    this.$router.push({name: 'Profile', params: {username: this.username}});
+},
   }
 }
 
@@ -343,6 +362,9 @@ export const createPostWithImage = {
         };
     },
     methods: {
+      async navigateToSinglePost(){
+        this.$router.push({name: 'CreateSingle'});
+      },
       selectFile(){
         this.post.image = this.$refs.photo.files[0];
         // console.log(this.$refs.photo.files[0])
@@ -374,6 +396,9 @@ export const createPostWithoutImage = {
     };
   },
   methods:{
+    async navigateToPost(){
+      this.$router.push({name: 'Create'});
+    },
     async upload(){
       try{
           const description = {
@@ -419,7 +444,8 @@ export const editPost = {
       const res = await axios.put(this.$route.params.id, this.post);
       // this.$router.push('/content')
       this.$router.push({name: 'Content', params: {id: this.id}});
-  }
+    },
+
   }
 }
 
@@ -432,6 +458,11 @@ export const headerProfile = {
         bio:'',
     }
   },
+  async created(){
+    this.getProfile(this.$route.params.username);
+    this.userIsLogin()
+    
+  },
   methods: {
     async getProfile(username){
       const res = await axios.get(`/user/profile/${username}`)
@@ -441,6 +472,12 @@ export const headerProfile = {
       this.bio = res.data.user.bio;
       // this.posts = res.data.posts;
     },
+    navigateToUserSettings(){
+      this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
+    },
+    navigateToUserProfile(){
+      this.$router.push({name: 'SinglePostsByUser', params: {username: this.username}});
+    }
   }
 }
 
@@ -490,7 +527,10 @@ export const profileUser = {
     },
     navigateToUserProfile(){
       this.$router.push({name: 'SinglePostsByUser', params: {username: this.username}});
-    }
+    },
+    navigateToUserSettings(){
+      this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
+    },
   }
 }
 
@@ -514,7 +554,7 @@ export const createReview = {
                 body: this.review.body
             });
             console.log(res);
-            // this.$router.go(0)
+            this.$router.go(0)
 
         } catch(err){
             console.log(err)
@@ -549,7 +589,7 @@ export const displayReviews = {
         this.review = res.data
         this.liked = res.data.likes
         this.username = res.data.author
-        // console.log(res.data)
+        console.log(res.data)
     },
     async deleteReview(id){
         try{

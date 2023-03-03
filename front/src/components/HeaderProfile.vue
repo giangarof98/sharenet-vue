@@ -54,24 +54,19 @@ export default {
         AllPosts
     },
     mixins:[checkIfLogin, headerProfile],
-    data(){
-        return{
-            username:'',
-        }
-    },
-    async created(){
-        this.getProfile(this.$route.params.username);
-        this.userIsLogin()
+    // async created(){
+    //     this.getProfile(this.$route.params.username);
+    //     this.userIsLogin()
         
-    },
-    methods:{
-        navigateToUserSettings(){
-            this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
-        },
-        navigateToUserProfile(){
-            this.$router.push({name: 'SinglePostsByUser', params: {username: this.username}});
-        }
-    }
+    // },
+    // methods:{
+    //     navigateToUserSettings(){
+    //         this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
+    //     },
+    //     navigateToUserProfile(){
+    //         this.$router.push({name: 'SinglePostsByUser', params: {username: this.username}});
+    //     }
+    // }
 }
 </script>
 

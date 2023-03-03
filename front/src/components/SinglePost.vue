@@ -26,11 +26,11 @@ import {createPostWithoutImage} from '@/mixins/mix.js'
 export default {
     name:'CreateForm',
     mixins:[createPostWithoutImage],
-    methods: {
-        async navigateToPost(){
-            this.$router.push({name: 'Create'});
-        }
-    }
+    // methods: {
+    //     async navigateToPost(){
+    //         this.$router.push({name: 'Create'});
+    //     }
+    // }
 }
 
 </script>

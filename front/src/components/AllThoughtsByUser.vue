@@ -46,17 +46,17 @@ export default {
         FontAwesomeIcon
     },
     mixins:[allSinglePostsByUser],
-    async created(){
-        this.getProfile(this.$route.params.username);
-    },
-    methods:{
-        navigateToUserSettings(){
-            this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
-        },
-        navigateToUserProfile(){
-            this.$router.push({name: 'Profile', params: {username: this.username}});
-        },
-    }
+    // async created(){
+    //     this.getProfile(this.$route.params.username);
+    // },
+    // methods:{
+    //     navigateToUserSettings(){
+    //         this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
+    //     },
+    //     navigateToUserProfile(){
+    //         this.$router.push({name: 'Profile', params: {username: this.username}});
+    //     },
+    // }
 }
 
 </script>

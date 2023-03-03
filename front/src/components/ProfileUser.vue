@@ -21,15 +21,15 @@ export default {
         AllPosts,
         HeaderProfileUser
     },
-    mixins:[checkIfLogin, profileUser],
-    async created(){
-        this.userIsLogin()        
-    },
-    methods:{
-        navigateToUserSettings(){
-            this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
-        },
-    }
+    mixins:[profileUser],
+    // async created(){
+    //     this.userIsLogin()        
+    // },
+    // methods:{
+    //     navigateToUserSettings(){
+    //         this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
+    //     },
+    // }
 }
 </script>
 

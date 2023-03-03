@@ -29,8 +29,9 @@ exports.getReviewByPost= async(req,res) => {
                 path: 'author'
             }
         }).populate('author');
-        // const successMessage = req.flash('success');
-        res.status(200).json({post: post.comments, successMessage})
+        const successMessage = req.flash('success');
+        // res.status(200).json({post: post.comments, successMessage})
+        res.status(200).json(post.comments)
         // res.json(post.comments)
 
     } catch(err){

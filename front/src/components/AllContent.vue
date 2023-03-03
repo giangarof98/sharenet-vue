@@ -41,6 +41,12 @@ export default {
         SearchBoxUser
         },
     mixins: [checkIfLogin, fetchPosts],
+    // async created(){
+    //     // From the CheckIfLogin()
+    //     // calling the userIsLogin()
+    //     // to display the heart and trah btns
+    //     this.userIsLogin()
+    // },
 }
 </script>
 

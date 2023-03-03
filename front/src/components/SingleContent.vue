@@ -68,11 +68,11 @@ export default {
     async created(){
         this.userIsLogin()        
     },
-    methods: {
-        navigateToUserProfile(){
-            this.$router.push({name: 'Profile', params: {username: this.username}});
-        }
-    }
+    // methods: {
+    //     navigateToUserProfile(){
+    //         this.$router.push({name: 'Profile', params: {username: this.username}});
+    //     }
+    // }
 }
 </script>
 

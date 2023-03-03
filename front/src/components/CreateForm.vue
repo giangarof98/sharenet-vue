@@ -32,11 +32,11 @@ import {createPostWithImage} from '@/mixins/mix.js'
 export default {
     name:'CreateForm',
     mixins:[createPostWithImage],
-    methods: {
-        async navigateToSinglePost(){
-            this.$router.push({name: 'CreateSingle'});
-        }
-    }
+    // methods: {
+    //     async navigateToSinglePost(){
+    //         this.$router.push({name: 'CreateSingle'});
+    //     }
+    // }
 }
 
 </script>
