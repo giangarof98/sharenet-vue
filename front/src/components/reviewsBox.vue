@@ -6,21 +6,23 @@
                     <p>{{r.body}}</p>
                 </div>
 
-                <div v-if="currentUser === r.author.username" class="text-xl">
-                    <div v-if="r.likes.includes(r.author._id)">
-                        <button @click="likeContent(r._id)">
-                            <font-awesome-icon icon="fa-solid fa-heart" class="icon-hearth like"/> {{r.likes.length}}
-                        </button>
-                    </div>
-                    <div v-else>
-                        <button @click="likeContent(r._id)">
-                            <font-awesome-icon icon="fa-solid fa-heart" class="icon-hearth"/>
+                <div class="flex gap-5">
+                    <div v-if="currentUser === r.author.username" class="text-xl">
+                        <button @click="deleteReview(r._id)">
+                            <font-awesome-icon icon="fa-solid fa-trash" class="icon-trash"/>
                         </button>
                     </div>
 
-                    <button @click="deleteReview(r._id)">
-                        <font-awesome-icon icon="fa-solid fa-trash" class="icon-trash"/>
-                    </button>
+                    <div v-if="currentUser">
+                        <div v-if="r.likes.includes(this.userId)">
+                            <font-awesome-icon icon="fa-solid fa-heart" class="icon-hearth like" @click="likeContent(r._id)" /> {{r.likes.length}}
+                        </div>
+                        <div v-else>
+                            <font-awesome-icon icon="fa-solid fa-heart" class="icon-hearth" @click="likeContent(r._id)" />
+                            {{r.likes.length}}
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,6 +63,10 @@ export default {
 <style scoped>
 .icon-trash{
     color: red;
+}
+
+.icon-hearth{
+    cursor: pointer;
 }
 
 .icon-hearth:hover{
