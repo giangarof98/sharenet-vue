@@ -1,5 +1,7 @@
 <template>
 
+    {{successMessage[0]}}
+
     <HeaderProfileUser/>
 
     <div class='text-center'>
@@ -21,10 +23,10 @@ export default {
         AllPosts,
         HeaderProfileUser
     },
-    mixins:[profileUser],
-    // async created(){
-    //     this.userIsLogin()        
-    // },
+    mixins:[checkIfLogin, profileUser],
+    async created(){
+        this.userIsLogin()        
+    },
     // methods:{
     //     navigateToUserSettings(){
     //         this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});

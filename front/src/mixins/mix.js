@@ -227,7 +227,7 @@ export const allSinglePosts = {
           const res = await axios.get('/singlecontent/publications')
           this.posts = res.data.contents;
           this.successMessage = res.data.successMessage;
-          console.log(res)
+          // console.log(res)
       } catch(err){
           console.log(err)
       }
@@ -514,6 +514,7 @@ export const navbar = {
 export const profileUser = {
   data(){
     return{
+      successMessage:'',
       username:'',
     }
   },
@@ -524,6 +525,9 @@ export const profileUser = {
     async getProfile(username){
       const res = await axios.get(`/user/profile/${username}`)
       this.username = res.data.user.username;
+      this.successMessage = res.data.successMessage;
+
+      console.log(res.data)
     },
     navigateToUserProfile(){
       this.$router.push({name: 'SinglePostsByUser', params: {username: this.username}});
@@ -568,6 +572,7 @@ export const createReview = {
 export const displayReviews = {
   data(){
     return{
+      successMessage:'',
         review:{
             username: '',
             reviewId:''
@@ -586,9 +591,10 @@ export const displayReviews = {
     async fetchData(){
         const id = this.$route.params.id
         const res = await axios.get(`/content/${id}/reviews`)
-        this.review = res.data
+        this.review = res.data.post
         this.liked = res.data.likes
         this.username = res.data.author
+        this.successMessage = res.data.successMessage;
         console.log(res.data)
     },
     async deleteReview(id){

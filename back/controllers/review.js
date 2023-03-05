@@ -10,7 +10,7 @@ exports.createReview = async (req,res) => {
         const content = new Review({body: req.body.body});
         post.comments.push(content);
         content.author = req.user._id;
-        // req.flash('success', 'comment successfully created!')
+        req.flash('success', 'comment successfully created!')
         await content.save()
         await post.save()
         res.status(200).send(content)
@@ -30,9 +30,7 @@ exports.getReviewByPost= async(req,res) => {
             }
         }).populate('author');
         const successMessage = req.flash('success');
-        // res.status(200).json({post: post.comments, successMessage})
-        res.status(200).json(post.comments)
-        // res.json(post.comments)
+        res.status(200).json({post: post.comments, successMessage})
 
     } catch(err){
         console.log(err)
@@ -45,8 +43,8 @@ exports.deleteReview = async(req,res) => {
     const {id, reviewId} = req.params;
     const post = Content.findByIdAndUpdate(id, {$pull:{comments: reviewId}})
     const review = await Review.findByIdAndDelete(reviewId);
+    req.flash('success', 'comment successfully deleted!')
     res.status(200).send(review)
-    // res.send('deleted')
 
 }
 

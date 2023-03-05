@@ -11,7 +11,7 @@ exports.create = async (req,res) => {
     post.author = req.user._id;
     await post.save();
     req.flash('success', 'successfully created!')
-    console.log(post);
+    // console.log(post);
     res.status(200).send(post)
 };
 

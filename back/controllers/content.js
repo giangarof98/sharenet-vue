@@ -45,7 +45,7 @@ exports.showOne = async (req,res) => {
             throw new Error('Post not found...')
         }
         // const successMessage = req.flash('success');
-        console.log(res.data)
+        // console.log(res.data)
     } catch(err){
         console.log(err)
     }
@@ -58,7 +58,7 @@ exports.update = async(req,res) => {
         console.log(post)
         req.flash('updated', 'successfully updated!')
         res.status(200).json(post)
-        console.log(req.flash)
+        // console.log(req.flash)
     } catch(err){
         console.log(err)
     }
@@ -92,7 +92,6 @@ exports.likeContent = async(req,res) => {
 
         await content.save();
         return res.status(200).json({ message: liked ? 'Like removed' : 'Like added' });
-
 
     } catch(err){
         console.log(err)

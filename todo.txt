@@ -1,10 +1,9 @@
 validation
 
-flash message
-    reviews
+flash message when:
     signin 
     signup
-    flash message when signin
-    profile update
+    logout
 
-    style!!!
+
+style!!!

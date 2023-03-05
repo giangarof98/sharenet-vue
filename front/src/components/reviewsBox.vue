@@ -1,4 +1,5 @@
 <template>
+        {{successMessage[0]}}
         <div v-if="review.length >= 1">
             <div v-for="r in review" :key="r.id" class="flex justify-between py-4">
                 <div class="italic">

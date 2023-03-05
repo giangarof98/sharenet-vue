@@ -20,11 +20,14 @@ exports.getProfile =  async(req,res) => {
         const posts =  await Content.find({author: user}).populate({
             path:'author'
         });
+        const successMessage = req.flash('success') ;
+
         const description = await Single.find({author:user})
             res.status(200).json({
             posts,
             user,
             description,
+            successMessage
         })
 
     } catch(err){
@@ -93,8 +96,10 @@ exports.setBioUser = async(req,res) => {
                 throw new Error('Username is required');
             }
             const user = await User.findOneAndUpdate({username}, {...req.body}, {new:true});
+            req.flash('success', 'successfully updated!')
+
             res.status(200).json(user);
-    
+            
         } catch(err){
             if (err.code === 11000) {
                 throw new Error(`Username '${username}' already exists.`);
