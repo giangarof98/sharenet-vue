@@ -18,7 +18,7 @@ module.exports = {
         edit: 'rgb(29 78 216)',
         grey: 'rgb(212 212 216)',
         bgPic: 'rgb(212 212 216);',
-        settings: 'rgb(252 211 77)'
+        settings: 'rgb(252 211 77)',
         
       }
     },

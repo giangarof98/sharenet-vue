@@ -1,12 +1,15 @@
 <template>
     {{successMessage[0]}}
-    <div class="flex flex-row justify-center mt-8">
+    <div class="flex flex-row justify-center mt-8 card">
        <div class="p-5">
-            <a @click="navigateToUserProfile" class=" font-semibold italic username">{{username}}</a>
+            <div class="rounded-lg bg-bgPic this">
+                <img :src="imageUrl" alt="content" class="rounded-lg"> 
 
-            <img :src="imageUrl" alt="content" class="rounded-lg" > 
-
-            <p class="font-semibold text-lg">~{{post.description}}</p>
+                <div class="info">
+                    <a @click="navigateToUserProfile" class=" font-semibold italic username">{{username}}</a>
+                    <p class="font-semibold text-lg">~{{post.description}}</p>
+                </div>
+            </div>
 
             <button @click="likePost" class="w-full">
                 <!-- like length -->
@@ -77,16 +80,37 @@ export default {
 </script>
 
 <style scoped>
-    .username{
-        cursor: pointer;
+.username{
+    cursor: pointer;
+}
+.icon-hearth{
+    height: 2.5rem;
+}
+.icon-hearth:hover{
+    color: red;
+}
+.like{
+    color:red
+}
+
+.info{
+    padding: 5px;
+}
+
+.this{
+    padding: 10px;
+}
+
+@media (max-width: 468px){
+    a,p{
+        padding: 5px;
     }
-    .icon-hearth{
-        height: 2.5rem;
+    img{
+        border-radius: 0;
     }
-    .icon-hearth:hover{
-        color: red;
+    .p-5{
+        padding: 0;
     }
-    .like{
-        color:red
-    }
+
+}
 </style>

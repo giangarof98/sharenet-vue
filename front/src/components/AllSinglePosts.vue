@@ -8,7 +8,7 @@
     </div>
 
      <div class="flex flex-row my-6">
-        <div class="w-6/12 text-center mx-auto">
+        <div class="w-6/12 text-center mx-auto this">
             {{successMessage[0]}}
             <div v-for="post in posts" :key="post._id" class="my-5">
                 <div class="bg-bgPic rounded flex justify-around my-auto">
@@ -92,6 +92,12 @@ export default {
 }
 .like{
     color:red
+}
+
+@media (max-width: 468px){
+    .this{
+        width: 100%;
+    }
 }
 
 </style>
