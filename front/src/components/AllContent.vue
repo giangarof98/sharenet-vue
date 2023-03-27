@@ -12,7 +12,7 @@
 
     <div class="grid grid-cols-3 gap-5 p-3 cards">
         <div v-for="post in posts.slice().reverse()" :key="post._id" class="cards">
-            <div class="bg-bgPic rounded-lg img">
+            <div class="bg-bgPic rounded-lg img p-2">
                 <div>
                     <img :src="`${post.image[0].url}`" alt="content" class="w-full rounded-lg">
                 </div>
@@ -88,9 +88,9 @@ export default {
         grid-template-columns: repeat(2, 2fr);
     }
 
-    .img{
+    /* .img{
         padding: 5px;
-    }
+    } */
 }
 
 </style>

@@ -1,13 +1,13 @@
 <template>
         {{successMessage[0]}}
         <div v-if="review.length >= 1">
-            <div v-for="r in review" :key="r.id" class="flex justify-between py-4">
-                <div class="italic">
+            <div v-for="r in review" :key="r.id" class="flex justify-between py-4 box-rev">
+                <div class="italic p-4">
                     <p class="font-semibold">{{r.author.username}}</p>
-                    <p>{{r.body}}</p>
+                    <p>~{{r.body}}</p>
                 </div>
 
-                <div class="flex gap-5">
+                <div class="flex gap-5 p-4">
                     <div v-if="currentUser === r.author.username" class="text-xl">
                         <button @click="deleteReview(r._id)">
                             <font-awesome-icon icon="fa-solid fa-trash" class="icon-trash"/>
@@ -76,4 +76,12 @@ export default {
 .like{
     color:red
 }
+
+@media (max-width: 468px){
+    /* .box-rev{
+        padding: 30px;
+    } */
+    
+}
+
 </style>

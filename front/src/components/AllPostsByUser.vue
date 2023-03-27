@@ -1,9 +1,8 @@
 <template>
-
     <!-- <div class="flex flex-row justify-center gap-5"> -->
-        <div class="flex flex-row gap-5 p-3 cards">
+        <div class="grid grid-cols-3 gap-5 p-3 cards">
             <div v-for="post in posts.slice().reverse()" :key="post._id" class="rounded-lg my-auto">
-                <div class="bg-bgPic p-2 rounded-lg img cards">
+                <div class="bg-bgPic p-2 rounded-lg img">
                     <div>
                         <img :src="`${post.image[0].url}`" alt="content" class="w-full rounded-lg">
                     </div>
@@ -15,7 +14,6 @@
             </div>
         </div>
     <!-- </div> -->
-
 </template>
 
 <script>
@@ -51,6 +49,17 @@ export default {
         margin: 10px;
         text-align: left;
     }
+}
+
+@media (min-width: 468px) and (max-width:768px){
+    .cards{
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+    }
+
+    /* .img{
+        padding: 5px;
+    } */
 }
 
 

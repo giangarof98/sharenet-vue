@@ -30,7 +30,7 @@
             </button>
 
             <div>
-                <div v-if="currentUser === username" class="flex flex-row justify-between">
+                <div v-if="currentUser === username" class="flex flex-row justify-between btns">
                     <button @click="deleteContent(post._id)" 
                             class="font-semibold text-lg bg-button rounded p-1 text-white mt-2 bg-danger">
                         Delete
@@ -105,12 +105,33 @@ export default {
     a,p{
         padding: 5px;
     }
-    img{
-        border-radius: 0;
-    }
+
     .p-5{
         padding: 0;
     }
 
+}
+
+@media (max-width:767px){
+
+    .btns{
+        display: flex; flex-direction: column;
+        
+    }
+
+    button{
+        border-radius: 0%;
+
+    }
+
+    img{
+        border-radius: 0;
+    }
+
+    .this{
+        margin: 0;
+        padding: 0;
+        border-radius: 0%;
+    }
 }
 </style>

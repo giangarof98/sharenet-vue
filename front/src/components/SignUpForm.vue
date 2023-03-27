@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-row justify-center mt-10">
-        <div>
-            <form @submit.prevent="createUser" class="flex flex-col justify-center w-72 p-4 italic">
+    <div class="flex flex-row justify-center mt-10 out">
+        <div class="out">
+            <form @submit.prevent="createUser" class="flex flex-col justify-center w-72 p-4 italic out">
                 
                 <p class="text-center text-xl font-semibold py-3">Sign Up</p>
 
@@ -44,5 +44,24 @@ export default {
 <style scoped>
 .click-here{
     color: green;
+}
+
+@media (max-width:768px){
+    
+    .out{
+        width: 95%;
+        margin: auto;
+        /* margin: auto auto auto auto; */
+    }
+
+    /* form{
+        widows: 100%;
+        margin: auto;
+    } */
+
+    input{
+        width: 100%;
+    }
+
 }
 </style>

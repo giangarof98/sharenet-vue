@@ -21,7 +21,7 @@
     <div v-if="currentUser === username" class="text-center">
         <div class="py-4 text-center">
             Thinking to write a post?
-                    <div class="flex gap-6">
+                    <div class="flex gap-6 col">
                         <div>
                             <button class="font-semibold text-lg rounded p-2 text-white mt-2 bg-button">
                                 <router-link to="/create">New Post</router-link>
@@ -74,6 +74,18 @@ export default {
 
 #singlePost{
     cursor: Pointer;
+}
+
+@media (max-width: 468px){
+
+    .col{
+        display: flex;
+        flex-direction: column;
+        /* margin: 0; */
+        /* padding: 0; */
+        gap: 0;
+    }
+
 }
 
 </style>

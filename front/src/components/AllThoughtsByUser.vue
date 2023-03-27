@@ -7,7 +7,7 @@
     </div>
 
     <div class="flex flex-row my-6">
-        <div class="w-6/12 text-center mx-auto">
+        <div class="w-6/12 text-center mx-auto this">
             <div v-for="dsc in description" :key="dsc._id" class="my-5">
                 <div class="bg-bgPic rounded flex justify-evenly my-auto">
                     <font-awesome-icon icon="fa-solid fa-trash" class="my-auto icon" @click="deleteContent(dsc._id)"/>
@@ -76,6 +76,26 @@ export default {
 }
 .like{
     color:red
+}
+
+@media (max-width: 468px){
+    .this{
+        width: 100%;
+    }
+
+    .small{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top-info{
+        padding: 5px;
+    }
+
+    .btns{
+        margin: auto;
+        padding: 5px 0 5px 0;
+    }
 }
 
 </style>

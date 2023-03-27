@@ -28,3 +28,13 @@ export default {
     
 }
 </script>
+
+<style scoped>
+@media (max-width:768px){
+
+    button, textarea{
+        border-radius: 0%;
+
+    }
+}
+</style>
