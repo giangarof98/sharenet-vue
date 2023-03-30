@@ -1,11 +1,13 @@
 <template>
 
-    {{successMessage[0]}}
+    <p class="text-center text-green-400 font-semibold">
+        {{successMessage[0]}}
+    </p>
 
     <HeaderProfileUser/>
 
     <div class='text-center'>
-        <a @click="navigateToUserProfile" class="font-semibold italic text-xl" id="singlePost">See single posts</a>
+        <a @click="navigateToUserProfile" class="font-semibold italic text-xl" id="singlePost">See posts with no image</a>
     </div>
 
     <AllPosts/>

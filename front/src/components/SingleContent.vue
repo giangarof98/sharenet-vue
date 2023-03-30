@@ -1,5 +1,9 @@
 <template>
-    {{successMessage[0]}}
+
+    <p class="text-center text-green-400 font-semibold my-4">
+        {{successMessage[0]}}
+    </p>
+
     <div class="flex flex-row justify-center mt-8 card">
        <div class="p-5">
             <div class="rounded-lg bg-bgPic this">

@@ -2,21 +2,23 @@
     <div v-if="currentUser">
         <SearchBoxUser/>
     </div>
-    
+
     <div class="text-center my-6">
-        <a @click="navigateToAllPosts" class="cursor text-xl">All Posts</a>
+        <a @click="navigateToAllPosts" class="cursor text-xl">All Posts without image </a>
     </div>
 
      <div class="flex flex-row my-6">
         <div class="w-6/12 text-center mx-auto this">
-            {{successMessage[0]}}
-            <div v-for="post in posts" :key="post._id" class="my-5">
-                <div class="bg-bgPic rounded flex justify-around my-auto small">
+            <p class="text-center text-green-400 font-semibold">
+                {{successMessage[0]}}
+            </p>
+            <div v-for="post in posts.slice().reverse()" :key="post._id" class="my-5">
+                <div class="bg-bgPic rounded small">
                     <div class="top-info">
                         <p class="italic font-semibold text-xl">{{post.author.username}}</p>
-                        <p class="italic text-lg">~{{post.description}}</p>
+                        <p class="italic text-lg p-5">~{{post.description}}</p>
                     </div>
-                    <div class="flex gap-5 btns">
+                    <div class="flex justify-center gap-5 btns">
                         <div v-if="currentUser === post.author.username" class="my-auto">
                             <font-awesome-icon icon="fa-solid fa-trash" class="icon" @click="deleteContent(post._id)" />
                         </div>

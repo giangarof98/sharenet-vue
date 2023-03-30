@@ -1,10 +1,12 @@
 <template>
-        {{successMessage[0]}}
+        <p class="text-center text-green-400 font-semibold">
+            {{successMessage[0]}}
+        </p>
         <div v-if="review.length >= 1">
-            <div v-for="r in review" :key="r.id" class="flex justify-between py-4 box-rev">
-                <div class="italic p-4">
+            <div v-for="r in review" :key="r.id" class="flex justify-between py-4 small-col">
+                <div class="italic p-4 m-small">
                     <p class="font-semibold">{{r.author.username}}</p>
-                    <p>~{{r.body}}</p>
+                    <p class="w-1/2 m-small">~{{r.body}}</p>
                 </div>
 
                 <div class="flex gap-5 p-4">
@@ -77,10 +79,16 @@ export default {
     color:red
 }
 
-@media (max-width: 468px){
-    /* .box-rev{
-        padding: 30px;
-    } */
+@media (max-width: 768px){
+    .m-small{
+        padding: 10px;
+        width: 100%;
+    }
+
+    .small-col{
+        display: flex;
+        flex-direction: column;
+    }
     
 }
 

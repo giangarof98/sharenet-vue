@@ -20,7 +20,7 @@ exports.getAll = async (req,res) => {
         const contents = await Single.find({}).populate({
             path:'author',
             
-        });
+        }).populate('author');
         const successMessage = req.flash('success') ;
         res.status(200).json({contents, successMessage});
     } catch(err){

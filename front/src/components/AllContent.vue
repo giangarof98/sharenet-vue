@@ -5,10 +5,12 @@
     </div>
 
     <div class="text-center my-6">
-        <a @click="navigateToAllPublications" class="cursor italic text-xl">All Publications </a>
+        <a @click="navigateToAllPublications" class="cursor italic text-xl">All Posts with image</a>
     </div>
 
-    {{successMessage[0]}}
+    <p class="text-center text-green-400 font-semibold">
+        {{successMessage[0]}}   
+    </p>
 
     <div class="grid grid-cols-3 gap-5 p-3 cards">
         <div v-for="post in posts.slice().reverse()" :key="post._id" class="cards">
@@ -17,7 +19,8 @@
                     <img :src="`${post.image[0].url}`" alt="content" class="w-full rounded-lg">
                 </div>
                 <div class="info">
-                    <p class="text-center italic text-xl">{{post.author.username}}</p>
+                    <!-- <a @click="navigateToUserProfile" class=" font-semibold italic username">{{post.author.username}}</a> -->
+                    <p class="text-center italic text-xl cursor" @click="navigateToUserProfile(post.author.username)" >{{post.author.username}}</p>
                     <p class="text-center italic">~{{post.description}}</p>
                     <div class="text-center p-2">
                         <button class="font-medium rounded-lg p-1.5 text-white mt-2 bg-buttonSeeMore">
@@ -43,12 +46,18 @@ export default {
         SearchBoxUser
         },
     mixins: [checkIfLogin, fetchPosts],
-    // async created(){
+    async created(){
     //     // From the CheckIfLogin()
     //     // calling the userIsLogin()
     //     // to display the heart and trah btns
-    //     this.userIsLogin()
-    // },
+        this.userIsLogin()
+    },
+    // methods: {
+    //     async navigateToUserProfile(usern){
+    //        console.log(usern)
+    //    },
+
+    // }
 }
 </script>
 

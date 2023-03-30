@@ -101,7 +101,8 @@ export const fetchPosts = {
   data() {
     return {
         posts: [],
-        successMessage:''        
+        successMessage:'',
+        username:''        
       }
   },
   async mounted(){
@@ -119,11 +120,14 @@ export const fetchPosts = {
         // console.log(res.data.successMessage)
         this.posts = res.data.contents;
         this.successMessage = res.data.successMessage;
-        console.log(res.data.successMessage)
+        // console.log(res.data.successMessage)
       },  
       navigateToAllPublications(){
         this.$router.push({name: 'Home2'});
-    }
+      },
+      navigateToUserProfile(usern){
+        this.$router.push({name: 'Profile', params: {username: usern}});
+    },
   },
 }
 
@@ -219,12 +223,12 @@ export const allSinglePosts = {
   async created() {
     this.fetchSingleData()
     this.userIsLogin()
-    
   },
   methods:{
     async fetchSingleData(){
       try{
           const res = await axios.get('/singlecontent/publications')
+          console.log(res.data)
           this.posts = res.data.contents;
           this.successMessage = res.data.successMessage;
           // console.log(res)
@@ -329,6 +333,7 @@ export const allSinglePostsByUser = {
   methods: {
     async getProfile(username){
       const res = await axios.get(`/user/profile/${username}`)
+      console.log(res.data.description)
       this.username = res.data.user.username;
       this.description = res.data.description;
       
@@ -341,12 +346,17 @@ export const allSinglePostsByUser = {
           console.log(err)
       }
 
-  },
-  navigateToUserSettings(){
-    this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
-},
-  navigateToUserProfile(){
-    this.$router.push({name: 'Profile', params: {username: this.username}});
+    },
+    navigateToUserSettings(){
+      this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
+    },
+    navigateToUserProfile(){
+      this.$router.push({name: 'Profile', params: {username: this.username}});
+    },
+    async likeContent(postId){
+      const res = await axios.post(`/singlecontent/like/${postId}`)
+      this.$router.go(0)
+      // console.log(res)
 },
   }
 }

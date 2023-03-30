@@ -4,5 +4,3 @@ flash message when:
     signin
     signup
     logout
-
-style!!!

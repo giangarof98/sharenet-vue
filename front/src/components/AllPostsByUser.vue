@@ -9,6 +9,13 @@
                     <div class="info">
                         <p class="text-center italic font-semibold text-xl">{{post.author.username}}</p>
                         <p class="text-center italic font-semibold">~{{post.description}}</p>
+                        <div class="text-center p-2">
+                        <button class="font-medium rounded-lg p-1.5 text-white mt-2 bg-buttonSeeMore">
+                            <router-link :to="`/content/${post._id}`">
+                                See more
+                            </router-link>
+                        </button>
+                    </div>
                     </div>
                 </div>
             </div>
