@@ -3,7 +3,7 @@
     <a class="flex justify-center mt-10 italic text-xl font-semibold cursor-pointer" @click="navigateToSinglePost">Create Post without image </a>
     <div class="flex justify-center mt-10">
         <form @submit.prevent="upload" 
-                class="flex flex-col justify-center w-1/2 p-5 bg-bgPic rounded-lg form" 
+                class="flex flex-col justify-center w-1/2 p-5 rounded-lg form" 
                 enctype="multipart/form-data">
 
                     <p class="py-3 text-xl font-semibold text-center">New Post</p>
@@ -53,6 +53,7 @@ export default {
         border-radius: 0%;
         margin: 0;
         padding: 0;
+        background-color: grey;
     }
 
     .inner{

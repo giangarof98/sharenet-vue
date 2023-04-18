@@ -14,7 +14,7 @@
 
     <div class="grid grid-cols-3 gap-5 p-3 cards">
         <div v-for="post in posts.slice().reverse()" :key="post._id" class="cards">
-            <div class="bg-bgPic rounded-lg img p-2">
+            <div class="rounded-lg img p-2">
                 <div>
                     <img :src="`${post.image[0].url}`" alt="content" class="w-full rounded-lg">
                 </div>
@@ -65,6 +65,10 @@ export default {
 
 .inner{
     overflow-wrap: break-word;
+}
+
+.bg{
+    background-color: rgb(191, 186, 186);
 }
 
 @media (max-width: 468px){
