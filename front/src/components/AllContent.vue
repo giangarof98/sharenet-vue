@@ -18,11 +18,13 @@
                 <div>
                     <img :src="`${post.image[0].url}`" alt="content" class="w-full rounded-lg">
                 </div>
-                <div class="info">
+                <div class="info p-3">
                     <!-- <a @click="navigateToUserProfile" class=" font-semibold italic username">{{post.author.username}}</a> -->
-                    <p class="text-center italic text-xl cursor" @click="navigateToUserProfile(post.author.username)" >{{post.author.username}}</p>
-                    <p class="text-center italic">~{{post.description}}</p>
-                    <div class="text-center p-2">
+                    <p class="italic text-xl cursor font-bold" @click="navigateToUserProfile(post.author.username)" >{{post.author.username}}</p>
+                    <div class="inner">
+                        <p class="italic">~{{post.description}}</p>
+                    </div>
+                    <div>
                         <button class="font-medium rounded-lg p-1.5 text-white mt-2 bg-buttonSeeMore">
                             <router-link :to="`/content/${post._id}`">
                                 See more
@@ -52,12 +54,6 @@ export default {
     //     // to display the heart and trah btns
         this.userIsLogin()
     },
-    // methods: {
-    //     async navigateToUserProfile(usern){
-    //        console.log(usern)
-    //    },
-
-    // }
 }
 </script>
 
@@ -65,6 +61,10 @@ export default {
 
 .cursor{
     cursor: pointer;
+}
+
+.inner{
+    overflow-wrap: break-word;
 }
 
 @media (max-width: 468px){

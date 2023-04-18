@@ -4,14 +4,16 @@
         {{successMessage[0]}}
     </p>
 
-    <div class="flex flex-row justify-center mt-8 card">
+    <div class="flex flex-row justify-center mt-8">
        <div class="p-5">
             <div class="rounded-lg bg-bgPic this">
                 <img :src="imageUrl" alt="content" class="rounded-lg"> 
 
                 <div class="info">
                     <a @click="navigateToUserProfile" class=" font-semibold italic username">{{username}}</a>
-                    <p class="font-semibold text-lg">~{{post.description}}</p>
+                    <div class="inner">
+                        <p class="font-semibold text-lg inner">~{{post.description}}</p>
+                    </div>
                 </div>
             </div>
 

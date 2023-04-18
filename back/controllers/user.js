@@ -17,14 +17,14 @@ exports.getProfile =  async(req,res) => {
     try{
         const username = req.params.username;
         const user = await User.findOne({username});
-        const posts =  await Content.find({author: user}).populate({
-            path:'author'
-        });
+        const posts =  await Content.find({author: user}).populate('author');
+        const single =  await Single.find({author: user}).populate('author');
         const successMessage = req.flash('success') ;
 
         const description = await Single.find({author:user})
             res.status(200).json({
             posts,
+            single,
             user,
             description,
             successMessage

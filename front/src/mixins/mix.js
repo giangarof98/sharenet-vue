@@ -43,6 +43,11 @@ export const signUp = {
     }
   },
   methods: {
+    async validation(){
+      if(!this.user.username){
+        this.user.err = 'Username is required'
+      }
+    },
     async createUser(){
         try{
             const res = await axios.post('/user/signup', {
@@ -136,6 +141,7 @@ export const getProfile = {
   data() {
     return {
         posts:[],
+        // single:[],
         username: '',        
       }
   },
@@ -147,6 +153,8 @@ export const getProfile = {
       const res = await axios.get(`/user/profile/${username}`)
       this.username = res.data.user.username;
       this.posts = res.data.posts;
+      // this.single = res.data.single;
+      // console.log(res.data.single)
     },
     navigateToUserSettings(){
       this.$router.push({name: 'UserUpdateConfig', params: {username: this.username}});
@@ -324,6 +332,7 @@ export const allSinglePostsByUser = {
   data(){
     return{
         description:[],
+        single:[],
         username:'',
     }
   },
@@ -335,7 +344,8 @@ export const allSinglePostsByUser = {
       const res = await axios.get(`/user/profile/${username}`)
       console.log(res.data.description)
       this.username = res.data.user.username;
-      this.description = res.data.description;
+      // this.description = res.data.description;
+      this.single = res.data.single;
       
     },
     async deleteContent(id){
@@ -537,7 +547,7 @@ export const profileUser = {
       this.username = res.data.user.username;
       this.successMessage = res.data.successMessage;
 
-      console.log(res.data)
+      // console.log(res.data)
     },
     navigateToUserProfile(){
       this.$router.push({name: 'SinglePostsByUser', params: {username: this.username}});

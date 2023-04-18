@@ -2,11 +2,14 @@
         <p class="text-center text-green-400 font-semibold">
             {{successMessage[0]}}
         </p>
+        
         <div v-if="review.length >= 1">
-            <div v-for="r in review" :key="r.id" class="flex justify-between py-4 small-col">
-                <div class="italic p-4 m-small">
+            <div v-for="r in review" :key="r.id" class="p-5 small-col box box-outer">
+                <div class="italic box">
                     <p class="font-semibold">{{r.author.username}}</p>
-                    <p class="w-1/2 m-small">~{{r.body}}</p>
+                    <div class="outer inner-box">
+                        <p class="m-small inner">~{{r.body}}</p>
+                    </div>
                 </div>
 
                 <div class="flex gap-5 p-4">
@@ -30,7 +33,7 @@
             </div>
         </div>
 
-        <div v-else>
+        <div v-else class="text-center mb-5">
             No comments yet. Be the first one to comment!
         </div>
 </template>
@@ -79,15 +82,23 @@ export default {
     color:red
 }
 
+.inner-box{
+    width: 50%;
+}
+
+.inner{
+    overflow-wrap: break-word;
+}
+
+
+
 @media (max-width: 768px){
-    .m-small{
-        padding: 10px;
+
+    .inner-box{
         width: 100%;
     }
-
-    .small-col{
-        display: flex;
-        flex-direction: column;
+    .inner{
+        overflow-wrap: break-word;
     }
     
 }

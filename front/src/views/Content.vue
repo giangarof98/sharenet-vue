@@ -1,6 +1,6 @@
 <template>
         <Navbar/>
-    <div class="flex justify-center">
+    <div>
         <div>
             <SingleContent/>
             <div v-if="currentUser">

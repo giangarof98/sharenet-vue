@@ -18,9 +18,8 @@ exports.create = async (req,res) => {
 exports.getAll = async (req,res) => {
     try{
         const contents = await Single.find({}).populate({
-            path:'author',
-            
-        }).populate('author');
+            path:'author'
+        });
         const successMessage = req.flash('success') ;
         res.status(200).json({contents, successMessage});
     } catch(err){

@@ -5,27 +5,26 @@
     <div class='text-center'>
         <a @click="navigateToUserProfile" class="font-semibold italic text-xl" id="singlePost">See posts with image</a>
     </div>
+
     <div class="flex flex-row my-6">
         <div class="w-6/12 text-center mx-auto this">
-            <div v-for="dsc in description.slice().reverse()" :key="dsc._id" class="my-5">
+            <div v-for="dsc in single.slice().reverse()" :key="dsc._id" class="my-5">
                 <div class="bg-bgPic rounded flex flex-col my-auto">
                     <div>
-                        {{dsc}}
                         <p class="italic font-semibold text-xl">{{username}}</p>
                         <p class="italic text-lg p-5">~{{dsc.description}}</p>
                     </div>
-                    <div class="flex justify-center gap-5 p-5 btns">
-                        <div v-if="currentUser === dsc.author.username" class="my-auto">
+                    <div class="flex justify-center gap-5 btns">
+                        <div v-if="currentUser === dsc.author.username">
                             <font-awesome-icon icon="fa-solid fa-trash" class="my-auto icon" @click="deleteContent(dsc._id)"/>
                         </div>
-                        <!-- <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart" @click="likeContent(dsc._id)" /> -->
-                        <div v-if="currentUser" class="my-auto">
+                        <div v-if="currentUser">
                             <div v-if="dsc.likes.includes(this.userId)" >
-                                <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart like" @click="likeContent(dsc._id)" />
+                                <font-awesome-icon icon="fa-solid fa-heart" class="icon icon-heart like" @click="likeContent(dsc._id)" />
                             </div>
                             
                             <div v-else>
-                                <font-awesome-icon icon="fa-solid fa-heart" class="my-auto icon icon-heart" @click="likeContent(dsc._id)" />
+                                <font-awesome-icon icon="fa-solid fa-heart" class="icon icon-heart" @click="likeContent(dsc._id)" />
                             </div>
                             {{dsc.likes.length}}
                         </div>
@@ -68,7 +67,7 @@ export default {
     async created(){
         // From the CheckIfLogin()
         // calling the userIsLogin()
-        // to display the heart and trah btns
+        // to display the heart and trash btns
         this.userIsLogin()
     },
 }

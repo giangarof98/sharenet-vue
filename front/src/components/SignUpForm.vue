@@ -37,6 +37,9 @@ import {signUp} from '@/mixins/mix.js'
 export default {
     name:'SignUpForm',
     mixins:[signUp],
+    methods:{
+        validation(){}
+    }
 }
 
 </script>

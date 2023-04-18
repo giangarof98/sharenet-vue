@@ -25,6 +25,7 @@ exports.create = async (req,res) => {
     await post.save();
     req.flash('success', 'successfully created!')
     res.send(req.body);
+    console.log(post)
 };
 
 exports.showOne = async (req,res) => {

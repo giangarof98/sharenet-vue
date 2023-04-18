@@ -12,7 +12,7 @@
                         <label class="text-lg font-semibold italic">Write a post</label>
                         <textarea type="text" placeholder="What are yoy thinking?" 
                                 class="border rounded py-0.9 px-1 focus:outline-none italic w-full m-auto" 
-                                v-model="post.description" required>
+                                v-model="post.description" required maxlength="20">
                         </textarea>
                     </div>
 
