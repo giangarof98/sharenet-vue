@@ -1,9 +1,7 @@
-if(process.env.NODE_ENV !== 'production'){
-    require('dotenv').config();
-};
-//If project is not in development, require 'dotenv' config()
+// if(process.env.NODE_ENV !== 'production'){
+//     require('dotenv').config();
+// }
 
-//Dependencies
 const express = require('express');
 const path = require('path')
 const mongoose = require('mongoose');
@@ -29,6 +27,8 @@ const routesSingle = require('./routes/single');
 const db = require('./connect/mongo');
 
 const app = express()
+
+dotenv.config()
 
 //CORS
 app.use((req, res, next) => {
