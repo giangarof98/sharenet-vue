@@ -28,8 +28,6 @@ const db = require('./connect/mongo');
 
 const app = express()
 
-dotenv.config()
-
 //CORS
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
